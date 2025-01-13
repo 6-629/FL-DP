@@ -1,17 +1,14 @@
 import models, torch, copy
 from tqdm import tqdm
+import numpy as np
 
 
 class Client(object):
 
     def __init__(self, conf, model, train_dataset, id=-1):
-
         self.conf = conf
-
         self.local_model = models.get_model(self.conf["model_name"])
-
         self.client_id = id
-
         self.train_dataset = train_dataset
 
         all_range = list(range(len(self.train_dataset)))
@@ -23,20 +20,16 @@ class Client(object):
                                                             train_indices))
 
     def local_train(self, model):
-
         for name, param in model.state_dict().items():
             self.local_model.state_dict()[name].copy_(param.clone())
 
-        # print(id(model))
         optimizer = torch.optim.SGD(self.local_model.parameters(), lr=self.conf['lr'],
                                     momentum=self.conf['momentum'])
-        # print(id(self.local_model))
         self.local_model.train()
-        for e in range(self.conf["local_epochs"]):
 
+        for e in range(self.conf["local_epochs"]):
             for batch_id, batch in enumerate(tqdm(self.train_loader)):
                 data, target = batch
-
                 if torch.cuda.is_available():
                     data = data.cuda()
                     target = target.cuda()
@@ -45,12 +38,15 @@ class Client(object):
                 output = self.local_model(data)
                 loss = torch.nn.functional.cross_entropy(output, target)
                 loss.backward()
-
                 optimizer.step()
+
             print("Epoch %d done." % e)
+
+        # Compute model update with added noise for differential privacy
         diff = dict()
+        noise_scale = self.conf.get('dp_noise_scale', 0.1)  # Set noise scale for DP
         for name, data in self.local_model.state_dict().items():
-            diff[name] = (data - model.state_dict()[name])
-        # print(diff[name])
+            noise = torch.normal(0, noise_scale, size=data.size(), device=data.device)
+            diff[name] = (data - model.state_dict()[name]) + noise  # Add Gaussian noise
 
         return diff
