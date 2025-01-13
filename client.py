@@ -2,7 +2,7 @@ import models, torch, copy
 from tqdm import tqdm
 import numpy as np
 
-# git test
+
 class Client(object):
 
     def __init__(self, conf, model, train_dataset, id=-1):
@@ -44,9 +44,23 @@ class Client(object):
 
         # Compute model update with added noise for differential privacy
         diff = dict()
+        noise_type = self.conf.get('dp_noise_type', 'gaussian')  # Select noise type
         noise_scale = self.conf.get('dp_noise_scale', 0.1)  # Set noise scale for DP
+
         for name, data in self.local_model.state_dict().items():
-            noise = torch.normal(0, noise_scale, size=data.size(), device=data.device)
-            diff[name] = (data - model.state_dict()[name]) + noise  # Add Gaussian noise
+            if noise_type == 'gaussian':
+                # Add Gaussian noise
+                noise = torch.normal(0, noise_scale, size=data.size(), device=data.device)
+            elif noise_type == 'laplace':
+                # Add Laplace noise
+                noise = torch.from_numpy(np.random.laplace(0, noise_scale, data.size())).float().to(data.device)
+            elif noise_type == 'gradient_clipping':
+                # Apply gradient clipping and then add Gaussian noise
+                torch.nn.utils.clip_grad_norm_(self.local_model.parameters(), max_norm=1.0)
+                noise = torch.normal(0, noise_scale, size=data.size(), device=data.device)
+            else:
+                raise ValueError("Unknown noise type")
+
+            diff[name] = (data - model.state_dict()[name]) + noise  # Add noise after computing the update
 
         return diff
