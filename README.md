@@ -1,4 +1,4 @@
-# 第3章：用Python从零实现横向联邦图像分类
+用Python从零实现横向联邦图像分类
 
 
 本章是联邦学习实战书中第三章的配套代码。本章的代码运行需要首先安装[Python](https://www.anaconda.com/products/individual)、[Pytorch](https://pytorch.org/get-started/locally/)环境，并下载[cifar10](https://www.cs.toronto.edu/~kriz/cifar.html)数据集放置到data文件夹下面。
