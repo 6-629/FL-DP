@@ -2,7 +2,7 @@ import models, torch, copy
 from tqdm import tqdm
 import numpy as np
 
-# git test of l
+# git test
 class Client(object):
 
     def __init__(self, conf, model, train_dataset, id=-1):
