@@ -2,7 +2,6 @@ import models, torch, copy
 from tqdm import tqdm
 
 
-# 2025.1.13
 class Client(object):
 
     def __init__(self, conf, model, train_dataset, id=-1):
