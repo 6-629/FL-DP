@@ -47,3 +47,4 @@ if __name__ == '__main__':
         acc, loss = server.model_eval()
 
         print("Epoch %d, acc: %f, loss: %f\n" % (e, acc, loss))
+        #123123124124
