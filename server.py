@@ -13,14 +13,14 @@ class Server(object):
         self.eval_loader = torch.utils.data.DataLoader(eval_dataset, batch_size=self.conf["batch_size"], shuffle=True)
 
     def model_aggregate(self, weight_accumulator):
+        """
+        聚合模型参数
+        """
         for name, data in self.global_model.state_dict().items():
-
-            update_per_layer = weight_accumulator[name] * self.conf["lambda"]
-
-            if data.type() != update_per_layer.type():
-                data.add_(update_per_layer.to(torch.int64))
-            else:
-                data.add_(update_per_layer)
+            update = weight_accumulator[name] / self.conf["k"]  # 平均更新
+            if data.type() != update.type():
+                update = update.to(data.dtype)  # 确保类型匹配
+            data.add_(update)  # 应用更新
 
     def model_eval(self):
         self.global_model.eval()
