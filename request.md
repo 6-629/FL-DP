@@ -32,7 +32,4 @@ FederatedLearningPrivacy/
 └── main.py                        # 程序入口
 项目结构 仅供参考
 差分隐私三种方案
-1）客户端侧采用的差分隐私机制一般被称为本地化(Local)差分隐私
-2）通过可信中间节点进行扰动可以被称为分布式(Distributed)差分隐私
-3）由服务器完成的扰动被称为中心化(Centralized)差分隐私
-4）融合了上述两种或以上的差分隐私方法则被称为混合(Hybrid)差分隐私
+![alt text](image.png)
