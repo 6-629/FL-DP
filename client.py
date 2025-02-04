@@ -133,6 +133,11 @@ class Client(object):
             for name, local_param in self.local_model.state_dict().items():
                 # 计算参数差异
                 global_param = global_model.state_dict()[name]
+
+                # 确保所有参数在同一设备上
+                local_param = local_param.to(self.device)
+                global_param = global_param.to(self.device)
+
                 param_diff = local_param.detach() - global_param.detach()
 
                 # 添加差分隐私噪声
@@ -169,6 +174,11 @@ class Client(object):
         sensitivity = 0.0
         for name, local_param in self.local_model.state_dict().items():
             global_param = global_model.state_dict()[name]
+
+            # 确保所有参数在同一设备上
+            local_param = local_param.to(self.device)
+            global_param = global_param.to(self.device)
+
             param_diff = torch.norm(local_param.detach() - global_param.detach(), p=2)
             if param_diff > sensitivity:
                 sensitivity = param_diff.item()

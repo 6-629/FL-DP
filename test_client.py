@@ -11,7 +11,7 @@ from client import Client
 def test_client_dp():
     # 1. 创建测试配置
     conf = {
-        'no_models': 5,  # 客户端数量
+        'no_models': 50,  # 客户端数量
         'batch_size': 32,
         'local_epochs': 2,
         'lr': 0.01,
@@ -45,7 +45,7 @@ def test_client_dp():
         def forward(self, x):
             return self.fc(x.view(-1, 28 * 28))
 
-    global_model = SimpleModel()
+    global_model = SimpleModel().cuda()  # 确保模型在GPU上
 
     # 4. 初始化客户端
     client = Client(
@@ -69,7 +69,9 @@ def test_client_dp():
     # 验证2: 参数确实发生变化
     param_changed = False
     for name in original_params:
-        if not torch.equal(original_params[name], model_update[name]):
+        # 确保比较的参数在同一设备上
+        original_param = original_params[name].to(model_update[name].device)
+        if not torch.equal(original_param, model_update[name]):
             param_changed = True
             break
     assert param_changed, "参数未发生变化"
@@ -80,7 +82,7 @@ def test_client_dp():
     noise_norm = 0.0
     for name in model_update:
         update = model_update[name]
-        param_diff = global_model.state_dict()[name] - original_params[name]
+        param_diff = global_model.state_dict()[name] - original_params[name].to(update.device)
 
         update_norm += torch.norm(update).item()
         noise_norm += torch.norm(update - param_diff).item()  # 计算噪声部分
