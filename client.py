@@ -118,71 +118,159 @@ class Client(object):
             self.logger.error(f"Error in local training: {str(e)}")
             raise
 
+    def compute_sensitivity(self, global_model):
+        """计算模型更新的敏感度"""
+        sensitivity = 0.0
+        for name, local_param in self.local_model.state_dict().items():
+            global_param = global_model.state_dict()[name]
+
+            # 确保所有参数在同一设备上并转换为浮点类型
+            local_param = local_param.to(self.device).float()
+            global_param = global_param.to(self.device).float()
+
+            param_diff = torch.norm(local_param.detach() - global_param.detach(), p=2)
+            if param_diff > sensitivity:
+                sensitivity = param_diff.item()
+        return sensitivity
+
+    def apply_gaussian_noise(self, param_diff, epsilon, delta, sensitivity):
+        """
+        应用高斯机制
+        :param param_diff: 参数差异
+        :param epsilon: 隐私预算
+        :param delta: 松弛参数
+        :param sensitivity: 敏感度
+        :return: 添加噪声后的参数差异
+        """
+        try:
+            sigma = float(np.sqrt(2 * np.log(1.25 / delta)) * sensitivity / epsilon)
+            noise = torch.normal(
+                mean=torch.zeros_like(param_diff),
+                std=torch.full_like(param_diff, sigma)
+            ).float()
+            return param_diff + noise
+        except Exception as e:
+            self.logger.error(f"Error in Gaussian mechanism: {str(e)}")
+            raise
+
+    def apply_laplace_noise(self, param_diff, epsilon, sensitivity):
+        """
+        应用拉普拉斯机制
+        :param param_diff: 参数差异
+        :param epsilon: 隐私预算
+        :param sensitivity: 敏感度
+        :return: 添加噪声后的参数差异
+        """
+        try:
+            b = float(sensitivity / epsilon)
+            noise = torch.from_numpy(
+                np.random.laplace(0, b, size=param_diff.size())
+            ).float().to(param_diff.device)
+            return param_diff + noise
+        except Exception as e:
+            self.logger.error(f"Error in Laplace mechanism: {str(e)}")
+            raise
+
+    def apply_exponential_noise(self, param_diff, epsilon, sensitivity):
+        """
+        应用指数机制
+        :param param_diff: 参数差异
+        :param epsilon: 隐私预算
+        :param sensitivity: 敏感度
+        :return: 添加噪声后的参数差异
+        """
+        try:
+            param_diff = param_diff.float()
+            
+            def utility_function(noise):
+                noised_diff = param_diff + noise.float()
+                return -float(torch.norm(noised_diff).item())
+
+            noise_candidates = []
+            scale = float(sensitivity / epsilon)
+            for _ in range(10):
+                noise = torch.randn_like(param_diff).float() * scale
+                noise_candidates.append(noise)
+
+            utility_values = [utility_function(noise) for noise in noise_candidates]
+            # 将效用值转换为非负数
+            scores = torch.tensor(utility_values, dtype=torch.float32, device=param_diff.device)
+            scores = scores - scores.min()  # 确保所有值非负
+            
+            # 处理概率计算
+            exp_scores = torch.exp(torch.tensor(epsilon, dtype=torch.float32) * 
+                                 scores / (2.0 * float(sensitivity)))
+            # 确保概率和为1且非负
+            probabilities = exp_scores / exp_scores.sum()
+            # 处理数值稳定性
+            probabilities = torch.clamp(probabilities, min=0.0, max=1.0)
+            probabilities = probabilities / probabilities.sum()
+
+            # 确保概率张量为浮点类型
+            selected_idx = int(torch.multinomial(probabilities.float(), 1).item())
+            selected_noise = noise_candidates[selected_idx].float()
+
+            return param_diff + selected_noise
+        except Exception as e:
+            self.logger.error(f"Error in Exponential mechanism: {str(e)}")
+            raise
+
+    def apply_differential_privacy(self, param_diff, noise_type, epsilon, sensitivity, delta=1e-5):
+        """
+        选择并应用差分隐私机制
+        :param param_diff: 参数差异
+        :param noise_type: 噪声类型 ('gaussian', 'laplace', 'exponential')
+        :param epsilon: 隐私预算
+        :param sensitivity: 敏感度
+        :param delta: 松弛参数 (仅用于高斯机制)
+        :return: 添加噪声后的参数差异
+        """
+        try:
+            if noise_type == 'gaussian':
+                return self.apply_gaussian_noise(param_diff, epsilon, delta, sensitivity)
+            elif noise_type == 'laplace':
+                return self.apply_laplace_noise(param_diff, epsilon, sensitivity)
+            elif noise_type == 'exponential':
+                return self.apply_exponential_noise(param_diff, epsilon, sensitivity)
+            else:
+                self.logger.warning(f"Unknown noise type: {noise_type}, no noise added")
+                return param_diff
+        except Exception as e:
+            self.logger.error(f"Error applying differential privacy: {str(e)}")
+            raise
+
     def compute_model_update(self, global_model):
         """计算模型更新并添加差分隐私噪声"""
         try:
             diff = {}
             noise_type = self.conf.get('dp_noise_type', 'gaussian')
-            noise_scale = self.conf.get('dp_noise_scale', 0.1)
-            epsilon = self.conf.get('epsilon', 1.0)
-            delta = self.conf.get('delta', 1e-5)
-
-            # 计算敏感度
-            sensitivity = self.compute_sensitivity(global_model)
+            epsilon = float(self.conf.get('epsilon', 1.0))
+            delta = float(self.conf.get('delta', 1e-5))
+            sensitivity = float(self.compute_sensitivity(global_model))
 
             for name, local_param in self.local_model.state_dict().items():
-                # 计算参数差异
                 global_param = global_model.state_dict()[name]
-
-                # 确保所有参数在同一设备上
-                local_param = local_param.to(self.device)
-                global_param = global_param.to(self.device)
-
+                
+                # 确保参数在同一设备上并为浮点类型
+                local_param = local_param.to(self.device).float()
+                global_param = global_param.to(self.device).float()
+                
                 param_diff = local_param.detach() - global_param.detach()
-
-                # 添加差分隐私噪声
-                if noise_type == 'gaussian':
-                    sigma = np.sqrt(2 * np.log(1.25 / delta)) * sensitivity / epsilon
-                    noise = torch.normal(
-                        0,
-                        sigma,
-                        size=param_diff.size(),
-                        device=param_diff.device
-                    )
-                elif noise_type == 'laplace':
-                    b = sensitivity / epsilon
-                    noise = torch.from_numpy(
-                        np.random.laplace(0, b, param_diff.size())
-                    ).float().to(param_diff.device)
-                elif noise_type == 'exponential':
-                    # 指数机制需要定义效用函数，这里简化为随机选择
-                    noise = torch.zeros_like(param_diff)
-                else:
-                    noise = torch.zeros_like(param_diff)
-
-                diff[name] = param_diff + noise
+                
+                # 应用差分隐私
+                diff[name] = self.apply_differential_privacy(
+                    param_diff=param_diff,
+                    noise_type=noise_type,
+                    epsilon=epsilon,
+                    sensitivity=sensitivity,
+                    delta=delta
+                )
 
             return diff
 
         except Exception as e:
             self.logger.error(f"Error computing model update: {str(e)}")
             raise
-
-    def compute_sensitivity(self, global_model):
-        """计算模型更新的敏感度"""
-        # 这里简化为模型参数的最大变化量
-        sensitivity = 0.0
-        for name, local_param in self.local_model.state_dict().items():
-            global_param = global_model.state_dict()[name]
-
-            # 确保所有参数在同一设备上
-            local_param = local_param.to(self.device)
-            global_param = global_param.to(self.device)
-
-            param_diff = torch.norm(local_param.detach() - global_param.detach(), p=2)
-            if param_diff > sensitivity:
-                sensitivity = param_diff.item()
-        return sensitivity
 
     def evaluate(self, data_loader):
         """评估模型性能"""
