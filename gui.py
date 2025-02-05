@@ -8,12 +8,19 @@ from server import Server
 import models
 import json
 import os
+import logging
+from model_recovery import ModelRecovery
+import copy
 
 class FederatedLearningGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("联邦学习隐私保护系统")
         self.root.geometry("1100x600")
+        
+        # 初始化日志记录器
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger("FederatedLearningGUI")
         
         # 保存当前的客户端和服务器实例
         self.clients = []
@@ -233,15 +240,21 @@ class FederatedLearningGUI:
                 self.root.update_idletasks()
 
                 # 训练过程
-                acc, loss = self.train_one_epoch(epoch, conf)
-                
-                # 更新指标显示
-                self.update_metrics(acc, loss)
-                
-                # 更新训练日志
-                self.result_text.insert(tk.END, 
-                    f"Epoch {epoch}, 准确率: {acc:.2f}%, 损失: {loss:.4f}\n")
-                self.result_text.see(tk.END)
+                try:
+                    acc, loss = self.train_one_epoch(epoch, conf)
+                    
+                    # 更新指标显示
+                    self.update_metrics(acc, loss)
+                    
+                    # 更新训练日志
+                    log_message = "Epoch {}, 准确率: {:.2f}%, 损失: {:.4f}\n".format(
+                        epoch, float(acc), float(loss)
+                    )
+                    self.result_text.insert(tk.END, log_message)
+                    self.result_text.see(tk.END)
+                except Exception as e:
+                    self.logger.error(f"Training error in epoch {epoch}: {str(e)}")
+                    raise
 
             messagebox.showinfo("完成", "训练完成！")
             
@@ -249,20 +262,40 @@ class FederatedLearningGUI:
             messagebox.showerror("错误", str(e))
 
     def train_one_epoch(self, epoch, conf):
-        import random
-        candidates = random.sample(self.clients, conf["k"])
-        weight_accumulator = {}
+        """训练一个epoch"""
+        try:
+            # 确保k是整数
+            k = int(conf.get("k", 5))
+            
+            # 确保选择的客户端数量不超过可用客户端数量
+            k = min(k, len(self.clients))
+            
+            # 不随机选择客户端，依次选择客户端
+            candidates = self.clients[:k]
+            weight_accumulator = {}
 
-        for name, params in self.server.global_model.state_dict().items():
-            weight_accumulator[name] = torch.zeros_like(params)
-
-        for c in candidates:
-            diff = c.local_train(self.server.global_model)
+            # 初始化权重累加器
             for name, params in self.server.global_model.state_dict().items():
-                weight_accumulator[name].add_(diff[name])
+                weight_accumulator[name] = torch.zeros_like(params)
 
-        self.server.model_aggregate(weight_accumulator)
-        return self.server.model_eval()
+            # 客户端训练
+            for c in candidates:
+                diff = c.local_train(self.server.global_model)
+                for name, params in self.server.global_model.state_dict().items():
+                    weight_accumulator[name].add_(diff[name])
+
+            # 服务器聚合
+            self.server.model_aggregate(weight_accumulator)
+            
+            # 评估模型
+            acc, loss = self.server.model_eval()
+            
+            # 确保返回浮点数
+            return float(acc), float(loss)
+        
+        except Exception as e:
+            self.logger.error(f"Error in training epoch: {str(e)}")
+            raise
 
     def start_recovery(self):
         try:
@@ -275,13 +308,22 @@ class FederatedLearningGUI:
 
             iterations = int(self.iter_var.get())
             
-            # TODO: 实现梯度恢复逻辑
             self.recovery_text.delete(1.0, tk.END)
             self.recovery_text.insert(tk.END, f"开始恢复客户端 {target_id} 的数据...\n")
             
-            # 模拟恢复结果
-            mse = 0.15
-            psnr = 25.5
+            # 创建恢复器实例
+            recovery = ModelRecovery(self.global_model, self.clients[target_id])
+            
+            # 执行恢复
+            recovered_data, mse, psnr = recovery.recover_data(iterations=iterations)
+            
+            # 保存恢复的图像
+            save_path = f"recovered_client_{target_id}.png"
+            recovered_data.save(save_path)
+            
+            # 更新GUI显示
+            self.recovery_text.insert(tk.END, f"恢复完成！\n")
+            self.recovery_text.insert(tk.END, f"恢复的图像已保存至: {save_path}\n")
             
             # 更新恢复指标
             self.update_recovery_metrics(mse, psnr)
@@ -290,16 +332,32 @@ class FederatedLearningGUI:
             messagebox.showerror("错误", str(e))
 
     def update_metrics(self, accuracy=None, loss=None):
-        if accuracy is not None:
-            self.accuracy_var.set(f"{accuracy:.2f}")
-        if loss is not None:
-            self.loss_var.set(f"{loss:.4f}")
+        """更新训练指标显示"""
+        try:
+            if accuracy is not None:
+                # 将准确率限制到2位小数
+                acc_str = "{:.2f}".format(float(accuracy))
+                self.accuracy_var.set(acc_str)
+            if loss is not None:
+                # 将损失值限制到4位小数
+                loss_str = "{:.4f}".format(float(loss))
+                self.loss_var.set(loss_str)
+        except Exception as e:
+            self.logger.error(f"Error updating metrics: {str(e)}")
 
     def update_recovery_metrics(self, mse=None, psnr=None):
-        if mse is not None:
-            self.mse_var.set(f"{mse:.6f}")
-        if psnr is not None:
-            self.psnr_var.set(f"{psnr:.2f}")
+        """更新恢复指标显示"""
+        try:
+            if mse is not None:
+                # 将MSE限制到6位小数
+                mse_str = "{:.6f}".format(float(mse))
+                self.mse_var.set(mse_str)
+            if psnr is not None:
+                # 将PSNR限制到2位小数
+                psnr_str = "{:.2f}".format(float(psnr))
+                self.psnr_var.set(psnr_str)
+        except Exception as e:
+            self.logger.error(f"Error updating recovery metrics: {str(e)}")
 
     def aggregate_params(self):
         """执行参数聚合"""
@@ -325,6 +383,56 @@ class FederatedLearningGUI:
             
         except Exception as e:
             messagebox.showerror("错误", str(e))
+
+    def local_train(self, model):
+        """本地训练过程"""
+        try:
+            # 复制全局模型参数到本地模型
+            self.local_model.load_state_dict(copy.deepcopy(model.state_dict()))
+            self.local_model.train()
+
+            # 训练循环
+            for epoch in range(self.conf["local_epochs"]):
+                epoch_loss = 0
+                correct = 0
+                total = 0
+
+                for batch_idx, (data, target) in enumerate(self.train_loader):
+                    # 移动数据到正确的设备
+                    data, target = data.to(self.device), target.to(self.device).long()  # 确保target是LongTensor
+
+                    # 训练步骤
+                    self.optimizer.zero_grad()
+                    output = self.local_model(data)
+                    loss = torch.nn.functional.cross_entropy(output, target)
+                    loss.backward()
+
+                    # 梯度裁剪（如果配置中指定）
+                    if "clip_grad" in self.conf:
+                        torch.nn.utils.clip_grad_norm_(
+                            self.local_model.parameters(),
+                            self.conf["clip_grad"]
+                        )
+
+                    self.optimizer.step()
+
+                    # 计算统计信息
+                    epoch_loss += loss.item()
+                    _, predicted = output.max(1)
+                    total += target.size(0)
+                    correct += predicted.eq(target).sum().item()
+
+                # 记录每个epoch的统计信息
+                accuracy = 100. * correct / total
+                avg_loss = epoch_loss / len(self.train_loader)
+                self.logger.info(f'Epoch: {epoch}, Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%')
+
+            # 计算模型更新（带差分隐私）
+            return self.compute_model_update(model)
+
+        except Exception as e:
+            self.logger.error(f"Error in local training: {str(e)}")
+            raise
 
 if __name__ == "__main__":
     root = tk.Tk()

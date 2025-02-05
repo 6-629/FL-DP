@@ -83,7 +83,7 @@ class Client(object):
 
                 for batch_idx, (data, target) in enumerate(self.train_loader):
                     # 移动数据到正确的设备
-                    data, target = data.to(self.device), target.to(self.device)
+                    data, target = data.to(self.device), target.to(self.device).long()
 
                     # 训练步骤
                     self.optimizer.zero_grad()
