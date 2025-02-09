@@ -6,7 +6,7 @@
 	
 	"type" : "cifar",
 	
-	"global_epochs" : 8,
+	"global_epochs" : 3,
 	
 	"local_epochs" : 2,
 	
