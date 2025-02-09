@@ -3,6 +3,7 @@ import copy
 from tqdm import tqdm
 import logging
 import numpy as np
+import os
 
 
 class Client(object):
@@ -13,8 +14,14 @@ class Client(object):
         self.conf = conf
         self.client_id = id
 
+        # 首先设置日志记录器
+        logging.basicConfig(level=logging.INFO)
+        self.logger = logging.getLogger(f"Client_{id}")
+        self.logger.info(f"初始化客户端 {id}")
+
         # 设置设备
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        self.logger.info(f"使用设备: {self.device}")
 
         # 初始化本地模型
         self.local_model = copy.deepcopy(model)
@@ -25,15 +32,19 @@ class Client(object):
             self.local_model.parameters(),
             lr=self.conf['lr'],
             momentum=self.conf.get('momentum', 0.9),
-            weight_decay=self.conf.get('weight_decay', 0.0001)
+            weight_decay=self.conf.get('weight_decay', 0.0005),
+            nesterov=True  # 使用Nesterov动量
+        )
+
+        # 添加学习率调度器
+        self.scheduler = torch.optim.lr_scheduler.StepLR(
+            self.optimizer,
+            step_size=self.conf.get('scheduler_step', 5),
+            gamma=self.conf.get('scheduler_gamma', 0.1)
         )
 
         # 设置训练数据
         self.setup_training_data(train_dataset, id)
-
-        # 设置日志
-        logging.basicConfig(level=logging.INFO)
-        self.logger = logging.getLogger(f"Client_{id}")
 
     def setup_training_data(self, train_dataset, id):
         """设置训练数据"""
@@ -41,8 +52,23 @@ class Client(object):
             # 计算数据分片
             all_range = list(range(len(train_dataset)))
             data_len = int(len(train_dataset) / self.conf['no_models'])
-            train_indices = all_range[id * data_len: (id + 1) * data_len]
-
+            
+            # 确保每个客户端至少有一个样本
+            data_len = max(1, data_len)
+            
+            # 计算当前客户端的数据范围
+            start_idx = id * data_len
+            end_idx = min(start_idx + data_len, len(train_dataset))
+            
+            # 确保索引有效
+            if start_idx >= len(train_dataset):
+                raise ValueError(f"客户端 {id} 的起始索引 {start_idx} 超出数据集大小 {len(train_dataset)}")
+            
+            train_indices = all_range[start_idx:end_idx]
+            
+            if not train_indices:
+                raise ValueError(f"客户端 {id} 没有分配到任何训练数据")
+            
             # 创建数据加载器
             self.train_loader = torch.utils.data.DataLoader(
                 train_dataset,
@@ -51,8 +77,16 @@ class Client(object):
                 num_workers=self.conf.get("num_workers", 0),
                 pin_memory=True if torch.cuda.is_available() else False
             )
+            
+            self.logger.info(
+                f"客户端 {id} 数据设置完成: "
+                f"样本数量={len(train_indices)}, "
+                f"批次大小={self.conf['batch_size']}, "
+                f"批次数量={len(self.train_loader)}"
+            )
+            
         except Exception as e:
-            self.logger.error(f"Error setting up training data: {str(e)}")
+            self.logger.error(f"设置训练数据失败: {str(e)}")
             raise
 
     def update_learning_rate(self, new_lr):
@@ -74,6 +108,15 @@ class Client(object):
             # 复制全局模型参数到本地模型
             self.local_model.load_state_dict(copy.deepcopy(model.state_dict()))
             self.local_model.train()
+            
+            best_acc = 0
+            best_state = None
+            
+            # 检查训练数据是否为空
+            if len(self.train_loader) == 0:
+                raise ValueError(f"客户端 {self.client_id} 的训练数据为空")
+            
+            self.logger.info(f"客户端 {self.client_id} 开始训练，数据批次数: {len(self.train_loader)}")
 
             # 训练循环
             for epoch in range(self.conf["local_epochs"]):
@@ -82,21 +125,26 @@ class Client(object):
                 total = 0
 
                 for batch_idx, (data, target) in enumerate(self.train_loader):
+                    # 检查批次数据
+                    if data.size(0) == 0:
+                        self.logger.warning(f"跳过空批次 {batch_idx}")
+                        continue
+                        
                     # 移动数据到正确的设备
                     data, target = data.to(self.device), target.to(self.device).long()
-
+                    
                     # 训练步骤
                     self.optimizer.zero_grad()
                     output = self.local_model(data)
                     loss = torch.nn.functional.cross_entropy(output, target)
                     loss.backward()
 
-                    # 梯度裁剪（如果配置中指定）
-                    if "clip_grad" in self.conf:
-                        torch.nn.utils.clip_grad_norm_(
-                            self.local_model.parameters(),
-                            self.conf["clip_grad"]
-                        )
+                    # 梯度裁剪
+                    max_norm = self.conf.get('max_grad_norm', 1.0)
+                    torch.nn.utils.clip_grad_norm_(
+                        self.local_model.parameters(),
+                        max_norm
+                    )
 
                     self.optimizer.step()
 
@@ -106,16 +154,70 @@ class Client(object):
                     total += target.size(0)
                     correct += predicted.eq(target).sum().item()
 
-                # 记录每个epoch的统计信息
+                    # 添加进度打印
+                    if batch_idx % 50 == 0:
+                        self.logger.info(
+                            f'Client {self.client_id}, Epoch: {epoch}, '
+                            f'Batch: [{batch_idx}/{len(self.train_loader)}], '
+                            f'Loss: {loss.item():.4f}'
+                        )
+
+                # 更新学习率
+                self.scheduler.step()
+                
+                # 计算epoch统计信息
                 accuracy = 100. * correct / total
                 avg_loss = epoch_loss / len(self.train_loader)
-                self.logger.info(f'Epoch: {epoch}, Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%')
+                
+                # 保存最佳模型
+                if accuracy > best_acc:
+                    best_acc = accuracy
+                    best_state = copy.deepcopy(self.local_model.state_dict())
+                
+                self.logger.info(
+                    f'Client {self.client_id}, Epoch: {epoch}, '
+                    f'Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%, '
+                    f'Processed samples: {total}, '
+                    f'LR: {self.scheduler.get_last_lr()[0]:.6f}'
+                )
 
-            # 计算模型更新（带差分隐私）
-            return self.compute_model_update(model)
+            # 恢复最佳模型状态
+            if best_state is not None:
+                self.local_model.load_state_dict(best_state)
+
+            # 返回模型更新
+            return self.compute_model_update_without_noise(model)
 
         except Exception as e:
-            self.logger.error(f"Error in local training: {str(e)}")
+            self.logger.error(f"客户端 {self.client_id} 训练错误: {str(e)}")
+            raise
+
+    def save_model_weights(self):
+        """保存本地模型权重"""
+        try:
+            # 创建保存目录（如果不存在）
+            save_dir = os.path.join('model_weights', 'clients')
+            os.makedirs(save_dir, exist_ok=True)
+
+            # 生成权重文件名
+            round_number = self.conf.get('current_round', 0)  # 从配置中获取当前轮次
+            filename = f'client_{self.client_id}_round_{round_number}.pt'
+            save_path = os.path.join(save_dir, filename)
+
+            # 保存模型状态
+            state_dict = {
+                'model_state_dict': self.local_model.state_dict(),
+                'optimizer_state_dict': self.optimizer.state_dict(),
+                'client_id': self.client_id,
+                'round': round_number,
+                'conf': self.conf
+            }
+            
+            torch.save(state_dict, save_path)
+            self.logger.info(f'Saved model weights to {save_path}')
+
+        except Exception as e:
+            self.logger.error(f"Error saving model weights: {str(e)}")
             raise
 
     def compute_sensitivity(self, global_model):
@@ -281,6 +383,30 @@ class Client(object):
                 
                 # 将结果转换回原始类型
                 diff[name] = noised_diff.to(dtype=original_dtype)
+
+            return diff
+
+        except Exception as e:
+            self.logger.error(f"Error computing model update: {str(e)}")
+            raise
+
+    def compute_model_update_without_noise(self, global_model):
+        """计算模型更新（不添加噪声）"""
+        try:
+            diff = {}
+            for name, local_param in self.local_model.state_dict().items():
+                global_param = global_model.state_dict()[name]
+                original_dtype = global_param.dtype
+                
+                # 转换为浮点类型进行计算
+                local_param = local_param.to(self.device).float()
+                global_param = global_param.to(self.device).float()
+                
+                # 计算参数差异
+                param_diff = local_param.detach() - global_param.detach()
+                
+                # 将结果转换回原始类型
+                diff[name] = param_diff.to(dtype=original_dtype)
 
             return diff
 

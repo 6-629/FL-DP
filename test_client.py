@@ -14,15 +14,15 @@ def test_client_dp():
         'no_models': 5,  # 客户端数量
         'batch_size': 32,
         'local_epochs': 2,
-        'lr': 0.01,
+        'lr': 0.0001,  # 降低学习率
         'momentum': 0.9,
         'weight_decay': 1e-4,
-        'dp_noise_type': 'exponential',  # 测试不同噪声类型
-        'dp_noise_scale': 0.5,
+        'dp_noise_type': 'gaussian',  # 改用高斯噪声
+        'dp_noise_scale': 0.001,  # 降低噪声强度
         'epsilon': 1.0,
         'delta': 1e-5,
-        'clip_grad': 1.0  # 梯度裁剪阈值
-
+        'clip_grad': 0.5,  # 降低梯度裁剪阈值
+        'max_grad_norm': 0.5  # 添加最大梯度范数限制
     }
 
     # 2. 准备测试数据（使用MNIST）
@@ -37,16 +37,34 @@ def test_client_dp():
         transform=transform
     )
 
-    # 3. 创建简单模型
-    class SimpleModel(nn.Module):
+    # 3. 创建更复杂的模型
+    class ComplexModel(nn.Module):
         def __init__(self):
-            super(SimpleModel, self).__init__()
-            self.fc = nn.Linear(28 * 28, 10)
+            super(ComplexModel, self).__init__()
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1)
+            self.relu1 = nn.ReLU()
+            self.pool1 = nn.MaxPool2d(kernel_size=2, stride=2)
+            self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)
+            self.relu2 = nn.ReLU()
+            self.pool2 = nn.MaxPool2d(kernel_size=2, stride=2)
+            self.fc1 = nn.Linear(64 * 7 * 7, 128)
+            self.relu3 = nn.ReLU()
+            self.fc2 = nn.Linear(128, 10)
 
         def forward(self, x):
-            return self.fc(x.view(-1, 28 * 28))
+            x = self.conv1(x)
+            x = self.relu1(x)
+            x = self.pool1(x)
+            x = self.conv2(x)
+            x = self.relu2(x)
+            x = self.pool2(x)
+            x = x.view(x.size(0), -1)
+            x = self.fc1(x)
+            x = self.relu3(x)
+            x = self.fc2(x)
+            return x
 
-    global_model = SimpleModel().cuda()  # 确保模型在GPU上
+    global_model = ComplexModel().cuda()  # 确保模型在GPU上
 
     # 4. 初始化所有客户端
     clients = []
@@ -64,20 +82,59 @@ def test_client_dp():
     # 5. 测试每个客户端的训练
     for client in clients:
         print(f"\n测试客户端 {client.client_id}:")
+        
+        # 记录原始参数
         original_params = copy.deepcopy(global_model.state_dict())
-        model_update = client.local_train(global_model)
+        
+        # 在每个批次训练后添加差分隐私
+        for epoch in range(conf['local_epochs']):
+            running_loss = 0.0
+            for batch_idx, (data, target) in enumerate(client.train_loader):
+                data, target = data.cuda(), target.cuda()
+                
+                # 前向传播和损失计算
+                client.optimizer.zero_grad()
+                output = client.local_model(data)
+                loss = nn.CrossEntropyLoss()(output, target)
+                
+                # 反向传播
+                loss.backward()
+                
+                # 梯度裁剪
+                torch.nn.utils.clip_grad_norm_(
+                    client.local_model.parameters(),
+                    conf['clip_grad']
+                )
+                
+                # 应用差分隐私
+                for name, param in client.local_model.named_parameters():
+                    if param.grad is not None:
+                        sensitivity = torch.norm(param.grad).item()
+                        noised_grad = client.apply_differential_privacy(
+                            param.grad,
+                            conf['dp_noise_type'],
+                            conf['epsilon'],
+                            sensitivity * conf['dp_noise_scale'],
+                            conf['delta']
+                        )
+                        param.grad = noised_grad
+                
+                client.optimizer.step()
+                running_loss += loss.item()
+                
+                if batch_idx % 100 == 99:
+                    print(f'[Epoch {epoch + 1}, Batch {batch_idx + 1}] loss: {running_loss / 100:.3f}')
+                    running_loss = 0.0
 
-        # 验证更新
+        # 计算并打印更新的统计信息
         update_norm = 0.0
         noise_norm = 0.0
-        for name in model_update:
-            update = model_update[name]
-            param_diff = global_model.state_dict()[name] - original_params[name].to(update.device)
-            update_norm += torch.norm(update).item()
-            noise_norm += torch.norm(update - param_diff).item()
-
+        for name, param in client.local_model.named_parameters():
+            if name in original_params:
+                param_diff = param.data - original_params[name].cuda()
+                update_norm += torch.norm(param_diff).item()
+                
         print(f"更新量总范数: {update_norm:.4f}")
-        print(f"噪声部分范数: {noise_norm:.4f}")
         sensitivity = client.compute_sensitivity(global_model)
         print(f"敏感度: {sensitivity:.4f}")
 

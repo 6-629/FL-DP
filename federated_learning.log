@@ -189,3 +189,1145 @@ element 0 of tensors does not require grad and does not have a grad_fn
            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 RuntimeError: element 0 of tensors does not require grad and does not have a grad_fn
 
+2025-02-09 19:42:07,285 - Client_0 - INFO - [client.py:136] - Epoch: 0, Loss: 13.5299, Accuracy: 0.10%
+2025-02-09 19:43:08,528 - Client_0 - INFO - [client.py:136] - Epoch: 1, Loss: 13.2095, Accuracy: 0.16%
+2025-02-09 19:43:08,677 - Client_0 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_0_round_0.pt
+2025-02-09 19:44:12,113 - Client_1 - INFO - [client.py:136] - Epoch: 0, Loss: 13.4311, Accuracy: 0.14%
+2025-02-09 19:45:13,499 - Client_1 - INFO - [client.py:136] - Epoch: 1, Loss: 13.1560, Accuracy: 0.14%
+2025-02-09 19:45:13,638 - Client_1 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_1_round_0.pt
+2025-02-09 19:46:16,370 - Client_2 - INFO - [client.py:136] - Epoch: 0, Loss: 13.4457, Accuracy: 0.04%
+2025-02-09 19:47:18,517 - Client_2 - INFO - [client.py:136] - Epoch: 1, Loss: 13.1644, Accuracy: 0.16%
+2025-02-09 19:47:18,634 - Client_2 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_2_round_0.pt
+2025-02-09 19:48:21,909 - Client_3 - INFO - [client.py:136] - Epoch: 0, Loss: 13.5046, Accuracy: 0.08%
+2025-02-09 19:49:24,395 - Client_3 - INFO - [client.py:136] - Epoch: 1, Loss: 13.0800, Accuracy: 0.06%
+2025-02-09 19:49:24,515 - Client_3 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_3_round_0.pt
+2025-02-09 19:50:27,496 - Client_4 - INFO - [client.py:136] - Epoch: 0, Loss: 13.4669, Accuracy: 0.12%
+2025-02-09 19:51:30,226 - Client_4 - INFO - [client.py:136] - Epoch: 1, Loss: 13.2401, Accuracy: 0.10%
+2025-02-09 19:51:30,343 - Client_4 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_4_round_0.pt
+2025-02-09 19:52:36,617 - Client_0 - INFO - [client.py:136] - Epoch: 0, Loss: 12.9387, Accuracy: 0.04%
+2025-02-09 19:53:39,638 - Client_0 - INFO - [client.py:136] - Epoch: 1, Loss: 12.5632, Accuracy: 0.16%
+2025-02-09 19:53:39,779 - Client_0 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_0_round_1.pt
+2025-02-09 19:54:42,392 - Client_1 - INFO - [client.py:136] - Epoch: 0, Loss: 12.8807, Accuracy: 0.10%
+2025-02-09 19:55:45,193 - Client_1 - INFO - [client.py:136] - Epoch: 1, Loss: 12.5254, Accuracy: 0.16%
+2025-02-09 19:55:45,351 - Client_1 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_1_round_1.pt
+2025-02-09 19:56:48,001 - Client_2 - INFO - [client.py:136] - Epoch: 0, Loss: 12.8177, Accuracy: 0.06%
+2025-02-09 19:57:51,559 - Client_2 - INFO - [client.py:136] - Epoch: 1, Loss: 12.4547, Accuracy: 0.12%
+2025-02-09 19:57:51,708 - Client_2 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_2_round_1.pt
+2025-02-09 19:58:52,621 - Client_3 - INFO - [client.py:136] - Epoch: 0, Loss: 12.8811, Accuracy: 0.20%
+2025-02-09 19:59:53,617 - Client_3 - INFO - [client.py:136] - Epoch: 1, Loss: 12.5461, Accuracy: 0.08%
+2025-02-09 19:59:53,720 - Client_3 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_3_round_1.pt
+2025-02-09 20:00:55,640 - Client_4 - INFO - [client.py:136] - Epoch: 0, Loss: 12.8433, Accuracy: 0.12%
+2025-02-09 20:01:56,759 - Client_4 - INFO - [client.py:136] - Epoch: 1, Loss: 12.5000, Accuracy: 0.24%
+2025-02-09 20:01:56,905 - Client_4 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_4_round_1.pt
+2025-02-09 20:03:03,950 - Client_0 - INFO - [client.py:136] - Epoch: 0, Loss: 12.2393, Accuracy: 0.16%
+2025-02-09 20:04:06,476 - Client_0 - INFO - [client.py:136] - Epoch: 1, Loss: 11.8656, Accuracy: 0.20%
+2025-02-09 20:04:06,599 - Client_0 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_0_round_2.pt
+2025-02-09 20:05:08,510 - Client_1 - INFO - [client.py:136] - Epoch: 0, Loss: 12.1453, Accuracy: 0.20%
+2025-02-09 20:06:12,555 - Client_1 - INFO - [client.py:136] - Epoch: 1, Loss: 11.7216, Accuracy: 0.22%
+2025-02-09 20:06:12,662 - Client_1 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_1_round_2.pt
+2025-02-09 20:07:15,111 - Client_2 - INFO - [client.py:136] - Epoch: 0, Loss: 12.0911, Accuracy: 0.10%
+2025-02-09 20:08:17,848 - Client_2 - INFO - [client.py:136] - Epoch: 1, Loss: 11.7420, Accuracy: 0.18%
+2025-02-09 20:08:17,965 - Client_2 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_2_round_2.pt
+2025-02-09 20:09:21,159 - Client_3 - INFO - [client.py:136] - Epoch: 0, Loss: 12.1889, Accuracy: 0.20%
+2025-02-09 20:10:22,696 - Client_3 - INFO - [client.py:136] - Epoch: 1, Loss: 11.8220, Accuracy: 0.26%
+2025-02-09 20:10:22,848 - Client_3 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_3_round_2.pt
+2025-02-09 20:11:25,745 - Client_4 - INFO - [client.py:136] - Epoch: 0, Loss: 12.2117, Accuracy: 0.16%
+2025-02-09 20:12:28,076 - Client_4 - INFO - [client.py:136] - Epoch: 1, Loss: 11.6860, Accuracy: 0.28%
+2025-02-09 20:12:28,193 - Client_4 - INFO - [client.py:170] - Saved model weights to model_weights\clients\client_4_round_2.pt
+2025-02-09 20:14:31,366 - Client_0 - INFO - [client.py:136] - Epoch: 0, Loss: 11.4809, Accuracy: 0.26%
+2025-02-09 20:16:49,595 - Client_0 - ERROR - [client.py:145] - Error in local training: Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+2025-02-09 20:16:49,599 - FederatedLearningGUI - ERROR - [gui.py:326] - 训练错误在第 0 轮:
+Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 303, in train_one_epoch
+    diff = c.local_train(self.server.global_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 91, in local_train
+    output = self.local_model(data)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+        ^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+
+2025-02-09 20:16:49,604 - FederatedLearningGUI - ERROR - [gui.py:272] - 训练错误在第 0 轮:
+Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 256, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 303, in train_one_epoch
+    diff = c.local_train(self.server.global_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 91, in local_train
+    output = self.local_model(data)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+        ^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+
+2025-02-09 20:16:49,609 - FederatedLearningGUI - ERROR - [gui.py:282] - 错误: Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+类型: RuntimeError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 256, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 303, in train_one_epoch
+    diff = c.local_train(self.server.global_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 91, in local_train
+    output = self.local_model(data)
+             ^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+        ^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1532, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\module.py", line 1541, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 460, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\nn\modules\conv.py", line 456, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Given groups=1, weight of size [64, 3, 7, 7], expected input[32, 1, 28, 28] to have 3 channels, but got 1 channels instead
+
+2025-02-09 20:21:46,774 - FederatedLearningGUI - ERROR - [gui.py:295] - 错误: [Errno 2] No such file or directory: './data/coco8\\train.json'
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 226, in start_training
+    train_dataset = COCO8Dataset(
+                    ^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\datasets.py", line 49, in __init__
+    self.coco = COCO(ann_file)
+                ^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\pycocotools\coco.py", line 81, in __init__
+    with open(annotation_file, 'r') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './data/coco8\\train.json'
+
+2025-02-09 20:24:21,860 - FederatedLearningGUI - ERROR - [gui.py:295] - 错误: [Errno 2] No such file or directory: './data/coco8\\train.json'
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 226, in start_training
+  File "e:\github\code\FL-DP\datasets.py", line 49, in __init__
+    ann_file = os.path.join(root, 'train', '_annotations.coco.json')
+            ^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\pycocotools\coco.py", line 81, in __init__
+    with open(annotation_file, 'r') as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: './data/coco8\\train.json'
+
+2025-02-09 20:25:08,023 - FederatedLearningGUI - ERROR - [gui.py:302] - 错误: COCO8数据集路径不存在: E:github\code\FL-DP\data\coco8
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 231, in start_training
+    raise FileNotFoundError(f"COCO8数据集路径不存在: {coco8_path}")
+FileNotFoundError: COCO8数据集路径不存在: E:github\code\FL-DP\data\coco8
+
+2025-02-09 20:25:54,618 - FederatedLearningGUI - ERROR - [gui.py:302] - 错误: COCO8数据集路径不存在: E:github\code\FL-DP\data\coco8
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 231, in start_training
+    raise FileNotFoundError(f"COCO8数据集路径不存在: {coco8_path}")
+FileNotFoundError: COCO8数据集路径不存在: E:github\code\FL-DP\data\coco8
+
+2025-02-09 20:27:51,364 - FederatedLearningGUI - INFO - [gui.py:231] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:27:51,365 - FederatedLearningGUI - INFO - [gui.py:245] - 成功找到COCO8数据集: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:27:51,366 - FederatedLearningGUI - ERROR - [gui.py:316] - 错误: 找不到注释文件: e:\github\code\FL-DP\data\coco8\train\_annotations.coco.json
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 247, in start_training
+    train_dataset = COCO8Dataset(
+                    ^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\datasets.py", line 56, in __init__
+    raise FileNotFoundError(f"找不到注释文件: {ann_file}")
+FileNotFoundError: 找不到注释文件: e:\github\code\FL-DP\data\coco8\train\_annotations.coco.json
+
+2025-02-09 20:29:14,565 - FederatedLearningGUI - INFO - [gui.py:231] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:29:14,566 - FederatedLearningGUI - INFO - [gui.py:245] - 成功找到COCO8数据集: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:29:14,567 - FederatedLearningGUI - ERROR - [gui.py:316] - 错误: 找不到图像目录: e:\github\code\FL-DP\data\coco8\train
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 247, in start_training
+    train_dataset = COCO8Dataset(
+                    ^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\datasets.py", line 50, in __init__
+    raise FileNotFoundError(f"找不到图像目录: {self.img_dir}")
+FileNotFoundError: 找不到图像目录: e:\github\code\FL-DP\data\coco8\train
+
+2025-02-09 20:31:35,999 - FederatedLearningGUI - INFO - [gui.py:231] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:31:36,000 - FederatedLearningGUI - ERROR - [gui.py:322] - 错误: 找不到测试图像目录: e:\github\code\FL-DP\data\coco8\images\test
+类型: FileNotFoundError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 249, in start_training
+    raise FileNotFoundError(f"找不到测试图像目录: {os.path.join(coco8_path, 'images', 'test')}")
+FileNotFoundError: 找不到测试图像目录: e:\github\code\FL-DP\data\coco8\images\test
+
+2025-02-09 20:33:23,933 - FederatedLearningGUI - INFO - [gui.py:231] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:33:23,934 - FederatedLearningGUI - INFO - [gui.py:250] - 成功找到COCO8数据集: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:33:24,115 - FederatedLearningGUI - ERROR - [gui.py:324] - 错误: num_samples should be a positive integer value, but got num_samples=0
+类型: ValueError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 277, in start_training
+    self.server = Server(conf, eval_dataset)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\server.py", line 13, in __init__
+    self.eval_loader = torch.utils.data.DataLoader(eval_dataset, batch_size=self.conf["batch_size"], shuffle=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\utils\data\dataloader.py", line 350, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\utils\data\sampler.py", line 143, in __init__
+    raise ValueError(f"num_samples should be a positive integer value, but got num_samples={self.num_samples}")
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+
+2025-02-09 20:33:33,615 - FederatedLearningGUI - INFO - [gui.py:231] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:33:33,616 - FederatedLearningGUI - INFO - [gui.py:250] - 成功找到COCO8数据集: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:33:33,787 - FederatedLearningGUI - ERROR - [gui.py:324] - 错误: num_samples should be a positive integer value, but got num_samples=0
+类型: ValueError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 277, in start_training
+    self.server = Server(conf, eval_dataset)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\server.py", line 13, in __init__
+    self.eval_loader = torch.utils.data.DataLoader(eval_dataset, batch_size=self.conf["batch_size"], shuffle=True)
+                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\utils\data\dataloader.py", line 350, in __init__
+    sampler = RandomSampler(dataset, generator=generator)  # type: ignore[arg-type]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\anaconda\envs\pytorch\Lib\site-packages\torch\utils\data\sampler.py", line 143, in __init__
+    raise ValueError(f"num_samples should be a positive integer value, but got num_samples={self.num_samples}")
+ValueError: num_samples should be a positive integer value, but got num_samples=0
+
+2025-02-09 20:35:13,212 - FederatedLearningGUI - INFO - [gui.py:232] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:35:13,214 - FederatedLearningGUI - ERROR - [gui.py:337] - 错误: 加载COCO8数据集失败: 图像目录为空: e:\github\code\FL-DP\data\coco8\images
+类型: ValueError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 255, in start_training
+    raise ValueError(f"图像目录为空: {images_dir}")
+ValueError: 图像目录为空: e:\github\code\FL-DP\data\coco8\images
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 277, in start_training
+    raise ValueError(f"加载COCO8数据集失败: {str(e)}")
+ValueError: 加载COCO8数据集失败: 图像目录为空: e:\github\code\FL-DP\data\coco8\images
+
+2025-02-09 20:42:58,849 - Client_0 - INFO - [client.py:136] - Epoch: 0, Loss: 13.4825, Accuracy: 0.05%
+2025-02-09 20:44:00,858 - FederatedLearningGUI - ERROR - [gui.py:537] - 聚合错误: result type Float can't be cast to the desired output type Long (类型: RuntimeError)
+2025-02-09 20:44:16,774 - FederatedLearningGUI - ERROR - [gui.py:537] - 聚合错误: result type Float can't be cast to the desired output type Long (类型: RuntimeError)
+2025-02-09 20:44:20,900 - FederatedLearningGUI - ERROR - [gui.py:537] - 聚合错误: result type Float can't be cast to the desired output type Long (类型: RuntimeError)
+2025-02-09 20:44:39,467 - FederatedLearningGUI - INFO - [gui.py:239] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:44:39,468 - FederatedLearningGUI - INFO - [gui.py:265] - 成功加载COCO8数据集 - 训练集: 4张, 验证集: 4张
+2025-02-09 20:44:39,839 - Client_0 - ERROR - [client.py:145] - Error in local training: float division by zero
+2025-02-09 20:44:39,840 - FederatedLearningGUI - ERROR - [gui.py:395] - 训练错误在第 0 轮:
+float division by zero
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 372, in train_one_epoch
+    diff = c.local_train(self.server.global_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 134, in local_train
+    accuracy = 100. * correct / total
+               ~~~~~~~~~~~~~~~^~~~~~~
+ZeroDivisionError: float division by zero
+
+2025-02-09 20:44:39,842 - FederatedLearningGUI - ERROR - [gui.py:341] - 训练错误在第 0 轮:
+float division by zero
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 325, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 372, in train_one_epoch
+    diff = c.local_train(self.server.global_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 134, in local_train
+    accuracy = 100. * correct / total
+               ~~~~~~~~~~~~~~~^~~~~~~
+ZeroDivisionError: float division by zero
+
+2025-02-09 20:44:39,844 - FederatedLearningGUI - ERROR - [gui.py:351] - 错误: float division by zero
+类型: ZeroDivisionError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 325, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 372, in train_one_epoch
+    diff = c.local_train(self.server.global_model)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 134, in local_train
+    accuracy = 100. * correct / total
+               ~~~~~~~~~~~~~~~^~~~~~~
+ZeroDivisionError: float division by zero
+
+2025-02-09 20:47:09,085 - FederatedLearningGUI - INFO - [gui.py:239] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:47:09,087 - FederatedLearningGUI - INFO - [gui.py:265] - 成功加载COCO8数据集 - 训练集: 4张, 验证集: 4张
+2025-02-09 20:47:09,327 - FederatedLearningGUI - ERROR - [gui.py:351] - 错误: 'Client' object has no attribute 'logger'
+类型: AttributeError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\client.py", line 71, in setup_training_data
+    self.logger.info(
+    ^^^^^^^^^^^
+AttributeError: 'Client' object has no attribute 'logger'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 309, in start_training
+    self.clients.append(Client(conf, self.global_model, train_dataset, c))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 33, in __init__
+    self.setup_training_data(train_dataset, id)
+  File "e:\github\code\FL-DP\client.py", line 79, in setup_training_data
+    self.logger.error(f"设置训练数据失败: {str(e)}")
+    ^^^^^^^^^^^
+AttributeError: 'Client' object has no attribute 'logger'
+
+2025-02-09 20:47:27,998 - FederatedLearningGUI - ERROR - [gui.py:351] - 错误: 'Client' object has no attribute 'logger'
+类型: AttributeError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\client.py", line 71, in setup_training_data
+    self.logger.info(
+    ^^^^^^^^^^^
+AttributeError: 'Client' object has no attribute 'logger'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 309, in start_training
+    self.clients.append(Client(conf, self.global_model, train_dataset, c))
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\client.py", line 33, in __init__
+    self.setup_training_data(train_dataset, id)
+  File "e:\github\code\FL-DP\client.py", line 79, in setup_training_data
+    self.logger.error(f"设置训练数据失败: {str(e)}")
+    ^^^^^^^^^^^
+AttributeError: 'Client' object has no attribute 'logger'
+
+2025-02-09 20:49:25,222 - FederatedLearningGUI - INFO - [gui.py:239] - 尝试加载COCO8数据集，路径: e:\github\code\FL-DP\data\coco8
+2025-02-09 20:49:25,223 - FederatedLearningGUI - INFO - [gui.py:265] - 成功加载COCO8数据集 - 训练集: 4张, 验证集: 4张
+2025-02-09 20:49:25,448 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-09 20:49:25,448 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:25,467 - Client_0 - INFO - [client.py:73] - 客户端 0 数据设置完成: 样本数量=1, 批次大小=32, 批次数量=1
+2025-02-09 20:49:25,467 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-09 20:49:25,468 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:25,484 - Client_1 - INFO - [client.py:73] - 客户端 1 数据设置完成: 样本数量=1, 批次大小=32, 批次数量=1
+2025-02-09 20:49:25,484 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-09 20:49:25,484 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:25,505 - Client_2 - INFO - [client.py:73] - 客户端 2 数据设置完成: 样本数量=1, 批次大小=32, 批次数量=1
+2025-02-09 20:49:25,505 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-09 20:49:25,506 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:25,524 - Client_3 - INFO - [client.py:73] - 客户端 3 数据设置完成: 样本数量=1, 批次大小=32, 批次数量=1
+2025-02-09 20:49:25,572 - Client_0 - INFO - [client.py:108] - 客户端 0 开始训练，数据批次数: 1
+2025-02-09 20:49:26,051 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 0, Loss: 7.6775, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,080 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 1, Loss: 7.6745, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,149 - Client_1 - INFO - [client.py:108] - 客户端 1 开始训练，数据批次数: 1
+2025-02-09 20:49:26,186 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 0, Loss: 7.0081, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,211 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 1, Loss: 7.0049, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,280 - Client_2 - INFO - [client.py:108] - 客户端 2 开始训练，数据批次数: 1
+2025-02-09 20:49:26,310 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 0, Loss: 7.8062, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,333 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 1, Loss: 7.8034, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,411 - Client_3 - INFO - [client.py:108] - 客户端 3 开始训练，数据批次数: 1
+2025-02-09 20:49:26,437 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 0, Loss: 8.6660, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,461 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 1, Loss: 8.6627, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,728 - Client_0 - INFO - [client.py:108] - 客户端 0 开始训练，数据批次数: 1
+2025-02-09 20:49:26,751 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 0, Loss: 7.6754, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,775 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 1, Loss: 7.6672, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,871 - Client_1 - INFO - [client.py:108] - 客户端 1 开始训练，数据批次数: 1
+2025-02-09 20:49:26,893 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 0, Loss: 7.0062, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,918 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 1, Loss: 6.9976, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:26,993 - Client_2 - INFO - [client.py:108] - 客户端 2 开始训练，数据批次数: 1
+2025-02-09 20:49:27,016 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 0, Loss: 7.8040, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,040 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 1, Loss: 7.7961, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,115 - Client_3 - INFO - [client.py:108] - 客户端 3 开始训练，数据批次数: 1
+2025-02-09 20:49:27,137 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 0, Loss: 8.6637, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,161 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 1, Loss: 8.6549, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,275 - Client_0 - INFO - [client.py:108] - 客户端 0 开始训练，数据批次数: 1
+2025-02-09 20:49:27,299 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 0, Loss: 7.6707, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,321 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 1, Loss: 7.6585, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,391 - Client_1 - INFO - [client.py:108] - 客户端 1 开始训练，数据批次数: 1
+2025-02-09 20:49:27,412 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 0, Loss: 7.0012, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,434 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 1, Loss: 6.9889, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,504 - Client_2 - INFO - [client.py:108] - 客户端 2 开始训练，数据批次数: 1
+2025-02-09 20:49:27,523 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 0, Loss: 7.7994, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,547 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 1, Loss: 7.7875, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,617 - Client_3 - INFO - [client.py:108] - 客户端 3 开始训练，数据批次数: 1
+2025-02-09 20:49:27,640 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 0, Loss: 8.6586, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:27,663 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 1, Loss: 8.6459, Accuracy: 0.00%, Processed samples: 1
+2025-02-09 20:49:51,310 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-09 20:49:51,310 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:51,331 - Client_0 - INFO - [client.py:73] - 客户端 0 数据设置完成: 样本数量=12500, 批次大小=32, 批次数量=391
+2025-02-09 20:49:51,332 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-09 20:49:51,332 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:51,351 - Client_1 - INFO - [client.py:73] - 客户端 1 数据设置完成: 样本数量=12500, 批次大小=32, 批次数量=391
+2025-02-09 20:49:51,352 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-09 20:49:51,352 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:51,371 - Client_2 - INFO - [client.py:73] - 客户端 2 数据设置完成: 样本数量=12500, 批次大小=32, 批次数量=391
+2025-02-09 20:49:51,371 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-09 20:49:51,371 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:49:51,390 - Client_3 - INFO - [client.py:73] - 客户端 3 数据设置完成: 样本数量=12500, 批次大小=32, 批次数量=391
+2025-02-09 20:49:51,429 - Client_0 - INFO - [client.py:108] - 客户端 0 开始训练，数据批次数: 391
+2025-02-09 20:50:00,441 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 0, Loss: 13.2429, Accuracy: 0.07%, Processed samples: 12500
+2025-02-09 20:50:09,665 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 1, Loss: 12.3978, Accuracy: 0.22%, Processed samples: 12500
+2025-02-09 20:50:09,741 - Client_1 - INFO - [client.py:108] - 客户端 1 开始训练，数据批次数: 391
+2025-02-09 20:50:19,130 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 0, Loss: 13.2668, Accuracy: 0.09%, Processed samples: 12500
+2025-02-09 20:50:28,719 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 1, Loss: 12.4557, Accuracy: 0.14%, Processed samples: 12500
+2025-02-09 20:50:28,799 - Client_2 - INFO - [client.py:108] - 客户端 2 开始训练，数据批次数: 391
+2025-02-09 20:50:38,172 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 0, Loss: 13.2198, Accuracy: 0.11%, Processed samples: 12500
+2025-02-09 20:50:47,625 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 1, Loss: 12.3679, Accuracy: 0.14%, Processed samples: 12500
+2025-02-09 20:50:47,702 - Client_3 - INFO - [client.py:108] - 客户端 3 开始训练，数据批次数: 391
+2025-02-09 20:50:57,214 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 0, Loss: 13.2255, Accuracy: 0.08%, Processed samples: 12500
+2025-02-09 20:51:06,588 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 1, Loss: 12.4268, Accuracy: 0.22%, Processed samples: 12500
+2025-02-09 20:51:10,384 - Client_0 - INFO - [client.py:108] - 客户端 0 开始训练，数据批次数: 391
+2025-02-09 20:51:19,886 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 0, Loss: 11.4605, Accuracy: 0.29%, Processed samples: 12500
+2025-02-09 20:51:29,325 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 1, Loss: 10.4653, Accuracy: 0.58%, Processed samples: 12500
+2025-02-09 20:51:29,409 - Client_1 - INFO - [client.py:108] - 客户端 1 开始训练，数据批次数: 391
+2025-02-09 20:51:38,388 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 0, Loss: 11.5385, Accuracy: 0.31%, Processed samples: 12500
+2025-02-09 20:51:48,169 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 1, Loss: 10.5214, Accuracy: 0.51%, Processed samples: 12500
+2025-02-09 20:51:48,259 - Client_2 - INFO - [client.py:108] - 客户端 2 开始训练，数据批次数: 391
+2025-02-09 20:51:57,803 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 0, Loss: 11.4718, Accuracy: 0.23%, Processed samples: 12500
+2025-02-09 20:52:07,753 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 1, Loss: 10.3874, Accuracy: 0.58%, Processed samples: 12500
+2025-02-09 20:52:07,828 - Client_3 - INFO - [client.py:108] - 客户端 3 开始训练，数据批次数: 391
+2025-02-09 20:52:16,796 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 0, Loss: 11.5059, Accuracy: 0.28%, Processed samples: 12500
+2025-02-09 20:52:25,746 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 1, Loss: 10.4356, Accuracy: 0.57%, Processed samples: 12500
+2025-02-09 20:52:29,228 - Client_0 - INFO - [client.py:108] - 客户端 0 开始训练，数据批次数: 391
+2025-02-09 20:52:38,191 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 0, Loss: 9.3293, Accuracy: 1.14%, Processed samples: 12500
+2025-02-09 20:52:47,641 - Client_0 - INFO - [client.py:153] - Client 0, Epoch: 1, Loss: 8.1655, Accuracy: 2.17%, Processed samples: 12500
+2025-02-09 20:52:47,725 - Client_1 - INFO - [client.py:108] - 客户端 1 开始训练，数据批次数: 391
+2025-02-09 20:52:57,806 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 0, Loss: 9.3640, Accuracy: 0.99%, Processed samples: 12500
+2025-02-09 20:53:08,560 - Client_1 - INFO - [client.py:153] - Client 1, Epoch: 1, Loss: 8.2327, Accuracy: 1.94%, Processed samples: 12500
+2025-02-09 20:53:08,643 - Client_2 - INFO - [client.py:108] - 客户端 2 开始训练，数据批次数: 391
+2025-02-09 20:53:18,587 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 0, Loss: 9.3541, Accuracy: 1.08%, Processed samples: 12500
+2025-02-09 20:53:28,388 - Client_2 - INFO - [client.py:153] - Client 2, Epoch: 1, Loss: 8.1668, Accuracy: 2.14%, Processed samples: 12500
+2025-02-09 20:53:28,492 - Client_3 - INFO - [client.py:108] - 客户端 3 开始训练，数据批次数: 391
+2025-02-09 20:53:38,417 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 0, Loss: 9.3506, Accuracy: 1.00%, Processed samples: 12500
+2025-02-09 20:53:48,153 - Client_3 - INFO - [client.py:153] - Client 3, Epoch: 1, Loss: 8.2030, Accuracy: 2.22%, Processed samples: 12500
+2025-02-09 20:54:19,925 - FederatedLearningGUI - ERROR - [gui.py:545] - 聚合错误: result type Float can't be cast to the desired output type Long (类型: RuntimeError)
+2025-02-09 20:56:56,250 - FederatedLearningGUI - INFO - [gui.py:278] - 成功加载CIFAR-10数据集 - 训练集: 50000张, 测试集: 10000张
+2025-02-09 20:56:56,474 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-09 20:56:56,474 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,493 - Client_0 - INFO - [client.py:81] - 客户端 0 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,494 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-09 20:56:56,494 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,513 - Client_1 - INFO - [client.py:81] - 客户端 1 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,513 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-09 20:56:56,515 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,532 - Client_2 - INFO - [client.py:81] - 客户端 2 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,532 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-09 20:56:56,533 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,550 - Client_3 - INFO - [client.py:81] - 客户端 3 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,551 - Client_4 - INFO - [client.py:20] - 初始化客户端 4
+2025-02-09 20:56:56,552 - Client_4 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,568 - Client_4 - INFO - [client.py:81] - 客户端 4 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,569 - Client_5 - INFO - [client.py:20] - 初始化客户端 5
+2025-02-09 20:56:56,569 - Client_5 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,589 - Client_5 - INFO - [client.py:81] - 客户端 5 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,589 - Client_6 - INFO - [client.py:20] - 初始化客户端 6
+2025-02-09 20:56:56,590 - Client_6 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,682 - Client_6 - INFO - [client.py:81] - 客户端 6 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,683 - Client_7 - INFO - [client.py:20] - 初始化客户端 7
+2025-02-09 20:56:56,683 - Client_7 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,699 - Client_7 - INFO - [client.py:81] - 客户端 7 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,700 - Client_8 - INFO - [client.py:20] - 初始化客户端 8
+2025-02-09 20:56:56,700 - Client_8 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,719 - Client_8 - INFO - [client.py:81] - 客户端 8 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,720 - Client_9 - INFO - [client.py:20] - 初始化客户端 9
+2025-02-09 20:56:56,720 - Client_9 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-09 20:56:56,738 - Client_9 - INFO - [client.py:81] - 客户端 9 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-09 20:56:56,784 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 20:56:57,201 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 14.1309
+2025-02-09 20:56:59,023 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 3.9790
+2025-02-09 20:57:00,137 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 6.5958, Accuracy: 13.42%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:00,181 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 2.4138
+2025-02-09 20:57:01,998 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.7196
+2025-02-09 20:57:03,004 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.9534, Accuracy: 39.96%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:03,046 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 1.3481
+2025-02-09 20:57:04,900 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 1.5029
+2025-02-09 20:57:05,983 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.4762, Accuracy: 50.70%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:06,033 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.2631
+2025-02-09 20:57:07,936 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 0.9567
+2025-02-09 20:57:08,974 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.2746, Accuracy: 57.36%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:09,016 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.6146
+2025-02-09 20:57:10,915 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 0.9804
+2025-02-09 20:57:11,993 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.1333, Accuracy: 60.98%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:57:12,079 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 20:57:12,130 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 13.3783
+2025-02-09 20:57:14,089 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 4.3288
+2025-02-09 20:57:15,141 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 6.8757, Accuracy: 12.90%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:15,194 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 2.0580
+2025-02-09 20:57:17,168 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.8479
+2025-02-09 20:57:18,270 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 2.0057, Accuracy: 39.74%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:18,314 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 1.5539
+2025-02-09 20:57:20,194 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.3757
+2025-02-09 20:57:21,263 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.4859, Accuracy: 49.40%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:21,312 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.5325
+2025-02-09 20:57:23,184 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.1724
+2025-02-09 20:57:24,245 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.2897, Accuracy: 55.32%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:24,291 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 1.0278
+2025-02-09 20:57:26,175 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.1409
+2025-02-09 20:57:27,229 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.1680, Accuracy: 59.36%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:57:27,304 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 20:57:27,349 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 13.2857
+2025-02-09 20:57:29,249 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 4.3765
+2025-02-09 20:57:30,307 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 6.7533, Accuracy: 13.76%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:30,353 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 2.2784
+2025-02-09 20:57:32,258 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.9812
+2025-02-09 20:57:33,321 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 2.0043, Accuracy: 40.54%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:33,363 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 1.4040
+2025-02-09 20:57:35,272 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 1.2478
+2025-02-09 20:57:36,333 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.5046, Accuracy: 49.06%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:36,381 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.3011
+2025-02-09 20:57:38,280 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.0636
+2025-02-09 20:57:39,385 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.2950, Accuracy: 55.50%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:39,432 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.0305
+2025-02-09 20:57:41,354 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.0867
+2025-02-09 20:57:42,446 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.1833, Accuracy: 58.62%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:57:42,533 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 20:57:42,582 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 12.7518
+2025-02-09 20:57:44,477 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 3.6530
+2025-02-09 20:57:45,490 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 6.4899, Accuracy: 14.04%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:45,539 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 2.2269
+2025-02-09 20:57:47,390 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.3572
+2025-02-09 20:57:48,443 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.9364, Accuracy: 41.50%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:48,491 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.6252
+2025-02-09 20:57:50,355 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 1.4012
+2025-02-09 20:57:51,420 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.5418, Accuracy: 48.94%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:51,467 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 1.2559
+2025-02-09 20:57:53,326 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 1.2155
+2025-02-09 20:57:54,360 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.2925, Accuracy: 55.56%, Processed samples: 5000, LR: 0.010000
+2025-02-09 20:57:54,407 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.3683
+2025-02-09 20:57:56,257 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.0757
+2025-02-09 20:57:57,296 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.1586, Accuracy: 59.92%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:00,119 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 20:58:00,170 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 1.0647
+2025-02-09 20:58:02,088 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.3349
+2025-02-09 20:58:03,146 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.1192, Accuracy: 61.94%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:03,190 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 1.0408
+2025-02-09 20:58:05,064 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.3024
+2025-02-09 20:58:06,105 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0677, Accuracy: 63.70%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:06,150 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 0.8490
+2025-02-09 20:58:08,021 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 0.7721
+2025-02-09 20:58:09,048 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0461, Accuracy: 63.28%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:09,094 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.2429
+2025-02-09 20:58:10,964 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.1289
+2025-02-09 20:58:11,999 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0395, Accuracy: 64.08%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:12,046 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.2312
+2025-02-09 20:58:13,899 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 1.3467
+2025-02-09 20:58:14,950 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0346, Accuracy: 64.94%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:58:15,025 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 20:58:15,070 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 0.9435
+2025-02-09 20:58:16,967 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 1.1557
+2025-02-09 20:58:18,028 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.1341, Accuracy: 61.28%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:18,074 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 0.9432
+2025-02-09 20:58:19,943 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.2272
+2025-02-09 20:58:20,988 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.1405, Accuracy: 62.56%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:21,035 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 1.1526
+2025-02-09 20:58:22,913 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.1780
+2025-02-09 20:58:23,934 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0984, Accuracy: 62.54%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:23,978 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 0.9877
+2025-02-09 20:58:25,872 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 0.8393
+2025-02-09 20:58:26,918 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0986, Accuracy: 62.14%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:26,966 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.9505
+2025-02-09 20:58:28,816 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 0.8535
+2025-02-09 20:58:29,858 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0997, Accuracy: 62.98%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:58:29,938 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 20:58:29,982 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 1.1964
+2025-02-09 20:58:31,851 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 1.1296
+2025-02-09 20:58:32,899 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.1674, Accuracy: 59.56%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:33,043 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.0411
+2025-02-09 20:58:34,919 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.0679
+2025-02-09 20:58:35,963 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.1210, Accuracy: 61.76%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:36,010 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 0.9437
+2025-02-09 20:58:37,906 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 1.2639
+2025-02-09 20:58:38,943 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.1107, Accuracy: 62.80%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:38,990 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.1928
+2025-02-09 20:58:40,880 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 0.9101
+2025-02-09 20:58:41,925 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0786, Accuracy: 62.56%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:41,972 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.1200
+2025-02-09 20:58:43,858 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 0.9964
+2025-02-09 20:58:44,908 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.0589, Accuracy: 63.10%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:58:44,981 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 20:58:45,025 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 0.9206
+2025-02-09 20:58:46,937 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.2038
+2025-02-09 20:58:47,995 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.1491, Accuracy: 60.74%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:48,042 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 1.4303
+2025-02-09 20:58:49,945 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.3885
+2025-02-09 20:58:51,044 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.1121, Accuracy: 61.90%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:51,092 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 0.9319
+2025-02-09 20:58:53,064 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 0.8602
+2025-02-09 20:58:54,202 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0943, Accuracy: 62.28%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:54,251 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 0.9263
+2025-02-09 20:58:56,227 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 1.0604
+2025-02-09 20:58:57,306 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.1050, Accuracy: 62.16%, Processed samples: 5000, LR: 0.001000
+2025-02-09 20:58:57,354 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 0.8221
+2025-02-09 20:58:59,348 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 0.9072
+2025-02-09 20:59:00,450 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0394, Accuracy: 64.34%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:03,262 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 20:59:03,306 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 1.0817
+2025-02-09 20:59:05,213 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.1878
+2025-02-09 20:59:06,257 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0681, Accuracy: 64.26%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:06,301 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 0.9932
+2025-02-09 20:59:08,180 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.4565
+2025-02-09 20:59:09,238 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0345, Accuracy: 65.38%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:09,283 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 0.7006
+2025-02-09 20:59:11,179 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 0.9772
+2025-02-09 20:59:12,231 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0503, Accuracy: 64.90%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:12,278 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.3175
+2025-02-09 20:59:14,312 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.0776
+2025-02-09 20:59:15,424 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0179, Accuracy: 64.76%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:15,469 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.2622
+2025-02-09 20:59:17,394 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 0.8951
+2025-02-09 20:59:18,537 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0469, Accuracy: 64.06%, Processed samples: 5000, LR: 0.000010
+2025-02-09 20:59:18,625 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 20:59:18,670 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.1714
+2025-02-09 20:59:20,714 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 1.0415
+2025-02-09 20:59:21,777 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0825, Accuracy: 63.14%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:21,821 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 1.0803
+2025-02-09 20:59:23,686 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.0223
+2025-02-09 20:59:24,755 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0654, Accuracy: 63.50%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:24,799 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 1.1613
+2025-02-09 20:59:26,677 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.1015
+2025-02-09 20:59:27,723 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0645, Accuracy: 62.82%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:27,771 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.3370
+2025-02-09 20:59:29,713 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 0.9814
+2025-02-09 20:59:30,765 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0478, Accuracy: 63.52%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:30,814 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.9263
+2025-02-09 20:59:32,747 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.0898
+2025-02-09 20:59:33,799 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0774, Accuracy: 62.70%, Processed samples: 5000, LR: 0.000010
+2025-02-09 20:59:33,878 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 20:59:33,919 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 0.9895
+2025-02-09 20:59:35,836 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 0.9405
+2025-02-09 20:59:36,903 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0655, Accuracy: 62.94%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:36,951 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.3088
+2025-02-09 20:59:38,847 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.0021
+2025-02-09 20:59:39,895 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0857, Accuracy: 62.32%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:39,940 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 1.2343
+2025-02-09 20:59:41,835 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 0.8985
+2025-02-09 20:59:42,887 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0693, Accuracy: 62.76%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:42,934 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.2816
+2025-02-09 20:59:44,849 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.4764
+2025-02-09 20:59:45,928 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0883, Accuracy: 63.06%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:45,971 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.0759
+2025-02-09 20:59:47,872 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.1396
+2025-02-09 20:59:48,929 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.0718, Accuracy: 63.16%, Processed samples: 5000, LR: 0.000010
+2025-02-09 20:59:49,009 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 20:59:49,051 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 1.2535
+2025-02-09 20:59:50,956 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.0387
+2025-02-09 20:59:52,036 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0904, Accuracy: 62.96%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:52,079 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 1.3102
+2025-02-09 20:59:53,995 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.1433
+2025-02-09 20:59:55,057 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0723, Accuracy: 63.78%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:55,107 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.0781
+2025-02-09 20:59:57,001 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 1.1741
+2025-02-09 20:59:58,079 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0970, Accuracy: 62.60%, Processed samples: 5000, LR: 0.000100
+2025-02-09 20:59:58,127 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 0.9949
+2025-02-09 21:00:00,056 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 0.9730
+2025-02-09 21:00:01,094 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0765, Accuracy: 63.46%, Processed samples: 5000, LR: 0.000100
+2025-02-09 21:00:01,141 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.0057
+2025-02-09 21:00:03,190 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.1143
+2025-02-09 21:00:04,294 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0841, Accuracy: 62.70%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:07,231 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:00:07,279 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 0.9370
+2025-02-09 21:00:09,200 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.0197
+2025-02-09 21:00:10,289 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0680, Accuracy: 63.78%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:10,409 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 1.0015
+2025-02-09 21:00:12,297 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 0.9960
+2025-02-09 21:00:13,350 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0261, Accuracy: 64.54%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:13,394 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 1.2138
+2025-02-09 21:00:15,270 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 0.9847
+2025-02-09 21:00:16,321 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0483, Accuracy: 64.24%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:16,367 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 0.8025
+2025-02-09 21:00:18,249 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.1111
+2025-02-09 21:00:19,270 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0649, Accuracy: 63.54%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:19,314 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 0.9087
+2025-02-09 21:00:21,246 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 1.1235
+2025-02-09 21:00:22,343 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0368, Accuracy: 64.04%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:00:22,425 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:00:22,469 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.0873
+2025-02-09 21:00:24,364 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 0.8148
+2025-02-09 21:00:25,563 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0713, Accuracy: 63.54%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:25,612 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 1.0660
+2025-02-09 21:00:27,527 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 0.9445
+2025-02-09 21:00:28,600 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0764, Accuracy: 63.32%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:28,646 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 0.8817
+2025-02-09 21:00:30,555 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 0.8993
+2025-02-09 21:00:31,611 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0708, Accuracy: 63.50%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:31,662 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 0.9859
+2025-02-09 21:00:33,646 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 0.9157
+2025-02-09 21:00:34,732 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0798, Accuracy: 62.76%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:34,782 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.9347
+2025-02-09 21:00:36,829 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.0707
+2025-02-09 21:00:37,880 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0742, Accuracy: 63.68%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:00:37,966 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:00:38,011 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 1.3544
+2025-02-09 21:00:40,021 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 1.0079
+2025-02-09 21:00:41,099 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0949, Accuracy: 62.52%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:41,145 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.1143
+2025-02-09 21:00:43,044 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 0.8444
+2025-02-09 21:00:44,131 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0774, Accuracy: 63.18%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:44,182 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 1.0962
+2025-02-09 21:00:46,061 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 0.8396
+2025-02-09 21:00:47,176 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0788, Accuracy: 62.84%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:47,224 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.0520
+2025-02-09 21:00:49,201 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 0.9541
+2025-02-09 21:00:50,330 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0888, Accuracy: 62.80%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:50,382 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.2339
+2025-02-09 21:00:52,296 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.0756
+2025-02-09 21:00:53,340 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.1522, Accuracy: 61.90%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:00:53,435 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:00:53,475 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 1.1326
+2025-02-09 21:00:55,417 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.1479
+2025-02-09 21:00:56,497 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0889, Accuracy: 63.14%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:56,545 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 1.1838
+2025-02-09 21:00:58,573 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.1448
+2025-02-09 21:00:59,720 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0761, Accuracy: 63.84%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:00:59,764 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.0061
+2025-02-09 21:01:01,767 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 1.2764
+2025-02-09 21:01:02,829 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0893, Accuracy: 63.54%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:01:02,875 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 1.0357
+2025-02-09 21:01:04,867 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 1.2900
+2025-02-09 21:01:06,036 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0955, Accuracy: 62.38%, Processed samples: 5000, LR: 0.000010
+2025-02-09 21:01:06,084 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 0.8568
+2025-02-09 21:01:08,023 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.1253
+2025-02-09 21:01:09,081 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0609, Accuracy: 62.74%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:11,852 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:01:11,897 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 1.1408
+2025-02-09 21:01:13,817 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 0.9129
+2025-02-09 21:01:14,882 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0507, Accuracy: 64.58%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:14,927 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 1.0924
+2025-02-09 21:01:16,806 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.0220
+2025-02-09 21:01:17,841 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0511, Accuracy: 64.56%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:17,885 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 1.0350
+2025-02-09 21:01:19,784 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 0.9155
+2025-02-09 21:01:20,836 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0576, Accuracy: 64.02%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:20,884 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 0.9100
+2025-02-09 21:01:22,768 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.0204
+2025-02-09 21:01:23,798 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0606, Accuracy: 64.18%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:23,846 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 0.9844
+2025-02-09 21:01:25,728 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 0.8447
+2025-02-09 21:01:26,787 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0673, Accuracy: 63.26%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:01:26,866 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:01:26,906 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.0862
+2025-02-09 21:01:28,798 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 1.1254
+2025-02-09 21:01:30,199 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0673, Accuracy: 62.34%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:30,256 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 1.0979
+2025-02-09 21:01:32,462 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.1079
+2025-02-09 21:01:33,843 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0498, Accuracy: 62.74%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:33,901 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 0.9108
+2025-02-09 21:01:36,190 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.0977
+2025-02-09 21:01:37,394 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0689, Accuracy: 62.36%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:37,444 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.1610
+2025-02-09 21:01:39,410 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.1952
+2025-02-09 21:01:40,513 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0693, Accuracy: 62.58%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:40,560 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 1.2926
+2025-02-09 21:01:42,459 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.0562
+2025-02-09 21:01:43,640 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0840, Accuracy: 63.24%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:01:43,720 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:01:43,763 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 0.8609
+2025-02-09 21:01:45,973 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 1.1521
+2025-02-09 21:01:47,116 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0832, Accuracy: 63.22%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:47,264 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.4531
+2025-02-09 21:01:49,500 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.0229
+2025-02-09 21:01:50,570 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0961, Accuracy: 63.18%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:50,617 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 1.1594
+2025-02-09 21:01:52,580 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 0.9499
+2025-02-09 21:01:53,664 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0776, Accuracy: 63.04%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:53,710 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 0.9738
+2025-02-09 21:01:55,681 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 0.7767
+2025-02-09 21:01:56,769 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0856, Accuracy: 63.30%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:01:56,814 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.0244
+2025-02-09 21:01:58,783 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.0791
+2025-02-09 21:01:59,840 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.1064, Accuracy: 63.22%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:01:59,922 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:01:59,964 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 1.0187
+2025-02-09 21:02:01,930 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.0895
+2025-02-09 21:02:03,034 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0821, Accuracy: 62.54%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:02:03,083 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 0.9556
+2025-02-09 21:02:05,544 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.1072
+2025-02-09 21:02:06,735 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.1003, Accuracy: 62.52%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:02:06,813 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.3622
+2025-02-09 21:02:09,066 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 1.1929
+2025-02-09 21:02:10,244 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0812, Accuracy: 63.06%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:02:10,291 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 1.4500
+2025-02-09 21:02:12,254 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 1.1310
+2025-02-09 21:02:13,345 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0946, Accuracy: 62.84%, Processed samples: 5000, LR: 0.000001
+2025-02-09 21:02:13,391 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.0249
+2025-02-09 21:02:15,283 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.2401
+2025-02-09 21:02:16,375 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0824, Accuracy: 62.42%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:19,287 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:02:19,332 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 0.9953
+2025-02-09 21:02:21,338 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.0829
+2025-02-09 21:02:22,411 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0817, Accuracy: 63.90%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:22,455 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 1.1120
+2025-02-09 21:02:24,373 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 0.9938
+2025-02-09 21:02:25,447 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0640, Accuracy: 64.24%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:25,493 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 0.9768
+2025-02-09 21:02:27,740 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 1.0635
+2025-02-09 21:02:28,952 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0592, Accuracy: 64.12%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:29,009 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.1653
+2025-02-09 21:02:31,232 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 0.9661
+2025-02-09 21:02:32,421 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0672, Accuracy: 64.34%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:32,470 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.3356
+2025-02-09 21:02:34,514 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 1.1645
+2025-02-09 21:02:35,598 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0499, Accuracy: 63.72%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:35,677 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:02:35,719 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.0372
+2025-02-09 21:02:37,673 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 0.9938
+2025-02-09 21:02:38,892 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0692, Accuracy: 62.72%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:38,942 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 1.0484
+2025-02-09 21:02:41,039 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.1084
+2025-02-09 21:02:42,139 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0567, Accuracy: 63.78%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:42,188 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 0.9544
+2025-02-09 21:02:44,205 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 0.8317
+2025-02-09 21:02:45,321 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0840, Accuracy: 62.96%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:45,371 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.1100
+2025-02-09 21:02:47,263 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.1412
+2025-02-09 21:02:48,331 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0522, Accuracy: 63.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:48,385 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.8995
+2025-02-09 21:02:50,283 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.2630
+2025-02-09 21:02:51,417 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0849, Accuracy: 62.22%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:51,512 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:02:51,555 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 1.1408
+2025-02-09 21:02:53,406 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 0.8252
+2025-02-09 21:02:54,501 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0713, Accuracy: 62.86%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:54,547 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.0034
+2025-02-09 21:02:56,425 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 0.9685
+2025-02-09 21:02:57,488 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0653, Accuracy: 62.32%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:02:57,535 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 0.9986
+2025-02-09 21:02:59,498 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 0.9758
+2025-02-09 21:03:00,743 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.1167, Accuracy: 63.04%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:00,820 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.3761
+2025-02-09 21:03:02,932 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.0047
+2025-02-09 21:03:04,162 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0816, Accuracy: 63.40%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:04,220 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.1187
+2025-02-09 21:03:06,330 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.1553
+2025-02-09 21:03:07,524 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.0954, Accuracy: 62.62%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:07,621 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:03:07,665 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 1.1262
+2025-02-09 21:03:09,752 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 0.8057
+2025-02-09 21:03:10,837 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0573, Accuracy: 63.52%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:10,882 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 0.8624
+2025-02-09 21:03:12,796 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.3374
+2025-02-09 21:03:13,841 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0922, Accuracy: 63.10%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:13,886 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 0.9503
+2025-02-09 21:03:15,789 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 0.8223
+2025-02-09 21:03:16,865 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.1014, Accuracy: 63.24%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:16,910 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 0.9602
+2025-02-09 21:03:18,783 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 1.0413
+2025-02-09 21:03:19,875 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0891, Accuracy: 62.84%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:19,920 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.2246
+2025-02-09 21:03:21,841 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.1170
+2025-02-09 21:03:23,005 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0765, Accuracy: 63.56%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:25,811 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:03:25,858 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 1.0057
+2025-02-09 21:03:27,793 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.0296
+2025-02-09 21:03:28,846 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0453, Accuracy: 64.06%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:28,890 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 0.8260
+2025-02-09 21:03:30,790 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.1377
+2025-02-09 21:03:31,859 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0542, Accuracy: 64.56%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:31,904 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 0.6867
+2025-02-09 21:03:34,131 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 1.0714
+2025-02-09 21:03:35,283 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0692, Accuracy: 63.40%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:35,337 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.0358
+2025-02-09 21:03:37,526 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.1056
+2025-02-09 21:03:38,615 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0512, Accuracy: 63.92%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:38,662 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.2329
+2025-02-09 21:03:40,576 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 1.2736
+2025-02-09 21:03:41,613 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0686, Accuracy: 64.12%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:41,693 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:03:41,737 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.1155
+2025-02-09 21:03:43,644 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 0.9469
+2025-02-09 21:03:45,063 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0581, Accuracy: 62.98%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:45,108 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 1.0337
+2025-02-09 21:03:47,110 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.1847
+2025-02-09 21:03:48,138 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0701, Accuracy: 62.58%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:48,188 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 1.2020
+2025-02-09 21:03:50,079 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.1791
+2025-02-09 21:03:51,109 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0888, Accuracy: 63.08%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:51,153 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.0195
+2025-02-09 21:03:53,067 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.2388
+2025-02-09 21:03:54,134 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0866, Accuracy: 62.68%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:54,178 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 1.0097
+2025-02-09 21:03:56,088 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.1262
+2025-02-09 21:03:57,162 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0513, Accuracy: 63.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:03:57,267 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:03:57,316 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 0.9193
+2025-02-09 21:03:59,390 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 0.9356
+2025-02-09 21:04:00,649 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0708, Accuracy: 63.02%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:00,704 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.1042
+2025-02-09 21:04:02,874 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.0001
+2025-02-09 21:04:04,040 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0964, Accuracy: 63.48%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:04,086 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 0.8225
+2025-02-09 21:04:06,115 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 1.1366
+2025-02-09 21:04:07,176 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0842, Accuracy: 62.80%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:07,222 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.0863
+2025-02-09 21:04:09,198 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.0745
+2025-02-09 21:04:10,249 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0924, Accuracy: 62.02%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:10,297 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.0015
+2025-02-09 21:04:12,232 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.0136
+2025-02-09 21:04:13,255 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.0780, Accuracy: 62.94%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:13,333 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:04:13,376 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 1.2939
+2025-02-09 21:04:15,244 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 0.9070
+2025-02-09 21:04:16,366 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0670, Accuracy: 62.32%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:16,413 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 1.1449
+2025-02-09 21:04:18,352 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.1323
+2025-02-09 21:04:19,429 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0811, Accuracy: 62.88%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:19,481 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.0350
+2025-02-09 21:04:21,405 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 1.1904
+2025-02-09 21:04:22,440 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0747, Accuracy: 63.10%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:22,487 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 0.8589
+2025-02-09 21:04:24,405 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 0.9645
+2025-02-09 21:04:25,520 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0831, Accuracy: 62.58%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:25,567 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 0.8373
+2025-02-09 21:04:27,431 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.2110
+2025-02-09 21:04:28,467 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0905, Accuracy: 62.60%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:31,243 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:04:31,287 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 1.0403
+2025-02-09 21:04:33,162 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.0829
+2025-02-09 21:04:34,212 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0581, Accuracy: 64.00%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:34,256 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 0.8810
+2025-02-09 21:04:36,170 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.1529
+2025-02-09 21:04:37,222 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0582, Accuracy: 63.84%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:37,265 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 0.9862
+2025-02-09 21:04:39,220 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 0.9880
+2025-02-09 21:04:40,368 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0438, Accuracy: 64.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:40,417 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.0599
+2025-02-09 21:04:42,341 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.0967
+2025-02-09 21:04:43,372 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0438, Accuracy: 64.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:43,419 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.0102
+2025-02-09 21:04:45,296 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 0.9916
+2025-02-09 21:04:46,312 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0848, Accuracy: 64.06%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:46,400 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:04:46,446 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.0378
+2025-02-09 21:04:48,318 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 1.1669
+2025-02-09 21:04:49,418 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0555, Accuracy: 62.96%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:49,468 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 0.7797
+2025-02-09 21:04:51,715 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.1679
+2025-02-09 21:04:52,897 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0582, Accuracy: 63.44%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:52,946 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 0.9772
+2025-02-09 21:04:54,881 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.0630
+2025-02-09 21:04:55,948 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0782, Accuracy: 62.60%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:56,080 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.1329
+2025-02-09 21:04:58,035 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.0322
+2025-02-09 21:04:59,072 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.1017, Accuracy: 62.58%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:04:59,117 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.9476
+2025-02-09 21:05:01,017 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 0.6955
+2025-02-09 21:05:02,073 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0872, Accuracy: 63.14%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:02,155 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:05:02,200 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 1.2653
+2025-02-09 21:05:04,100 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 1.1007
+2025-02-09 21:05:05,176 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0839, Accuracy: 63.22%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:05,222 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.2653
+2025-02-09 21:05:07,111 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.2665
+2025-02-09 21:05:08,207 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0861, Accuracy: 62.92%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:08,251 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 0.9231
+2025-02-09 21:05:10,146 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 1.1486
+2025-02-09 21:05:11,197 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0814, Accuracy: 62.80%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:11,242 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.0810
+2025-02-09 21:05:13,137 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.1290
+2025-02-09 21:05:14,203 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0879, Accuracy: 62.02%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:14,247 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 0.9533
+2025-02-09 21:05:16,114 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.0491
+2025-02-09 21:05:17,232 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.1006, Accuracy: 62.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:17,338 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:05:17,388 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 0.9320
+2025-02-09 21:05:19,378 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.2479
+2025-02-09 21:05:20,426 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0981, Accuracy: 62.60%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:20,474 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 0.9217
+2025-02-09 21:05:22,437 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 0.9850
+2025-02-09 21:05:23,518 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0910, Accuracy: 62.54%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:23,563 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 0.9403
+2025-02-09 21:05:25,503 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 0.9874
+2025-02-09 21:05:26,583 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.1045, Accuracy: 63.00%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:26,633 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 0.9166
+2025-02-09 21:05:28,533 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 1.1633
+2025-02-09 21:05:29,599 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0844, Accuracy: 63.40%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:29,649 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.1842
+2025-02-09 21:05:31,534 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 0.9308
+2025-02-09 21:05:32,570 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0796, Accuracy: 63.08%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:35,399 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:05:35,443 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 1.1505
+2025-02-09 21:05:37,360 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.1000
+2025-02-09 21:05:38,416 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0554, Accuracy: 63.40%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:38,464 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 1.2001
+2025-02-09 21:05:40,329 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 1.2388
+2025-02-09 21:05:41,370 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0616, Accuracy: 63.84%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:41,412 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 1.0205
+2025-02-09 21:05:43,277 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 1.0499
+2025-02-09 21:05:44,341 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0415, Accuracy: 65.24%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:44,386 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 0.9052
+2025-02-09 21:05:46,260 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 0.9171
+2025-02-09 21:05:47,304 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0356, Accuracy: 63.78%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:47,352 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 0.7030
+2025-02-09 21:05:49,258 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 1.0266
+2025-02-09 21:05:50,283 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0543, Accuracy: 63.76%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:50,363 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:05:50,406 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.1649
+2025-02-09 21:05:52,268 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 1.1416
+2025-02-09 21:05:53,332 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0736, Accuracy: 62.86%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:53,377 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 1.0436
+2025-02-09 21:05:55,236 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.2381
+2025-02-09 21:05:56,273 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0743, Accuracy: 62.02%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:56,320 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 0.9628
+2025-02-09 21:05:58,196 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.1868
+2025-02-09 21:05:59,288 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0848, Accuracy: 63.26%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:05:59,338 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 0.9441
+2025-02-09 21:06:01,309 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.2939
+2025-02-09 21:06:02,375 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0709, Accuracy: 62.74%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:02,424 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.7745
+2025-02-09 21:06:04,309 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 1.1594
+2025-02-09 21:06:05,340 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.1017, Accuracy: 63.08%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:05,420 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:06:05,461 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 1.2382
+2025-02-09 21:06:07,444 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 0.9053
+2025-02-09 21:06:08,652 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0766, Accuracy: 62.34%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:08,700 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 1.1169
+2025-02-09 21:06:10,680 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.0219
+2025-02-09 21:06:11,772 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0888, Accuracy: 62.76%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:11,824 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 1.0535
+2025-02-09 21:06:13,726 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 1.3372
+2025-02-09 21:06:14,826 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0986, Accuracy: 63.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:14,871 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 0.8539
+2025-02-09 21:06:16,936 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.2340
+2025-02-09 21:06:18,104 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0934, Accuracy: 62.94%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:18,154 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 1.1533
+2025-02-09 21:06:20,120 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 1.2325
+2025-02-09 21:06:21,242 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.1036, Accuracy: 63.18%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:21,331 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:06:21,385 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 1.1051
+2025-02-09 21:06:23,593 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.0809
+2025-02-09 21:06:24,667 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0671, Accuracy: 62.68%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:24,712 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 1.2096
+2025-02-09 21:06:26,644 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 0.8226
+2025-02-09 21:06:27,698 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0838, Accuracy: 63.58%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:27,744 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.2731
+2025-02-09 21:06:29,619 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 0.9125
+2025-02-09 21:06:30,665 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0982, Accuracy: 63.02%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:30,709 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 1.0879
+2025-02-09 21:06:32,633 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 0.8846
+2025-02-09 21:06:33,676 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.0822, Accuracy: 63.44%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:33,803 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.0055
+2025-02-09 21:06:35,802 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 1.1289
+2025-02-09 21:06:37,116 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.1319, Accuracy: 63.08%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:40,206 - Client_0 - INFO - [client.py:119] - 客户端 0 开始训练，数据批次数: 79
+2025-02-09 21:06:40,251 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [0/79], Loss: 0.9732
+2025-02-09 21:06:42,269 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 0, Batch: [50/79], Loss: 1.0946
+2025-02-09 21:06:43,353 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 0, Loss: 1.0556, Accuracy: 64.02%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:43,400 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [0/79], Loss: 1.0114
+2025-02-09 21:06:45,296 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 1, Batch: [50/79], Loss: 0.9082
+2025-02-09 21:06:46,345 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 1, Loss: 1.0647, Accuracy: 65.38%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:46,390 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [0/79], Loss: 1.0537
+2025-02-09 21:06:48,317 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 2, Batch: [50/79], Loss: 1.2954
+2025-02-09 21:06:49,450 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 2, Loss: 1.0845, Accuracy: 63.28%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:49,495 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [0/79], Loss: 1.0566
+2025-02-09 21:06:51,613 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 3, Batch: [50/79], Loss: 1.2322
+2025-02-09 21:06:52,701 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 3, Loss: 1.0288, Accuracy: 64.40%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:52,751 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [0/79], Loss: 1.3450
+2025-02-09 21:06:54,624 - Client_0 - INFO - [client.py:159] - Client 0, Epoch: 4, Batch: [50/79], Loss: 0.9778
+2025-02-09 21:06:55,661 - Client_0 - INFO - [client.py:177] - Client 0, Epoch: 4, Loss: 1.0426, Accuracy: 64.94%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:55,756 - Client_1 - INFO - [client.py:119] - 客户端 1 开始训练，数据批次数: 79
+2025-02-09 21:06:55,812 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [0/79], Loss: 1.1111
+2025-02-09 21:06:57,815 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 0, Batch: [50/79], Loss: 0.9036
+2025-02-09 21:06:58,877 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 0, Loss: 1.0515, Accuracy: 62.90%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:06:58,920 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [0/79], Loss: 0.9255
+2025-02-09 21:07:00,793 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 1, Batch: [50/79], Loss: 1.1613
+2025-02-09 21:07:01,849 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 1, Loss: 1.0554, Accuracy: 63.70%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:01,899 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [0/79], Loss: 1.0601
+2025-02-09 21:07:03,786 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 2, Batch: [50/79], Loss: 1.0341
+2025-02-09 21:07:04,834 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 2, Loss: 1.0623, Accuracy: 63.50%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:04,877 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [0/79], Loss: 1.1916
+2025-02-09 21:07:06,778 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 3, Batch: [50/79], Loss: 1.0131
+2025-02-09 21:07:07,850 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 3, Loss: 1.0319, Accuracy: 63.82%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:07,905 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [0/79], Loss: 0.9522
+2025-02-09 21:07:09,794 - Client_1 - INFO - [client.py:159] - Client 1, Epoch: 4, Batch: [50/79], Loss: 0.9207
+2025-02-09 21:07:10,846 - Client_1 - INFO - [client.py:177] - Client 1, Epoch: 4, Loss: 1.0640, Accuracy: 62.72%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:10,930 - Client_2 - INFO - [client.py:119] - 客户端 2 开始训练，数据批次数: 79
+2025-02-09 21:07:10,975 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [0/79], Loss: 1.0370
+2025-02-09 21:07:12,871 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 0, Batch: [50/79], Loss: 1.1381
+2025-02-09 21:07:13,916 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 0, Loss: 1.0833, Accuracy: 62.86%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:13,963 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [0/79], Loss: 0.9883
+2025-02-09 21:07:15,894 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 1, Batch: [50/79], Loss: 1.1474
+2025-02-09 21:07:16,931 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 1, Loss: 1.0751, Accuracy: 63.50%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:16,976 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [0/79], Loss: 1.1858
+2025-02-09 21:07:18,861 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 2, Batch: [50/79], Loss: 1.1966
+2025-02-09 21:07:19,920 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 2, Loss: 1.0831, Accuracy: 62.98%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:19,962 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [0/79], Loss: 1.0090
+2025-02-09 21:07:21,852 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 3, Batch: [50/79], Loss: 1.1231
+2025-02-09 21:07:22,899 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 3, Loss: 1.0786, Accuracy: 63.60%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:22,945 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [0/79], Loss: 0.8799
+2025-02-09 21:07:24,794 - Client_2 - INFO - [client.py:159] - Client 2, Epoch: 4, Batch: [50/79], Loss: 0.7686
+2025-02-09 21:07:25,828 - Client_2 - INFO - [client.py:177] - Client 2, Epoch: 4, Loss: 1.1131, Accuracy: 62.76%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:25,904 - Client_3 - INFO - [client.py:119] - 客户端 3 开始训练，数据批次数: 79
+2025-02-09 21:07:25,947 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [0/79], Loss: 0.9823
+2025-02-09 21:07:27,840 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 0, Batch: [50/79], Loss: 1.0040
+2025-02-09 21:07:28,873 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 0, Loss: 1.0764, Accuracy: 63.88%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:28,920 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [0/79], Loss: 0.9791
+2025-02-09 21:07:30,832 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 1, Batch: [50/79], Loss: 1.2861
+2025-02-09 21:07:31,840 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 1, Loss: 1.0867, Accuracy: 62.30%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:31,886 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [0/79], Loss: 1.2901
+2025-02-09 21:07:33,782 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 2, Batch: [50/79], Loss: 0.9611
+2025-02-09 21:07:34,821 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 2, Loss: 1.0946, Accuracy: 62.70%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:34,871 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [0/79], Loss: 0.8151
+2025-02-09 21:07:36,715 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 3, Batch: [50/79], Loss: 0.8501
+2025-02-09 21:07:37,790 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 3, Loss: 1.1136, Accuracy: 62.96%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:37,842 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [0/79], Loss: 1.2404
+2025-02-09 21:07:39,766 - Client_3 - INFO - [client.py:159] - Client 3, Epoch: 4, Batch: [50/79], Loss: 0.9654
+2025-02-09 21:07:40,862 - Client_3 - INFO - [client.py:177] - Client 3, Epoch: 4, Loss: 1.0653, Accuracy: 63.12%, Processed samples: 5000, LR: 0.000000
+2025-02-09 21:07:52,269 - FederatedLearningGUI - ERROR - [gui.py:531] - 聚合错误: result type Float can't be cast to the desired output type Long (类型: RuntimeError)
