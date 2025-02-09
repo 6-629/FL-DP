@@ -18,8 +18,15 @@ class FederatedLearningGUI:
         self.root.title("联邦学习隐私保护系统")
         self.root.geometry("1100x600")
         
-        # 初始化日志记录器
-        logging.basicConfig(level=logging.INFO)
+        # 配置日志记录器，添加文件处理器
+        logging.basicConfig(
+            level=logging.INFO,
+            format='%(asctime)s - %(name)s - %(levelname)s - [%(filename)s:%(lineno)d] - %(message)s',
+            handlers=[
+                logging.FileHandler('federated_learning.log', encoding='utf-8'),
+                logging.StreamHandler()
+            ]
+        )
         self.logger = logging.getLogger("FederatedLearningGUI")
         
         # 保存当前的客户端和服务器实例
@@ -189,17 +196,19 @@ class FederatedLearningGUI:
                 "model_name": "resnet18",
                 "no_models": int(self.clients_var.get()),
                 "type": self.dataset_var.get().lower(),
-                "global_epochs": 8,
+                "global_epochs": 3,
                 "local_epochs": 2,
                 "k": 5,
                 "batch_size": 32,
-                "lr": 0.001,
+                "lr": 0.0001,
                 "momentum": 0.9,
                 "lambda": 0.001,
                 "dp_noise_type": self.dp_var.get().lower(),
                 "dp_noise_scale": 0.001,
                 "epsilon": float(self.privacy_var.get()),
-                "clip_grad": 1.0
+                "clip_grad": 1.0,
+                "max_grad_norm": 1.0,
+                "delta": 1e-5
             }
 
             # 2. 准备数据集
@@ -253,13 +262,21 @@ class FederatedLearningGUI:
                     self.result_text.insert(tk.END, log_message)
                     self.result_text.see(tk.END)
                 except Exception as e:
-                    self.logger.error(f"Training error in epoch {epoch}: {str(e)}")
+                    import traceback
+                    error_info = traceback.format_exc()
+                    error_message = f"训练错误在第 {epoch} 轮:\n{str(e)}\n位置: {error_info}"
+                    self.result_text.insert(tk.END, error_message + "\n")
+                    self.logger.error(error_message)
                     raise
 
             messagebox.showinfo("完成", "训练完成！")
             
         except Exception as e:
-            messagebox.showerror("错误", str(e))
+            import traceback
+            error_info = traceback.format_exc()
+            error_message = f"错误: {str(e)}\n类型: {type(e).__name__}\n位置: {error_info}"
+            self.result_text.insert(tk.END, error_message + "\n")
+            self.logger.error(error_message)
 
     def train_one_epoch(self, epoch, conf):
         """训练一个epoch"""
@@ -274,14 +291,17 @@ class FederatedLearningGUI:
             candidates = self.clients[:k]
             weight_accumulator = {}
 
-            # 初始化权重累加器
+            # 初始化权重累加器，确保类型与全局模型参数匹配
             for name, params in self.server.global_model.state_dict().items():
-                weight_accumulator[name] = torch.zeros_like(params)
+                weight_accumulator[name] = torch.zeros_like(params, dtype=params.dtype)
 
             # 客户端训练
             for c in candidates:
                 diff = c.local_train(self.server.global_model)
                 for name, params in self.server.global_model.state_dict().items():
+                    # 确保类型匹配
+                    if diff[name].dtype != params.dtype:
+                        diff[name] = diff[name].to(dtype=params.dtype)
                     weight_accumulator[name].add_(diff[name])
 
             # 服务器聚合
@@ -290,11 +310,17 @@ class FederatedLearningGUI:
             # 评估模型
             acc, loss = self.server.model_eval()
             
-            # 确保返回浮点数
+            # 检查是否出现NaN
+            if torch.isnan(torch.tensor(loss)) or torch.isinf(torch.tensor(loss)):
+                raise ValueError("训练发散：损失值为NaN或Inf")
+            
             return float(acc), float(loss)
         
         except Exception as e:
-            self.logger.error(f"Error in training epoch: {str(e)}")
+            import traceback
+            error_info = traceback.format_exc()
+            error_message = f"训练错误在第 {epoch} 轮:\n{str(e)}\n位置: {error_info}"
+            self.logger.error(error_message)
             raise
 
     def start_recovery(self):
@@ -329,7 +355,11 @@ class FederatedLearningGUI:
             self.update_recovery_metrics(mse, psnr)
             
         except Exception as e:
-            messagebox.showerror("错误", str(e))
+            import traceback
+            error_info = traceback.format_exc()
+            error_message = f"恢复错误:\n{str(e)}\n位置: {error_info}"
+            self.recovery_text.insert(tk.END, error_message + "\n")
+            self.logger.error(error_message)
 
     def update_metrics(self, accuracy=None, loss=None):
         """更新训练指标显示"""
@@ -382,7 +412,9 @@ class FederatedLearningGUI:
             self.result_text.see(tk.END)
             
         except Exception as e:
-            messagebox.showerror("错误", str(e))
+            error_message = f"聚合错误: {str(e)} (类型: {type(e).__name__})"
+            self.result_text.insert(tk.END, error_message + "\n")
+            self.logger.error(error_message)
 
     def local_train(self, model):
         """本地训练过程"""

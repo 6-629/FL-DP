@@ -246,25 +246,41 @@ class Client(object):
             noise_type = self.conf.get('dp_noise_type', 'gaussian')
             epsilon = float(self.conf.get('epsilon', 1.0))
             delta = float(self.conf.get('delta', 1e-5))
-            sensitivity = float(self.compute_sensitivity(global_model))
-
+            
+            # 添加梯度裁剪
+            max_norm = self.conf.get('max_grad_norm', 1.0)
+            
             for name, local_param in self.local_model.state_dict().items():
                 global_param = global_model.state_dict()[name]
+                original_dtype = global_param.dtype
                 
-                # 确保参数在同一设备上并为浮点类型
+                # 转换为浮点类型进行计算
                 local_param = local_param.to(self.device).float()
                 global_param = global_param.to(self.device).float()
                 
+                # 计算参数差异
                 param_diff = local_param.detach() - global_param.detach()
                 
-                # 应用差分隐私
-                diff[name] = self.apply_differential_privacy(
+                # 梯度裁剪
+                param_norm = torch.norm(param_diff)
+                if param_norm > max_norm:
+                    param_diff = param_diff * max_norm / param_norm
+                
+                # 计算每层的敏感度
+                sensitivity = torch.norm(param_diff).item()
+                
+                # 应用差分隐私，降低噪声强度
+                noise_scale = self.conf.get('dp_noise_scale', 0.001)  # 降低默认噪声强度
+                noised_diff = self.apply_differential_privacy(
                     param_diff=param_diff,
                     noise_type=noise_type,
                     epsilon=epsilon,
-                    sensitivity=sensitivity,
+                    sensitivity=sensitivity * noise_scale,  # 缩放敏感度
                     delta=delta
                 )
+                
+                # 将结果转换回原始类型
+                diff[name] = noised_diff.to(dtype=original_dtype)
 
             return diff
 

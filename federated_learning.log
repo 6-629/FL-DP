@@ -1,0 +1,132 @@
+2025-02-09 16:38:54,870 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: 12.2146, Accuracy: 0.28%
+2025-02-09 16:38:58,379 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: 8.2136, Accuracy: 3.32%
+2025-02-09 16:38:59,202 - FederatedLearningGUI - ERROR - [gui.py:315] - 训练错误在第 0 轮:
+result type Float can't be cast to the desired output type Long
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 300, in train_one_epoch
+    weight_accumulator[name].add_(diff[name])
+RuntimeError: result type Float can't be cast to the desired output type Long
+
+2025-02-09 16:38:59,203 - FederatedLearningGUI - ERROR - [gui.py:267] - 训练错误在第 0 轮:
+result type Float can't be cast to the desired output type Long
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 251, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 300, in train_one_epoch
+    weight_accumulator[name].add_(diff[name])
+RuntimeError: result type Float can't be cast to the desired output type Long
+
+2025-02-09 16:38:59,243 - FederatedLearningGUI - ERROR - [gui.py:277] - 错误: result type Float can't be cast to the desired output type Long
+类型: RuntimeError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 251, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 300, in train_one_epoch
+    weight_accumulator[name].add_(diff[name])
+RuntimeError: result type Float can't be cast to the desired output type Long
+
+2025-02-09 16:41:27,177 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1875, Accuracy: 0.18%
+2025-02-09 16:41:30,653 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: 8.2203, Accuracy: 3.12%
+2025-02-09 16:41:34,609 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1448, Accuracy: 0.14%
+2025-02-09 16:41:38,114 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: 8.2740, Accuracy: 3.02%
+2025-02-09 16:41:42,076 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1679, Accuracy: 0.26%
+2025-02-09 16:41:45,623 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: 8.0699, Accuracy: 3.30%
+2025-02-09 16:41:49,601 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: 12.2566, Accuracy: 0.16%
+2025-02-09 16:41:53,235 - Client_3 - INFO - [client.py:112] - Epoch: 1, Loss: 8.3085, Accuracy: 2.82%
+2025-02-09 16:41:57,257 - Client_4 - INFO - [client.py:112] - Epoch: 0, Loss: 12.2198, Accuracy: 0.30%
+2025-02-09 16:42:00,943 - Client_4 - INFO - [client.py:112] - Epoch: 1, Loss: 8.3382, Accuracy: 2.44%
+2025-02-09 16:42:08,881 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: 50129812616.9682, Accuracy: 1.56%
+2025-02-09 16:42:12,551 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: 50207322607.6943, Accuracy: 1.64%
+2025-02-09 16:42:16,615 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: 49991046528.8153, Accuracy: 1.70%
+2025-02-09 16:42:20,309 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: 50167450187.0064, Accuracy: 1.60%
+2025-02-09 16:42:24,381 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: 50531328495.6943, Accuracy: 1.64%
+2025-02-09 16:42:28,180 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: 50580187149.0446, Accuracy: 1.40%
+2025-02-09 16:42:32,529 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: 50450725190.1146, Accuracy: 1.34%
+2025-02-09 16:42:36,238 - Client_3 - INFO - [client.py:112] - Epoch: 1, Loss: 50378414849.6306, Accuracy: 1.34%
+2025-02-09 16:42:40,308 - Client_4 - INFO - [client.py:112] - Epoch: 0, Loss: 50178956868.4841, Accuracy: 1.94%
+2025-02-09 16:42:43,870 - Client_4 - INFO - [client.py:112] - Epoch: 1, Loss: 50027855767.6433, Accuracy: 1.82%
+2025-02-09 16:42:51,392 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:42:54,967 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:42:59,007 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:43:02,539 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:43:06,562 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:43:10,162 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:43:14,276 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.74%
+2025-02-09 16:43:18,107 - Client_3 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 9.74%
+2025-02-09 16:43:22,240 - Client_4 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.04%
+2025-02-09 16:43:25,863 - Client_4 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.04%
+2025-02-09 16:43:33,492 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:43:37,144 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:43:41,142 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:43:44,721 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:43:48,745 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:43:52,333 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:43:56,529 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.74%
+2025-02-09 16:44:00,325 - Client_3 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 9.74%
+2025-02-09 16:44:04,462 - Client_4 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.04%
+2025-02-09 16:44:08,179 - Client_4 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.04%
+2025-02-09 16:44:15,729 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:44:19,337 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:44:23,293 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:44:26,837 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:44:30,892 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:44:34,501 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:44:38,495 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.74%
+2025-02-09 16:44:42,050 - Client_3 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 9.74%
+2025-02-09 16:44:46,157 - Client_4 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.04%
+2025-02-09 16:44:49,708 - Client_4 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.04%
+2025-02-09 16:44:57,230 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:45:00,872 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:45:05,054 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:45:08,682 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:45:12,689 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 9.94%
+2025-02-09 16:47:14,683 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:47:18,247 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.10%
+2025-02-09 16:47:22,217 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:47:25,871 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: nan, Accuracy: 10.00%
+2025-02-09 16:47:46,315 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: 12.2089, Accuracy: 0.16%
+2025-02-09 16:47:49,844 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: 8.2075, Accuracy: 3.16%
+2025-02-09 16:47:53,819 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1798, Accuracy: 0.24%
+2025-02-09 16:47:57,515 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: 8.1766, Accuracy: 2.82%
+2025-02-09 16:48:01,704 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1518, Accuracy: 0.16%
+2025-02-09 16:48:05,567 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: 8.1080, Accuracy: 3.26%
+2025-02-09 16:48:09,688 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1863, Accuracy: 0.18%
+2025-02-09 16:48:31,283 - Client_0 - INFO - [client.py:112] - Epoch: 0, Loss: 12.2575, Accuracy: 0.20%
+2025-02-09 16:48:34,799 - Client_0 - INFO - [client.py:112] - Epoch: 1, Loss: 8.1882, Accuracy: 2.98%
+2025-02-09 16:48:38,799 - Client_1 - INFO - [client.py:112] - Epoch: 0, Loss: 12.0984, Accuracy: 0.12%
+2025-02-09 16:48:42,233 - Client_1 - INFO - [client.py:112] - Epoch: 1, Loss: 8.1453, Accuracy: 2.96%
+2025-02-09 16:48:46,106 - Client_2 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1835, Accuracy: 0.26%
+2025-02-09 16:48:49,587 - Client_2 - INFO - [client.py:112] - Epoch: 1, Loss: 8.1730, Accuracy: 3.04%
+2025-02-09 16:48:53,567 - Client_3 - INFO - [client.py:112] - Epoch: 0, Loss: 12.1652, Accuracy: 0.18%
+2025-02-09 16:48:57,069 - Client_3 - INFO - [client.py:112] - Epoch: 1, Loss: 8.2431, Accuracy: 2.68%
+2025-02-09 16:49:00,973 - Client_4 - INFO - [client.py:112] - Epoch: 0, Loss: 12.0319, Accuracy: 0.44%
+2025-02-09 16:49:04,484 - Client_4 - INFO - [client.py:112] - Epoch: 1, Loss: 7.9640, Accuracy: 3.04%
+2025-02-09 16:49:08,105 - FederatedLearningGUI - ERROR - [gui.py:323] - 训练错误在第 0 轮:
+训练发散：损失值为NaN或Inf
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 315, in train_one_epoch
+    raise ValueError("训练发散：损失值为NaN或Inf")
+ValueError: 训练发散：损失值为NaN或Inf
+
+2025-02-09 16:49:08,107 - FederatedLearningGUI - ERROR - [gui.py:269] - 训练错误在第 0 轮:
+训练发散：损失值为NaN或Inf
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 253, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 315, in train_one_epoch
+    raise ValueError("训练发散：损失值为NaN或Inf")
+ValueError: 训练发散：损失值为NaN或Inf
+
+2025-02-09 16:49:08,108 - FederatedLearningGUI - ERROR - [gui.py:279] - 错误: 训练发散：损失值为NaN或Inf
+类型: ValueError
+位置: Traceback (most recent call last):
+  File "e:\github\code\FL-DP\gui.py", line 253, in start_training
+    acc, loss = self.train_one_epoch(epoch, conf)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "e:\github\code\FL-DP\gui.py", line 315, in train_one_epoch
+    raise ValueError("训练发散：损失值为NaN或Inf")
+ValueError: 训练发散：损失值为NaN或Inf
+
