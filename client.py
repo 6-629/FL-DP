@@ -46,6 +46,10 @@ class Client(object):
         # 设置训练数据
         self.setup_training_data(train_dataset, id)
 
+        # 添加权重保存路径
+        self.weights_dir = os.path.join('model_weights', f'client_{id}')
+        os.makedirs(self.weights_dir, exist_ok=True)
+
     def setup_training_data(self, train_dataset, id):
         """设置训练数据"""
         try:
@@ -102,7 +106,7 @@ class Client(object):
             self.logger.error(f"Error updating learning rate: {str(e)}")
             raise
 
-    def local_train(self, model):
+    def local_train(self, model, global_epoch):
         """本地训练过程"""
         try:
             # 复制全局模型参数到本地模型
@@ -111,6 +115,13 @@ class Client(object):
             
             best_acc = 0
             best_state = None
+            
+            # 记录差分隐私设置
+            self.logger.info(
+                f"客户端 {self.client_id} 使用 {self.conf['dp_noise_type']} "
+                f"差分隐私机制, ε={self.conf['epsilon']}, "
+                f"噪声比例={self.conf['dp_noise_scale']}"
+            )
             
             # 检查训练数据是否为空
             if len(self.train_loader) == 0:
@@ -123,24 +134,62 @@ class Client(object):
                 epoch_loss = 0
                 correct = 0
                 total = 0
+                total_noise_magnitude = 0  # 记录每个epoch的总噪声大小
+                total_sensitivity = 0      # 记录每个epoch的总敏感度
 
                 for batch_idx, (data, target) in enumerate(self.train_loader):
-                    # 检查批次数据
                     if data.size(0) == 0:
                         self.logger.warning(f"跳过空批次 {batch_idx}")
                         continue
                         
-                    # 移动数据到正确的设备
                     data, target = data.to(self.device), target.to(self.device).long()
                     
-                    # 训练步骤
                     self.optimizer.zero_grad()
                     output = self.local_model(data)
                     loss = torch.nn.functional.cross_entropy(output, target)
                     loss.backward()
 
+                    # 计算当前批次的梯度敏感度
+                    batch_sensitivity = 0
+                    batch_noise_magnitude = 0
+                    
+                    # 在更新参数前添加差分隐私噪声
+                    for param in self.local_model.parameters():
+                        if param.grad is not None:
+                            # 计算梯度敏感度
+                            grad_norm = torch.norm(param.grad).item()
+                            batch_sensitivity += grad_norm
+                            
+                            # 动态调整噪声比例
+                            adaptive_noise_scale = min(
+                                self.conf['dp_noise_scale'],
+                                self.conf['dp_noise_scale'] * (1.0 / max(grad_norm, 1e-6))
+                            )
+                            
+                            # 应用差分隐私
+                            noise_type = self.conf.get('dp_noise_type', 'gaussian')
+                            epsilon = float(self.conf.get('epsilon', 1.0))
+                            delta = float(self.conf.get('delta', 1e-5))
+                            sensitivity = grad_norm * adaptive_noise_scale
+                            
+                            # 应用差分隐私到梯度
+                            noised_grad = self.apply_differential_privacy(
+                                param_diff=param.grad,
+                                noise_type=noise_type,
+                                epsilon=epsilon,
+                                sensitivity=sensitivity,
+                                delta=delta
+                            )
+                            
+                            # 计算添加的噪声大小
+                            noise_magnitude = torch.norm(noised_grad - param.grad).item()
+                            batch_noise_magnitude += noise_magnitude
+                            
+                            # 更新梯度
+                            param.grad = noised_grad
+                    
                     # 梯度裁剪
-                    max_norm = self.conf.get('max_grad_norm', 1.0)
+                    max_norm = self.conf.get('max_grad_norm', 0.5)
                     torch.nn.utils.clip_grad_norm_(
                         self.local_model.parameters(),
                         max_norm
@@ -148,18 +197,24 @@ class Client(object):
 
                     self.optimizer.step()
 
-                    # 计算统计信息
+                    # 更新统计信息
+                    total_sensitivity += batch_sensitivity
+                    total_noise_magnitude += batch_noise_magnitude
                     epoch_loss += loss.item()
                     _, predicted = output.max(1)
                     total += target.size(0)
                     correct += predicted.eq(target).sum().item()
 
-                    # 添加进度打印
+                    # 记录每个批次的噪声信息
                     if batch_idx % 50 == 0:
                         self.logger.info(
-                            f'Client {self.client_id}, Epoch: {epoch}, '
+                            f'Client {self.client_id}, Global Epoch: {global_epoch}, Local Epoch: {epoch}, '
                             f'Batch: [{batch_idx}/{len(self.train_loader)}], '
-                            f'Loss: {loss.item():.4f}'
+                            f'Loss: {loss.item():.4f}, '
+                            f'Batch Sensitivity: {batch_sensitivity:.6f}, '
+                            f'Noise Magnitude: {batch_noise_magnitude:.6f}, '
+                            f'Noise/Gradient Ratio: {(batch_noise_magnitude/batch_sensitivity):.6f}, '
+                            f'Effective Privacy Budget: {epsilon * (1 - batch_noise_magnitude/batch_sensitivity):.6f}'
                         )
 
                 # 更新学习率
@@ -168,6 +223,8 @@ class Client(object):
                 # 计算epoch统计信息
                 accuracy = 100. * correct / total
                 avg_loss = epoch_loss / len(self.train_loader)
+                avg_noise = total_noise_magnitude / len(self.train_loader)
+                avg_sensitivity = total_sensitivity / len(self.train_loader)
                 
                 # 保存最佳模型
                 if accuracy > best_acc:
@@ -175,15 +232,27 @@ class Client(object):
                     best_state = copy.deepcopy(self.local_model.state_dict())
                 
                 self.logger.info(
-                    f'Client {self.client_id}, Epoch: {epoch}, '
+                    f'Client {self.client_id}, Global Epoch: {global_epoch}, Local Epoch: {epoch}, '
                     f'Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%, '
-                    f'Processed samples: {total}, '
+                    f'Avg Noise: {avg_noise:.6f}, '
+                    f'Avg Sensitivity: {avg_sensitivity:.6f}, '
                     f'LR: {self.scheduler.get_last_lr()[0]:.6f}'
                 )
 
             # 恢复最佳模型状态
             if best_state is not None:
                 self.local_model.load_state_dict(best_state)
+
+            # 在每个epoch结束时记录当前状态
+            self.current_loss = avg_loss
+            self.current_accuracy = accuracy
+            self.current_sensitivity = avg_sensitivity
+            self.current_noise_magnitude = avg_noise
+            self.current_noise_ratio = avg_noise / avg_sensitivity if avg_sensitivity != 0 else 0
+            self.current_privacy_budget = self.conf['epsilon'] * (1 - self.current_noise_ratio)
+
+            # 保存当前epoch的权重
+            self.save_model_weights(global_epoch)
 
             # 返回模型更新
             return self.compute_model_update_without_noise(model)
@@ -192,32 +261,40 @@ class Client(object):
             self.logger.error(f"客户端 {self.client_id} 训练错误: {str(e)}")
             raise
 
-    def save_model_weights(self):
-        """保存本地模型权重"""
+    def save_model_weights(self, epoch):
+        """保存每个epoch的模型权重"""
         try:
-            # 创建保存目录（如果不存在）
-            save_dir = os.path.join('model_weights', 'clients')
-            os.makedirs(save_dir, exist_ok=True)
-
             # 生成权重文件名
-            round_number = self.conf.get('current_round', 0)  # 从配置中获取当前轮次
-            filename = f'client_{self.client_id}_round_{round_number}.pt'
-            save_path = os.path.join(save_dir, filename)
+            filename = f'epoch_{epoch}.pt'
+            save_path = os.path.join(self.weights_dir, filename)
 
             # 保存模型状态
             state_dict = {
                 'model_state_dict': self.local_model.state_dict(),
                 'optimizer_state_dict': self.optimizer.state_dict(),
+                'scheduler_state_dict': self.scheduler.state_dict(),
+                'epoch': epoch,
                 'client_id': self.client_id,
-                'round': round_number,
-                'conf': self.conf
+                'training_stats': {
+                    'loss': self.current_loss,
+                    'accuracy': self.current_accuracy,
+                    'sensitivity': self.current_sensitivity,
+                    'noise_magnitude': self.current_noise_magnitude,
+                    'noise_ratio': self.current_noise_ratio,
+                    'effective_privacy_budget': self.current_privacy_budget
+                },
+                'dp_config': {
+                    'noise_type': self.conf['dp_noise_type'],
+                    'epsilon': self.conf['epsilon'],
+                    'noise_scale': self.conf['dp_noise_scale']
+                }
             }
             
             torch.save(state_dict, save_path)
-            self.logger.info(f'Saved model weights to {save_path}')
+            self.logger.info(f'已保存epoch {epoch}的模型权重到 {save_path}')
 
         except Exception as e:
-            self.logger.error(f"Error saving model weights: {str(e)}")
+            self.logger.error(f"保存模型权重失败: {str(e)}")
             raise
 
     def compute_sensitivity(self, global_model):

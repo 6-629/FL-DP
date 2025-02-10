@@ -298,9 +298,9 @@ class FederatedLearningGUI:
 
             # 客户端训练
             for c in candidates:
-                diff = c.local_train(self.server.global_model)
+                # 传入全局epoch编号
+                diff = c.local_train(self.server.global_model, epoch)
                 for name, params in self.server.global_model.state_dict().items():
-                    # 确保类型匹配
                     if diff[name].dtype != params.dtype:
                         diff[name] = diff[name].to(dtype=params.dtype)
                     weight_accumulator[name].add_(diff[name])
