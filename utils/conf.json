@@ -6,11 +6,11 @@
 	
 	"type" : "cifar",
 	
-	"global_epochs" : 3,
+	"global_epochs" : 1,
 	
 	"local_epochs" : 2,
 	
-	"k" : 2,
+	"k" : 4,
 
 	"weight_decay": 0.0001,
 

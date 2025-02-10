@@ -17,10 +17,10 @@ class Server(object):
         聚合模型参数
         """
         for name, data in self.global_model.state_dict().items():
-            update = weight_accumulator[name] / self.conf["k"]  # 平均更新
+            update = weight_accumulator[name]
             if data.type() != update.type():
-                update = update.to(data.dtype)  # 确保类型匹配
-            data.add_(update)  # 应用更新
+                update = update.to(data.dtype)
+            data.copy_(update)  # 直接使用平均后的权重
 
     def model_eval(self):
         self.global_model.eval()
