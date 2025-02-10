@@ -1696,3 +1696,9 @@ AttributeError: 'Client' object has no attribute 'logger'
 2025-02-10 20:16:44,122 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 3, Local Epoch: 3, Batch: [50/79], Loss: 1.1111, Batch Sensitivity: 55.009437, Noise Magnitude: 0.217098, Noise/Gradient Ratio: 0.003947, Effective Privacy Budget: 7.968428
 2025-02-10 20:17:01,901 - Client_2 - INFO - [client.py:234] - Client 2, Global Epoch: 3, Local Epoch: 3, Loss: 1.2745, Accuracy: 56.80%, Avg Noise: 0.217988, Avg Sensitivity: 68.351699, LR: 0.000010
 2025-02-10 20:17:02,696 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 3, Local Epoch: 4, Batch: [0/79], Loss: 1.2446, Batch Sensitivity: 59.512928, Noise Magnitude: 0.217920, Noise/Gradient Ratio: 0.003662, Effective Privacy Budget: 7.970706
+2025-02-10 20:17:33,470 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 3, Local Epoch: 4, Batch: [50/79], Loss: 0.9882, Batch Sensitivity: 52.621056, Noise Magnitude: 0.216832, Noise/Gradient Ratio: 0.004121, Effective Privacy Budget: 7.967035
+2025-02-10 20:17:51,390 - Client_2 - INFO - [client.py:234] - Client 2, Global Epoch: 3, Local Epoch: 4, Loss: 1.2620, Accuracy: 55.90%, Avg Noise: 0.218151, Avg Sensitivity: 65.819845, LR: 0.000001
+2025-02-10 20:17:51,549 - Client_2 - INFO - [client.py:294] - 已保存epoch 3的模型权重到 model_weights\client_2\epoch_3.pt
+2025-02-10 20:17:51,637 - Client_3 - INFO - [client.py:120] - 客户端 3 使用 laplace 差分隐私机制, ε=8.0, 噪声比例=0.0001
+2025-02-10 20:17:51,637 - Client_3 - INFO - [client.py:130] - 客户端 3 开始训练，数据批次数: 79
+2025-02-10 20:17:52,286 - Client_3 - INFO - [client.py:210] - Client 3, Global Epoch: 3, Local Epoch: 0, Batch: [0/79], Loss: 1.2935, Batch Sensitivity: 58.991696, Noise Magnitude: 0.217470, Noise/Gradient Ratio: 0.003686, Effective Privacy Budget: 7.970508
