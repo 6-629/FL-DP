@@ -4,6 +4,7 @@ from tqdm import tqdm
 import logging
 import numpy as np
 import os
+import torch.nn as nn
 
 
 class Client(object):
@@ -49,6 +50,9 @@ class Client(object):
         # 添加权重保存路径
         self.weights_dir = os.path.join('model_weights', f'client_{id}')
         os.makedirs(self.weights_dir, exist_ok=True)
+
+        # 添加温度参数
+        self.temperature = nn.Parameter(torch.ones(1) * 1.5)
 
     def setup_training_data(self, train_dataset, id):
         """设置训练数据"""
@@ -145,8 +149,9 @@ class Client(object):
                     data, target = data.to(self.device), target.to(self.device).long()
                     
                     self.optimizer.zero_grad()
-                    output = self.local_model(data)
-                    loss = torch.nn.functional.cross_entropy(output, target)
+                    outputs = self.local_model(data)
+                    scaled_outputs = outputs / self.temperature
+                    loss = torch.nn.functional.cross_entropy(scaled_outputs, target)
                     loss.backward()
 
                     # 计算当前批次的梯度敏感度
@@ -201,7 +206,7 @@ class Client(object):
                     total_sensitivity += batch_sensitivity
                     total_noise_magnitude += batch_noise_magnitude
                     epoch_loss += loss.item()
-                    _, predicted = output.max(1)
+                    _, predicted = outputs.max(1)
                     total += target.size(0)
                     correct += predicted.eq(target).sum().item()
 
