@@ -231,7 +231,7 @@ class FederatedLearningGUI:
                 "local_epochs": int(self.local_epochs_var.get()),    # 从GUI获取本地轮次
                 "k": 4,
                 "batch_size": 64,
-                "lr": 0.01,
+                "lr": 0.001,
                 "momentum": 0.9,
                 "weight_decay": 0.0005,
                 "dp_noise_type": self.dp_var.get().lower(),
@@ -279,7 +279,7 @@ class FederatedLearningGUI:
             
             for epoch in range(conf["global_epochs"]):
                 # 更新进度条
-                self.progress_bar["value"] = epoch + 1
+                self.progress_bar["value"] = (epoch + 1) * 100 / conf["global_epochs"]
                 self.root.update_idletasks()
 
                 # 训练过程
@@ -287,78 +287,57 @@ class FederatedLearningGUI:
                     # 更新当前轮次
                     conf['current_round'] = epoch
                     
-                    acc, loss = self.train_one_epoch(epoch, conf)
+                    # 训练一个epoch
+                    _, _ = self.train_one_epoch(epoch, conf)
                     
-                    # 更新指标显示
-                    self.update_metrics(acc, loss)
-                    
-                    # 更新训练日志
-                    log_message = "Epoch {}, 准确率: {:.2f}%, 损失: {:.4f}\n".format(
-                        epoch, float(acc), float(loss)
-                    )
+                    # 不再在这里更新指标，因为现在是手动聚合模式
+                    # 而是添加提示信息
+                    log_message = f"Epoch {epoch} 训练完成，请点击'参数聚合'按钮进行模型聚合和评估\n"
                     self.result_text.insert(tk.END, log_message)
                     self.result_text.see(tk.END)
+                    
+                    # 清空当前指标显示
+                    self.update_metrics(0.00, 0.0000)
+                    
                 except Exception as e:
-                    import traceback
-                    error_info = traceback.format_exc()
-                    error_message = f"训练错误在第 {epoch} 轮:\n{str(e)}\n位置: {error_info}"
+                    error_message = f"训练错误在第 {epoch} 轮:\n{str(e)}"
                     self.result_text.insert(tk.END, error_message + "\n")
                     self.logger.error(error_message)
                     raise
 
-            messagebox.showinfo("完成", "训练完成！")
+            self.progress_bar["value"] = 100
+            messagebox.showinfo("完成", "所有训练轮次完成！请进行最终的参数聚合。")
             
         except Exception as e:
-            import traceback
-            error_info = traceback.format_exc()
             error_message = f"训练错误: {str(e)}"
             self.result_text.insert(tk.END, error_message + "\n")
             messagebox.showerror("错误", error_message)
             self.logger.error(error_message)
 
     def train_one_epoch(self, epoch, conf):
-        """训练一个epoch"""
+        """训练一个epoch，不进行自动聚合"""
         try:
-            # 确保k是整数
-            k = int(conf.get("k", 5))
+            # 选择客户端进行训练
+            selected_clients = self.clients[:conf["k"]]  # 按顺序选择前k个客户端
+            self.logger.info(f"选择的客户端: {[c.client_id for c in selected_clients]}")
             
-            # 确保选择的客户端数量不超过可用客户端数量
-            k = min(k, len(self.clients))
+            # 本地训练阶段
+            for c in selected_clients:
+                self.logger.info(f"客户端 {c.client_id} 开始训练...")
+                # 只进行本地训练，不返回差异值
+                c.local_train(self.server.global_model, epoch)
+                self.logger.info(f"客户端 {c.client_id} 完成训练")
             
-            # 不随机选择客户端，依次选择客户端
-            candidates = self.clients[:k]
-            weight_accumulator = {}
-
-            # 初始化权重累加器，确保类型与全局模型参数匹配
-            for name, params in self.server.global_model.state_dict().items():
-                weight_accumulator[name] = torch.zeros_like(params, dtype=params.dtype)
-
-            # 客户端训练
-            for c in candidates:
-                # 传入全局epoch编号
-                diff = c.local_train(self.server.global_model, epoch)
-                for name, params in self.server.global_model.state_dict().items():
-                    if diff[name].dtype != params.dtype:
-                        diff[name] = diff[name].to(dtype=params.dtype)
-                    weight_accumulator[name].add_(diff[name])
-
-            # 服务器聚合
-            self.server.model_aggregate(weight_accumulator)
+            # 提示用户进行手动聚合
+            self.result_text.insert(tk.END, 
+                f"Epoch {epoch} 完成。请点击'参数聚合'按钮进行模型聚合。\n")
+            self.result_text.see(tk.END)
             
-            # 评估模型
-            acc, loss = self.server.model_eval()
+            # 返回占位值（因为不进行自动评估）
+            return 0, 0
             
-            # 检查是否出现NaN
-            if torch.isnan(torch.tensor(loss)) or torch.isinf(torch.tensor(loss)):
-                raise ValueError("训练发散：损失值为NaN或Inf")
-            
-            return float(acc), float(loss)
-        
         except Exception as e:
-            import traceback
-            error_info = traceback.format_exc()
-            error_message = f"训练错误在第 {epoch} 轮:\n{str(e)}\n位置: {error_info}"
-            self.logger.error(error_message)
+            self.logger.error(f"训练错误在第 {epoch} 轮:\n{str(e)}")
             raise
 
     def start_recovery(self):
@@ -403,15 +382,15 @@ class FederatedLearningGUI:
         """更新训练指标显示"""
         try:
             if accuracy is not None:
-                # 将准确率限制到2位小数
-                acc_str = "{:.2f}".format(float(accuracy))
-                self.accuracy_var.set(acc_str)
+                # 直接设置StringVar，确保格式正确
+                self.accuracy_var.set(f"{float(accuracy):.2f}")
             if loss is not None:
-                # 将损失值限制到4位小数
-                loss_str = "{:.4f}".format(float(loss))
-                self.loss_var.set(loss_str)
+                # 直接设置StringVar，确保格式正确
+                self.loss_var.set(f"{float(loss):.4f}")
+            # 强制更新GUI
+            self.root.update_idletasks()
         except Exception as e:
-            self.logger.error(f"Error updating metrics: {str(e)}")
+            self.logger.error(f"更新指标显示错误: {str(e)}")
 
     def update_recovery_metrics(self, mse=None, psnr=None):
         """更新恢复指标显示"""
@@ -428,14 +407,14 @@ class FederatedLearningGUI:
             self.logger.error(f"Error updating recovery metrics: {str(e)}")
 
     def aggregate_params(self):
-        """执行参数聚合"""
+        """手动触发的参数聚合过程"""
         try:
-            # 检查model_weights目录是否存在
+            # 1. 检查权重文件目录
             weights_base_dir = 'model_weights'
             if not os.path.exists(weights_base_dir):
                 raise FileNotFoundError("未找到模型权重目录")
             
-            # 获取所有客户端目录
+            # 2. 获取客户端目录
             client_dirs = [d for d in os.listdir(weights_base_dir) 
                          if os.path.isdir(os.path.join(weights_base_dir, d)) 
                          and d.startswith('client_')]
@@ -445,90 +424,91 @@ class FederatedLearningGUI:
             
             self.result_text.insert(tk.END, f"开始聚合参数，发现{len(client_dirs)}个客户端的权重文件...\n")
             
-            # 初始化服务器（如果还没有初始化）
+            # 3. 初始化或检查服务器
             if not hasattr(self, 'server') or self.server is None:
-                # 创建一个临时配置
                 temp_conf = {
                     "model_name": "resnet18",
                     "batch_size": 64,
-                    "type": self.dataset_var.get().lower()  # 添加数据集类型
+                    "type": self.dataset_var.get().lower()
                 }
                 
-                try:
-                    # 尝试加载评估数据集
-                    _, eval_dataset = get_dataset('./data', temp_conf["type"])
-                    self.server = Server(temp_conf, eval_dataset)
-                    self.logger.info("成功初始化服务器和评估数据集")
-                except Exception as e:
-                    self.logger.warning(f"无法加载评估数据集: {str(e)}")
-                    self.server = Server(temp_conf, None)
-                    
-                if self.server is None or not hasattr(self.server, 'global_model'):
-                    raise ValueError("服务器初始化失败")
+                # 尝试加载评估数据集
+                _, eval_dataset = get_dataset('./data', temp_conf["type"])
+                self.server = Server(temp_conf, eval_dataset)
             
-            # 初始化权重累加器
+            # 4. 初始化权重累加器
             weight_accumulator = {}
             for name, params in self.server.global_model.state_dict().items():
                 weight_accumulator[name] = torch.zeros_like(params)
             
-            # 记录成功加载的权重文件数量
+            # 5. 加载和累加权重
             loaded_weights_count = 0
-            
-            # 遍历每个客户端目录
             for client_dir in client_dirs:
                 client_path = os.path.join(weights_base_dir, client_dir)
                 weight_files = [f for f in os.listdir(client_path) 
                               if f.endswith('.pt')]
                 
                 if weight_files:
-                    # 获取最新的权重文件（按epoch排序）
+                    # 获取最新的权重文件
                     latest_weight = sorted(weight_files, 
                                         key=lambda x: int(x.split('_')[1].split('.')[0]))[-1]
                     weight_path = os.path.join(client_path, latest_weight)
                     
-                    # 加载权重文件
+                    # 加载权重
                     state_dict = torch.load(weight_path)
-                    model_weights = state_dict['model_state_dict']
+                    if isinstance(state_dict, dict) and 'model_state_dict' in state_dict:
+                        model_weights = state_dict['model_state_dict']
+                    else:
+                        model_weights = state_dict
                     
                     # 累加权重，确保类型匹配
                     for name, params in model_weights.items():
                         if name in weight_accumulator:
-                            # 确保参数类型匹配
-                            if params.dtype != weight_accumulator[name].dtype:
-                                params = params.to(dtype=weight_accumulator[name].dtype)
+                            # 获取目标参数的类型
+                            target_dtype = weight_accumulator[name].dtype
+                            # 确保参数类型匹配后再累加
+                            if params.dtype != target_dtype:
+                                params = params.to(dtype=target_dtype)
                             weight_accumulator[name].add_(params)
                     
                     loaded_weights_count += 1
                     self.result_text.insert(tk.END, 
                         f"已加载客户端 {client_dir} 的权重文件: {latest_weight}\n")
             
+            # 6. 计算平均值
             if loaded_weights_count == 0:
                 raise ValueError("未能加载任何权重文件")
-            
-            # 计算平均值并确保类型匹配
-            for name, params in weight_accumulator.items():
+                
+            for name in weight_accumulator:
                 # 获取原始参数的类型
                 original_dtype = self.server.global_model.state_dict()[name].dtype
-                # 计算平均值并转换回原始类型
-                weight_accumulator[name] = weight_accumulator[name].div(loaded_weights_count).to(dtype=original_dtype)
+                # 使用float32进行除法运算，然后转换回原始类型
+                weight_accumulator[name] = (weight_accumulator[name].float() / loaded_weights_count).to(dtype=original_dtype)
             
-            # 更新全局模型
-            self.server.global_model.load_state_dict(weight_accumulator)
+            # 7. 更新全局模型，确保类型匹配
+            new_state_dict = {}
+            for name, param in weight_accumulator.items():
+                target_dtype = self.server.global_model.state_dict()[name].dtype
+                new_state_dict[name] = param.to(dtype=target_dtype)
             
-            # 如果有评估数据集，则评估模型
-            if hasattr(self.server, 'eval_loader') and self.server.eval_loader is not None:
+            self.server.global_model.load_state_dict(new_state_dict)
+            
+            # 8. 评估聚合后的模型
+            if hasattr(self.server, 'eval_loader'):
                 acc, loss = self.server.model_eval()
-                self.update_metrics(acc, loss)
+                # 确保使用正确的格式更新指标
+                self.accuracy_var.set(f"{acc:.2f}")  # 直接设置StringVar
+                self.loss_var.set(f"{loss:.4f}")     # 直接设置StringVar
+                
+                # 添加到结果文本
                 self.result_text.insert(tk.END, 
                     f"聚合完成，准确率: {acc:.2f}%, 损失: {loss:.4f}\n")
-            else:
-                self.result_text.insert(tk.END, "聚合完成，但无法评估（未找到评估数据集）\n")
+                self.result_text.see(tk.END)
             
-            # 保存聚合后的全局模型
+            # 9. 保存全局模型
             global_model_dir = os.path.join('model_weights', 'global')
             os.makedirs(global_model_dir, exist_ok=True)
             
-            # 使用时间戳作为文件名
             timestamp = time.strftime("%Y%m%d_%H%M%S")
             global_model_path = os.path.join(global_model_dir, f'global_model_{timestamp}.pt')
             
@@ -596,6 +576,29 @@ class FederatedLearningGUI:
 
         except Exception as e:
             self.logger.error(f"Error in local training: {str(e)}")
+            raise
+
+    def aggregate_models(self):
+        """手动触发模型聚合"""
+        try:
+            # 执行模型聚合
+            self.server.aggregate_weights()
+            self.logger.info("模型聚合完成")
+            
+            # 聚合后评估全局模型
+            accuracy, loss = self.server.model_eval()
+            self.logger.info(f"全局模型评估 - 准确率: {accuracy:.2f}%, 损失: {loss:.4f}")
+            
+            # 更新GUI显示
+            self.result_text.insert(tk.END, f"聚合后评估 - 准确率: {accuracy:.2f}%, 损失: {loss:.4f}\n")
+            self.result_text.see(tk.END)
+            
+            return accuracy, loss
+            
+        except Exception as e:
+            self.logger.error(f"模型聚合错误: {str(e)}")
+            self.result_text.insert(tk.END, f"模型聚合失败: {str(e)}\n")
+            self.result_text.see(tk.END)
             raise
 
 if __name__ == "__main__":

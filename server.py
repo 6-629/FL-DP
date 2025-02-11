@@ -1,7 +1,6 @@
 import models, torch
 from tqdm import tqdm
 
-
 class Server(object):
 
     def __init__(self, conf, eval_dataset):

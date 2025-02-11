@@ -6,7 +6,6 @@ import numpy as np
 import os
 import torch.nn as nn
 
-
 class Client(object):
     def __init__(self, conf, model, train_dataset, id=-1):
         """
@@ -28,20 +27,20 @@ class Client(object):
         self.local_model = copy.deepcopy(model)
         self.local_model = self.local_model.to(self.device)
 
-        # 初始化优化器
-        self.optimizer = torch.optim.SGD(
+        # 使用Adam优化器
+        self.optimizer = torch.optim.Adam(
             self.local_model.parameters(),
             lr=self.conf['lr'],
-            momentum=self.conf.get('momentum', 0.9),
-            weight_decay=self.conf.get('weight_decay', 0.0005),
-            nesterov=True  # 使用Nesterov动量
+            weight_decay=self.conf.get('weight_decay', 0.0001),
+            amsgrad=True  # 使用AMSGrad变体
         )
 
         # 添加学习率调度器
-        self.scheduler = torch.optim.lr_scheduler.StepLR(
+        self.scheduler = torch.optim.lr_scheduler.CosineAnnealingWarmRestarts(
             self.optimizer,
-            step_size=self.conf.get('scheduler_step', 5),
-            gamma=self.conf.get('scheduler_gamma', 0.1)
+            T_0=self.conf.get('scheduler_t0', 5),  # 第一次重启的周期
+            T_mult=self.conf.get('scheduler_t_mult', 2),  # 每次重启后周期的倍数
+            eta_min=self.conf.get('min_lr', 1e-6)  # 最小学习率
         )
 
         # 设置训练数据
@@ -50,9 +49,6 @@ class Client(object):
         # 添加权重保存路径
         self.weights_dir = os.path.join('model_weights', f'client_{id}')
         os.makedirs(self.weights_dir, exist_ok=True)
-
-        # 添加温度参数
-        self.temperature = nn.Parameter(torch.ones(1) * 1.5)
 
     def setup_training_data(self, train_dataset, id):
         """设置训练数据"""
@@ -110,15 +106,16 @@ class Client(object):
             self.logger.error(f"Error updating learning rate: {str(e)}")
             raise
 
+    def get_temperature(self):
+        """获取当前温度值"""
+        return torch.exp(self.log_temperature).clamp(min=0.1, max=5.0)
+
     def local_train(self, model, global_epoch):
         """本地训练过程"""
         try:
             # 复制全局模型参数到本地模型
             self.local_model.load_state_dict(copy.deepcopy(model.state_dict()))
             self.local_model.train()
-            
-            best_acc = 0
-            best_state = None
             
             # 记录差分隐私设置
             self.logger.info(
@@ -138,8 +135,8 @@ class Client(object):
                 epoch_loss = 0
                 correct = 0
                 total = 0
-                total_noise_magnitude = 0  # 记录每个epoch的总噪声大小
-                total_sensitivity = 0      # 记录每个epoch的总敏感度
+                total_noise_magnitude = 0
+                total_sensitivity = 0
 
                 for batch_idx, (data, target) in enumerate(self.train_loader):
                     if data.size(0) == 0:
@@ -148,127 +145,127 @@ class Client(object):
                         
                     data, target = data.to(self.device), target.to(self.device).long()
                     
+                    # 清空梯度
                     self.optimizer.zero_grad()
+                    
+                    # 前向传播
                     outputs = self.local_model(data)
-                    scaled_outputs = outputs / self.temperature
-                    loss = torch.nn.functional.cross_entropy(scaled_outputs, target)
+                    
+                    # 使用标签平滑的交叉熵损失
+                    loss = self.cross_entropy_with_label_smoothing(
+                        outputs, 
+                        target,
+                        smoothing=0.1
+                    )
+                    
+                    # 反向传播
                     loss.backward()
-
-                    # 计算当前批次的梯度敏感度
+                    
+                    # 计算当前批次的梯度敏感度和添加差分隐私噪声
                     batch_sensitivity = 0
                     batch_noise_magnitude = 0
                     
-                    # 在更新参数前添加差分隐私噪声
                     for param in self.local_model.parameters():
                         if param.grad is not None:
-                            # 计算梯度敏感度
                             grad_norm = torch.norm(param.grad).item()
                             batch_sensitivity += grad_norm
                             
-                            # 动态调整噪声比例
-                            adaptive_noise_scale = min(
-                                self.conf['dp_noise_scale'],
-                                self.conf['dp_noise_scale'] * (1.0 / max(grad_norm, 1e-6))
-                            )
-                            
-                            # 应用差分隐私
-                            noise_type = self.conf.get('dp_noise_type', 'gaussian')
-                            epsilon = float(self.conf.get('epsilon', 1.0))
-                            delta = float(self.conf.get('delta', 1e-5))
-                            sensitivity = grad_norm * adaptive_noise_scale
-                            
-                            # 应用差分隐私到梯度
+                            # 动态调整噪声
+                            noise_scale = self.adaptive_noise_scale(grad_norm)
                             noised_grad = self.apply_differential_privacy(
-                                param_diff=param.grad,
-                                noise_type=noise_type,
-                                epsilon=epsilon,
-                                sensitivity=sensitivity,
-                                delta=delta
+                                param.grad,
+                                self.conf['dp_noise_type'],
+                                self.conf['epsilon'],
+                                grad_norm * noise_scale
                             )
                             
-                            # 计算添加的噪声大小
                             noise_magnitude = torch.norm(noised_grad - param.grad).item()
                             batch_noise_magnitude += noise_magnitude
-                            
-                            # 更新梯度
                             param.grad = noised_grad
                     
                     # 梯度裁剪
-                    max_norm = self.conf.get('max_grad_norm', 0.5)
                     torch.nn.utils.clip_grad_norm_(
                         self.local_model.parameters(),
-                        max_norm
+                        self.conf.get('max_grad_norm', 1.0)
                     )
-
+                    
+                    # 更新参数
                     self.optimizer.step()
+                    
+                    # 更新学习率
+                    self.scheduler.step(epoch + batch_idx / len(self.train_loader))
 
-                    # 更新统计信息
-                    total_sensitivity += batch_sensitivity
-                    total_noise_magnitude += batch_noise_magnitude
+                    # 记录统计信息
                     epoch_loss += loss.item()
                     _, predicted = outputs.max(1)
                     total += target.size(0)
                     correct += predicted.eq(target).sum().item()
 
-                    # 记录每个批次的噪声信息
+                    # 记录每个批次的信息
                     if batch_idx % 50 == 0:
+                        epsilon = self.conf.get('epsilon', 1.0)
+                        effective_budget = epsilon * (1 - batch_noise_magnitude/batch_sensitivity)
+                        current_lr = self.optimizer.param_groups[0]['lr']
+                        
                         self.logger.info(
-                            f'Client {self.client_id}, Global Epoch: {global_epoch}, Local Epoch: {epoch}, '
-                            f'Batch: [{batch_idx}/{len(self.train_loader)}], '
-                            f'Loss: {loss.item():.4f}, '
+                            f'Client {self.client_id}, Global Epoch: {global_epoch}, '
+                            f'Local Epoch: {epoch}, Batch: [{batch_idx}/{len(self.train_loader)}], '
+                            f'Loss: {loss.item():.4f}, LR: {current_lr:.6f}, '
                             f'Batch Sensitivity: {batch_sensitivity:.6f}, '
                             f'Noise Magnitude: {batch_noise_magnitude:.6f}, '
                             f'Noise/Gradient Ratio: {(batch_noise_magnitude/batch_sensitivity):.6f}, '
-                            f'Effective Privacy Budget: {epsilon * (1 - batch_noise_magnitude/batch_sensitivity):.6f}'
+                            f'Effective Privacy Budget: {effective_budget:.6f}'
                         )
 
-                # 更新学习率
-                self.scheduler.step()
-                
                 # 计算epoch统计信息
                 accuracy = 100. * correct / total
                 avg_loss = epoch_loss / len(self.train_loader)
-                avg_noise = total_noise_magnitude / len(self.train_loader)
-                avg_sensitivity = total_sensitivity / len(self.train_loader)
                 
-                # 保存最佳模型
-                if accuracy > best_acc:
-                    best_acc = accuracy
-                    best_state = copy.deepcopy(self.local_model.state_dict())
+                # 更新当前状态
+                self.current_loss = avg_loss
+                self.current_accuracy = accuracy
+                self.current_sensitivity = total_sensitivity / len(self.train_loader)
+                self.current_noise_magnitude = total_noise_magnitude / len(self.train_loader)
+                self.current_noise_ratio = (self.current_noise_magnitude / self.current_sensitivity 
+                                          if self.current_sensitivity != 0 else 0)
+                self.current_privacy_budget = self.conf['epsilon'] * (1 - self.current_noise_ratio)
                 
                 self.logger.info(
-                    f'Client {self.client_id}, Global Epoch: {global_epoch}, Local Epoch: {epoch}, '
-                    f'Loss: {avg_loss:.4f}, Accuracy: {accuracy:.2f}%, '
-                    f'Avg Noise: {avg_noise:.6f}, '
-                    f'Avg Sensitivity: {avg_sensitivity:.6f}, '
-                    f'LR: {self.scheduler.get_last_lr()[0]:.6f}'
+                    f'Client {self.client_id}, Global Epoch: {global_epoch}, '
+                    f'Local Epoch: {epoch}, Loss: {avg_loss:.4f}, '
+                    f'Accuracy: {accuracy:.2f}%, '
+                    f'LR: {self.optimizer.param_groups[0]["lr"]:.6f}'
                 )
 
-            # 恢复最佳模型状态
-            if best_state is not None:
-                self.local_model.load_state_dict(best_state)
-
-            # 在每个epoch结束时记录当前状态
-            self.current_loss = avg_loss
-            self.current_accuracy = accuracy
-            self.current_sensitivity = avg_sensitivity
-            self.current_noise_magnitude = avg_noise
-            self.current_noise_ratio = avg_noise / avg_sensitivity if avg_sensitivity != 0 else 0
-            self.current_privacy_budget = self.conf['epsilon'] * (1 - self.current_noise_ratio)
-
-            # 保存当前epoch的权重
+            # 保存最终模型权重
             self.save_model_weights(global_epoch)
-
-            # 返回模型更新
+            
+            # 计算并返回模型更新
             return self.compute_model_update_without_noise(model)
 
         except Exception as e:
             self.logger.error(f"客户端 {self.client_id} 训练错误: {str(e)}")
             raise
 
+    def cross_entropy_with_label_smoothing(self, outputs, targets, smoothing=0.1):
+        """带标签平滑的交叉熵损失"""
+        num_classes = outputs.size(-1)
+        smoothed_targets = torch.zeros_like(outputs)
+        smoothed_targets.fill_(smoothing / (num_classes - 1))
+        smoothed_targets.scatter_(1, targets.unsqueeze(1), 1 - smoothing)
+        return torch.mean(torch.sum(-smoothed_targets * torch.log_softmax(outputs, dim=1), dim=1))
+
+    def adaptive_noise_scale(self, grad_norm):
+        """自适应噪声比例"""
+        base_scale = self.conf['dp_noise_scale']
+        return min(base_scale, base_scale * (1.0 / max(grad_norm, 1e-6)))
+
     def save_model_weights(self, epoch):
         """保存每个epoch的模型权重"""
         try:
+            # 确保保存目录存在
+            os.makedirs(self.weights_dir, exist_ok=True)
+            
             # 生成权重文件名
             filename = f'epoch_{epoch}.pt'
             save_path = os.path.join(self.weights_dir, filename)
@@ -281,12 +278,12 @@ class Client(object):
                 'epoch': epoch,
                 'client_id': self.client_id,
                 'training_stats': {
-                    'loss': self.current_loss,
-                    'accuracy': self.current_accuracy,
-                    'sensitivity': self.current_sensitivity,
-                    'noise_magnitude': self.current_noise_magnitude,
-                    'noise_ratio': self.current_noise_ratio,
-                    'effective_privacy_budget': self.current_privacy_budget
+                    'loss': getattr(self, 'current_loss', None),
+                    'accuracy': getattr(self, 'current_accuracy', None),
+                    'sensitivity': getattr(self, 'current_sensitivity', None),
+                    'noise_magnitude': getattr(self, 'current_noise_magnitude', None),
+                    'noise_ratio': getattr(self, 'current_noise_ratio', None),
+                    'effective_privacy_budget': getattr(self, 'current_privacy_budget', None)
                 },
                 'dp_config': {
                     'noise_type': self.conf['dp_noise_type'],
