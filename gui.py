@@ -13,6 +13,7 @@ from model_recovery import ModelRecovery
 import copy
 from datasets import get_dataset
 import time
+import random  # 添加在文件顶部的import部分
 
 class FederatedLearningGUI:
     def __init__(self, root):
@@ -68,6 +69,35 @@ class FederatedLearningGUI:
         self.clients_var = tk.StringVar(value="10")
         self.clients_entry = ttk.Spinbox(left_frame, from_=4, to=50, textvariable=self.clients_var)
         self.clients_entry.pack(anchor='w', pady=(0,10))
+
+        # 添加k值设置
+        k_label = tk.Label(left_frame, text="每轮选择的客户端数量(k):")
+        k_label.pack(anchor='w')
+        self.k_var = tk.StringVar(value="4")
+        self.k_entry = ttk.Spinbox(
+            left_frame, 
+            from_=1, 
+            to=50,  # 最大值将在验证时动态调整
+            textvariable=self.k_var,
+            width=10
+        )
+        self.k_entry.pack(anchor='w', pady=(0,10))
+
+        # 添加客户端数量变化时的回调函数，用于更新k值的范围
+        def update_k_max(*args):
+            try:
+                num_clients = int(self.clients_var.get())
+                current_k = int(self.k_var.get())
+                # 更新k的最大值
+                self.k_entry.configure(to=num_clients)
+                # 如果当前k值大于客户端数量，则调整k值
+                if current_k > num_clients:
+                    self.k_var.set(str(num_clients))
+            except ValueError:
+                pass
+
+        # 绑定客户端数量变化事件
+        self.clients_var.trace('w', update_k_max)
 
         # 隐私预算设置
         privacy_label = tk.Label(left_frame, text="隐私预算 (ε):")
@@ -227,9 +257,9 @@ class FederatedLearningGUI:
                 "model_name": "resnet18",
                 "no_models": int(self.clients_var.get()),
                 "type": self.dataset_var.get().lower(),
-                "global_epochs": int(self.global_epochs_var.get()),  # 从GUI获取全局轮次
-                "local_epochs": int(self.local_epochs_var.get()),    # 从GUI获取本地轮次
-                "k": 4,
+                "global_epochs": int(self.global_epochs_var.get()),
+                "local_epochs": int(self.local_epochs_var.get()),
+                "k": int(self.k_var.get()),  # 使用GUI中设置的k值
                 "batch_size": 64,
                 "lr": 0.001,
                 "momentum": 0.9,
@@ -317,9 +347,9 @@ class FederatedLearningGUI:
     def train_one_epoch(self, epoch, conf):
         """训练一个epoch，不进行自动聚合"""
         try:
-            # 选择客户端进行训练
-            selected_clients = self.clients[:conf["k"]]  # 按顺序选择前k个客户端
-            self.logger.info(f"选择的客户端: {[c.client_id for c in selected_clients]}")
+            # 随机选择k个客户端进行训练
+            selected_clients = random.sample(self.clients, conf["k"])
+            self.logger.info(f"随机选择的客户端: {[c.client_id for c in selected_clients]}")
             
             # 本地训练阶段
             for c in selected_clients:

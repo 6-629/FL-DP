@@ -2482,3 +2482,310 @@ ValueError: 训练发散：损失值为NaN或Inf
 2025-02-11 17:11:24,364 - Client_3 - INFO - [client.py:210] - Client 3, Global Epoch: 1, Local Epoch: 1, Batch: [50/79], Loss: 1.9647, Batch Sensitivity: 7.809055, Noise Magnitude: 0.058632, Noise/Gradient Ratio: 0.007508, Effective Privacy Budget: 4.962459
 2025-02-11 17:11:36,894 - Client_3 - INFO - [client.py:234] - Client 3, Global Epoch: 1, Local Epoch: 1, Loss: 2.0375, Accuracy: 18.48%, Avg Noise: 0.087897, Avg Sensitivity: 14.290031, LR: 0.010000
 2025-02-11 17:11:37,010 - Client_3 - INFO - [client.py:294] - 已保存epoch 1的模型权重到 model_weights\client_3\epoch_1.pt
+2025-02-13 15:49:53,444 - FederatedLearningGUI - INFO - [gui.py:257] - 成功加载CIFAR-10数据集 - 训练集: 50000张, 测试集: 10000张
+2025-02-13 15:49:53,676 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-13 15:49:53,677 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,689 - Client_0 - INFO - [client.py:85] - 客户端 0 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,689 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-13 15:49:53,690 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,700 - Client_1 - INFO - [client.py:85] - 客户端 1 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,701 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-13 15:49:53,701 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,712 - Client_2 - INFO - [client.py:85] - 客户端 2 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,713 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-13 15:49:53,713 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,723 - Client_3 - INFO - [client.py:85] - 客户端 3 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,724 - Client_4 - INFO - [client.py:20] - 初始化客户端 4
+2025-02-13 15:49:53,724 - Client_4 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,736 - Client_4 - INFO - [client.py:85] - 客户端 4 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,737 - Client_5 - INFO - [client.py:20] - 初始化客户端 5
+2025-02-13 15:49:53,737 - Client_5 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,748 - Client_5 - INFO - [client.py:85] - 客户端 5 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,749 - Client_6 - INFO - [client.py:20] - 初始化客户端 6
+2025-02-13 15:49:53,749 - Client_6 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,760 - Client_6 - INFO - [client.py:85] - 客户端 6 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,760 - Client_7 - INFO - [client.py:20] - 初始化客户端 7
+2025-02-13 15:49:53,761 - Client_7 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,772 - Client_7 - INFO - [client.py:85] - 客户端 7 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,772 - Client_8 - INFO - [client.py:20] - 初始化客户端 8
+2025-02-13 15:49:53,772 - Client_8 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,783 - Client_8 - INFO - [client.py:85] - 客户端 8 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,784 - Client_9 - INFO - [client.py:20] - 初始化客户端 9
+2025-02-13 15:49:53,784 - Client_9 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 15:49:53,795 - Client_9 - INFO - [client.py:85] - 客户端 9 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 15:49:53,802 - FederatedLearningGUI - INFO - [gui.py:322] - 选择的客户端: [0, 1, 2, 3]
+2025-02-13 15:49:53,803 - FederatedLearningGUI - INFO - [gui.py:326] - 客户端 0 开始训练...
+2025-02-13 15:49:53,814 - Client_0 - INFO - [client.py:121] - 客户端 0 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 15:49:53,814 - Client_0 - INFO - [client.py:131] - 客户端 0 开始训练，数据批次数: 79
+2025-02-13 15:49:54,559 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.4279, LR: 0.001000, Batch Sensitivity: 88.042591, Noise Magnitude: 163.923573, Noise/Gradient Ratio: 1.861867, Effective Privacy Budget: -0.008619
+2025-02-13 15:50:12,904 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 1.8819, LR: 0.000961, Batch Sensitivity: 36.627535, Noise Magnitude: 160.963939, Noise/Gradient Ratio: 4.394616, Effective Privacy Budget: -0.033946
+2025-02-13 15:50:23,153 - Client_0 - INFO - [client.py:233] - Client 0, Global Epoch: 0, Local Epoch: 0, Loss: 2.1356, Accuracy: 25.66%, LR: 0.000907
+2025-02-13 15:50:23,630 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9326, LR: 0.000905, Batch Sensitivity: 30.485228, Noise Magnitude: 160.296010, Noise/Gradient Ratio: 5.258153, Effective Privacy Budget: -0.042582
+2025-02-13 15:50:42,608 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.9607, LR: 0.000759, Batch Sensitivity: 26.668748, Noise Magnitude: 157.805717, Noise/Gradient Ratio: 5.917253, Effective Privacy Budget: -0.049173
+2025-02-13 15:50:53,833 - Client_0 - INFO - [client.py:233] - Client 0, Global Epoch: 0, Local Epoch: 1, Loss: 1.9125, Accuracy: 32.92%, LR: 0.000659
+2025-02-13 15:50:54,016 - Client_0 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_0\epoch_0.pt
+2025-02-13 15:50:54,058 - FederatedLearningGUI - INFO - [gui.py:329] - 客户端 0 完成训练
+2025-02-13 15:50:54,058 - FederatedLearningGUI - INFO - [gui.py:326] - 客户端 1 开始训练...
+2025-02-13 15:50:54,069 - Client_1 - INFO - [client.py:121] - 客户端 1 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 15:50:54,069 - Client_1 - INFO - [client.py:131] - 客户端 1 开始训练，数据批次数: 79
+2025-02-13 15:50:54,471 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.4834, LR: 0.001000, Batch Sensitivity: 87.888291, Noise Magnitude: 163.889805, Noise/Gradient Ratio: 1.864751, Effective Privacy Budget: -0.008648
+2025-02-13 15:51:14,262 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 1.8651, LR: 0.000961, Batch Sensitivity: 35.916329, Noise Magnitude: 160.830870, Noise/Gradient Ratio: 4.477932, Effective Privacy Budget: -0.034779
+2025-02-13 15:51:24,352 - Client_1 - INFO - [client.py:233] - Client 1, Global Epoch: 0, Local Epoch: 0, Loss: 2.1295, Accuracy: 24.62%, LR: 0.000907
+2025-02-13 15:51:24,714 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9019, LR: 0.000905, Batch Sensitivity: 29.976895, Noise Magnitude: 160.102696, Noise/Gradient Ratio: 5.340870, Effective Privacy Budget: -0.043409
+2025-02-13 15:51:43,757 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 2.0677, LR: 0.000759, Batch Sensitivity: 32.468686, Noise Magnitude: 160.487176, Noise/Gradient Ratio: 4.942829, Effective Privacy Budget: -0.039428
+2025-02-13 15:51:55,152 - Client_1 - INFO - [client.py:233] - Client 1, Global Epoch: 0, Local Epoch: 1, Loss: 1.9369, Accuracy: 33.16%, LR: 0.000659
+2025-02-13 15:51:55,315 - Client_1 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_1\epoch_0.pt
+2025-02-13 15:51:55,364 - FederatedLearningGUI - INFO - [gui.py:329] - 客户端 1 完成训练
+2025-02-13 15:51:55,364 - FederatedLearningGUI - INFO - [gui.py:326] - 客户端 2 开始训练...
+2025-02-13 15:51:55,376 - Client_2 - INFO - [client.py:121] - 客户端 2 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 15:51:55,377 - Client_2 - INFO - [client.py:131] - 客户端 2 开始训练，数据批次数: 79
+2025-02-13 15:51:55,697 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5428, LR: 0.001000, Batch Sensitivity: 89.750018, Noise Magnitude: 164.030131, Noise/Gradient Ratio: 1.827633, Effective Privacy Budget: -0.008276
+2025-02-13 17:53:30,598 - FederatedLearningGUI - INFO - [gui.py:271] - 成功加载CIFAR-10数据集 - 训练集: 50000张, 测试集: 10000张
+2025-02-13 17:53:30,855 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-13 17:53:30,855 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,871 - Client_0 - INFO - [client.py:85] - 客户端 0 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,872 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-13 17:53:30,872 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,884 - Client_1 - INFO - [client.py:85] - 客户端 1 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,885 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-13 17:53:30,886 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,897 - Client_2 - INFO - [client.py:85] - 客户端 2 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,898 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-13 17:53:30,898 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,910 - Client_3 - INFO - [client.py:85] - 客户端 3 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,911 - Client_4 - INFO - [client.py:20] - 初始化客户端 4
+2025-02-13 17:53:30,911 - Client_4 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,930 - Client_4 - INFO - [client.py:85] - 客户端 4 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,931 - Client_5 - INFO - [client.py:20] - 初始化客户端 5
+2025-02-13 17:53:30,931 - Client_5 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,947 - Client_5 - INFO - [client.py:85] - 客户端 5 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,948 - Client_6 - INFO - [client.py:20] - 初始化客户端 6
+2025-02-13 17:53:30,948 - Client_6 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,965 - Client_6 - INFO - [client.py:85] - 客户端 6 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,966 - Client_7 - INFO - [client.py:20] - 初始化客户端 7
+2025-02-13 17:53:30,966 - Client_7 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,979 - Client_7 - INFO - [client.py:85] - 客户端 7 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,980 - Client_8 - INFO - [client.py:20] - 初始化客户端 8
+2025-02-13 17:53:30,980 - Client_8 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:30,992 - Client_8 - INFO - [client.py:85] - 客户端 8 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:30,993 - Client_9 - INFO - [client.py:20] - 初始化客户端 9
+2025-02-13 17:53:30,993 - Client_9 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 17:53:31,006 - Client_9 - INFO - [client.py:85] - 客户端 9 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 17:53:31,015 - FederatedLearningGUI - INFO - [gui.py:336] - 选择的客户端: [0, 1]
+2025-02-13 17:53:31,015 - FederatedLearningGUI - INFO - [gui.py:340] - 客户端 0 开始训练...
+2025-02-13 17:53:31,028 - Client_0 - INFO - [client.py:121] - 客户端 0 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 17:53:31,028 - Client_0 - INFO - [client.py:131] - 客户端 0 开始训练，数据批次数: 79
+2025-02-13 17:53:32,090 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5526, LR: 0.001000, Batch Sensitivity: 91.407773, Noise Magnitude: 164.015480, Noise/Gradient Ratio: 1.794327, Effective Privacy Budget: -0.007943
+2025-02-13 17:53:49,928 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 1.9550, LR: 0.000961, Batch Sensitivity: 34.262399, Noise Magnitude: 160.950025, Noise/Gradient Ratio: 4.697570, Effective Privacy Budget: -0.036976
+2025-02-13 17:54:00,468 - Client_0 - INFO - [client.py:233] - Client 0, Global Epoch: 0, Local Epoch: 0, Loss: 2.1439, Accuracy: 25.22%, LR: 0.000907
+2025-02-13 17:54:00,783 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9136, LR: 0.000905, Batch Sensitivity: 27.234040, Noise Magnitude: 159.096793, Noise/Gradient Ratio: 5.841836, Effective Privacy Budget: -0.048418
+2025-02-13 17:54:18,663 - Client_0 - INFO - [client.py:210] - Client 0, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.9856, LR: 0.000759, Batch Sensitivity: 27.490791, Noise Magnitude: 158.890809, Noise/Gradient Ratio: 5.779783, Effective Privacy Budget: -0.047798
+2025-02-13 17:54:28,709 - Client_0 - INFO - [client.py:233] - Client 0, Global Epoch: 0, Local Epoch: 1, Loss: 1.9373, Accuracy: 33.62%, LR: 0.000659
+2025-02-13 17:54:28,884 - Client_0 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_0\epoch_0.pt
+2025-02-13 17:54:28,926 - FederatedLearningGUI - INFO - [gui.py:343] - 客户端 0 完成训练
+2025-02-13 17:54:28,927 - FederatedLearningGUI - INFO - [gui.py:340] - 客户端 1 开始训练...
+2025-02-13 17:54:28,937 - Client_1 - INFO - [client.py:121] - 客户端 1 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 17:54:28,938 - Client_1 - INFO - [client.py:131] - 客户端 1 开始训练，数据批次数: 79
+2025-02-13 17:54:29,304 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5208, LR: 0.001000, Batch Sensitivity: 89.930804, Noise Magnitude: 164.081453, Noise/Gradient Ratio: 1.824530, Effective Privacy Budget: -0.008245
+2025-02-13 17:54:48,886 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.0630, LR: 0.000961, Batch Sensitivity: 31.924588, Noise Magnitude: 160.365511, Noise/Gradient Ratio: 5.023260, Effective Privacy Budget: -0.040233
+2025-02-13 17:54:59,170 - Client_1 - INFO - [client.py:233] - Client 1, Global Epoch: 0, Local Epoch: 0, Loss: 2.1664, Accuracy: 24.64%, LR: 0.000907
+2025-02-13 17:54:59,583 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9702, LR: 0.000905, Batch Sensitivity: 31.493102, Noise Magnitude: 160.346155, Noise/Gradient Ratio: 5.091469, Effective Privacy Budget: -0.040915
+2025-02-13 17:55:18,147 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.8680, LR: 0.000759, Batch Sensitivity: 23.307151, Noise Magnitude: 154.179491, Noise/Gradient Ratio: 6.615115, Effective Privacy Budget: -0.056151
+2025-02-13 17:55:29,072 - Client_1 - INFO - [client.py:233] - Client 1, Global Epoch: 0, Local Epoch: 1, Loss: 1.9287, Accuracy: 31.56%, LR: 0.000659
+2025-02-13 17:55:29,246 - Client_1 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_1\epoch_0.pt
+2025-02-13 17:55:29,290 - FederatedLearningGUI - INFO - [gui.py:343] - 客户端 1 完成训练
+2025-02-13 18:04:48,475 - FederatedLearningGUI - INFO - [gui.py:258] - 成功加载CIFAR-10数据集 - 训练集: 50000张, 测试集: 10000张
+2025-02-13 18:04:48,709 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-13 18:04:48,709 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,721 - Client_0 - INFO - [client.py:85] - 客户端 0 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,722 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-13 18:04:48,722 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,733 - Client_1 - INFO - [client.py:85] - 客户端 1 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,734 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-13 18:04:48,734 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,745 - Client_2 - INFO - [client.py:85] - 客户端 2 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,746 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-13 18:04:48,746 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,757 - Client_3 - INFO - [client.py:85] - 客户端 3 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,758 - Client_4 - INFO - [client.py:20] - 初始化客户端 4
+2025-02-13 18:04:48,758 - Client_4 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,774 - Client_4 - INFO - [client.py:85] - 客户端 4 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,775 - Client_5 - INFO - [client.py:20] - 初始化客户端 5
+2025-02-13 18:04:48,775 - Client_5 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,787 - Client_5 - INFO - [client.py:85] - 客户端 5 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,788 - Client_6 - INFO - [client.py:20] - 初始化客户端 6
+2025-02-13 18:04:48,788 - Client_6 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,799 - Client_6 - INFO - [client.py:85] - 客户端 6 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,800 - Client_7 - INFO - [client.py:20] - 初始化客户端 7
+2025-02-13 18:04:48,800 - Client_7 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,812 - Client_7 - INFO - [client.py:85] - 客户端 7 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,813 - Client_8 - INFO - [client.py:20] - 初始化客户端 8
+2025-02-13 18:04:48,813 - Client_8 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,824 - Client_8 - INFO - [client.py:85] - 客户端 8 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,825 - Client_9 - INFO - [client.py:20] - 初始化客户端 9
+2025-02-13 18:04:48,825 - Client_9 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:04:48,837 - Client_9 - INFO - [client.py:85] - 客户端 9 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:04:48,840 - FederatedLearningGUI - INFO - [gui.py:323] - 随机选择的客户端: [2, 7, 9, 8]
+2025-02-13 18:04:48,841 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 2 开始训练...
+2025-02-13 18:04:48,852 - Client_2 - INFO - [client.py:121] - 客户端 2 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:04:48,853 - Client_2 - INFO - [client.py:131] - 客户端 2 开始训练，数据批次数: 79
+2025-02-13 18:04:49,507 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.4747, LR: 0.001000, Batch Sensitivity: 92.992698, Noise Magnitude: 163.983083, Noise/Gradient Ratio: 1.763397, Effective Privacy Budget: -0.007634
+2025-02-13 18:05:08,315 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.0999, LR: 0.000961, Batch Sensitivity: 34.067598, Noise Magnitude: 161.427964, Noise/Gradient Ratio: 4.738460, Effective Privacy Budget: -0.037385
+2025-02-13 18:05:19,468 - Client_2 - INFO - [client.py:233] - Client 2, Global Epoch: 0, Local Epoch: 0, Loss: 2.1520, Accuracy: 24.68%, LR: 0.000907
+2025-02-13 18:05:19,980 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.8188, LR: 0.000905, Batch Sensitivity: 26.406646, Noise Magnitude: 158.398565, Noise/Gradient Ratio: 5.998436, Effective Privacy Budget: -0.049984
+2025-02-13 18:05:39,360 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 2.0249, LR: 0.000759, Batch Sensitivity: 26.973005, Noise Magnitude: 158.392217, Noise/Gradient Ratio: 5.872249, Effective Privacy Budget: -0.048722
+2025-02-13 18:05:49,510 - Client_2 - INFO - [client.py:233] - Client 2, Global Epoch: 0, Local Epoch: 1, Loss: 1.9682, Accuracy: 33.12%, LR: 0.000659
+2025-02-13 18:05:49,686 - Client_2 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_2\epoch_0.pt
+2025-02-13 18:05:49,729 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 2 完成训练
+2025-02-13 18:05:49,729 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 7 开始训练...
+2025-02-13 18:05:49,740 - Client_7 - INFO - [client.py:121] - 客户端 7 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:05:49,740 - Client_7 - INFO - [client.py:131] - 客户端 7 开始训练，数据批次数: 79
+2025-02-13 18:05:50,176 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5716, LR: 0.001000, Batch Sensitivity: 92.670463, Noise Magnitude: 164.018277, Noise/Gradient Ratio: 1.769909, Effective Privacy Budget: -0.007699
+2025-02-13 18:06:08,652 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.0315, LR: 0.000961, Batch Sensitivity: 30.331346, Noise Magnitude: 159.680657, Noise/Gradient Ratio: 5.264542, Effective Privacy Budget: -0.042645
+2025-02-13 18:06:18,701 - Client_7 - INFO - [client.py:233] - Client 7, Global Epoch: 0, Local Epoch: 0, Loss: 2.1577, Accuracy: 24.56%, LR: 0.000907
+2025-02-13 18:06:19,130 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.8478, LR: 0.000905, Batch Sensitivity: 27.203106, Noise Magnitude: 159.015029, Noise/Gradient Ratio: 5.845473, Effective Privacy Budget: -0.048455
+2025-02-13 18:06:38,517 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.8256, LR: 0.000759, Batch Sensitivity: 21.619822, Noise Magnitude: 148.507630, Noise/Gradient Ratio: 6.869050, Effective Privacy Budget: -0.058690
+2025-02-13 18:06:49,055 - Client_7 - INFO - [client.py:233] - Client 7, Global Epoch: 0, Local Epoch: 1, Loss: 1.9406, Accuracy: 33.88%, LR: 0.000659
+2025-02-13 18:06:49,224 - Client_7 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_7\epoch_0.pt
+2025-02-13 18:06:49,266 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 7 完成训练
+2025-02-13 18:06:49,266 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 9 开始训练...
+2025-02-13 18:06:49,276 - Client_9 - INFO - [client.py:121] - 客户端 9 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:06:49,277 - Client_9 - INFO - [client.py:131] - 客户端 9 开始训练，数据批次数: 79
+2025-02-13 18:06:49,684 - Client_9 - INFO - [client.py:210] - Client 9, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5924, LR: 0.001000, Batch Sensitivity: 88.463322, Noise Magnitude: 163.960589, Noise/Gradient Ratio: 1.853430, Effective Privacy Budget: -0.008534
+2025-02-13 18:07:09,105 - Client_9 - INFO - [client.py:210] - Client 9, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.2243, LR: 0.000961, Batch Sensitivity: 34.672950, Noise Magnitude: 161.068508, Noise/Gradient Ratio: 4.645365, Effective Privacy Budget: -0.036454
+2025-02-13 18:07:20,013 - Client_9 - INFO - [client.py:233] - Client 9, Global Epoch: 0, Local Epoch: 0, Loss: 2.1461, Accuracy: 24.98%, LR: 0.000907
+2025-02-13 18:07:20,405 - Client_9 - INFO - [client.py:210] - Client 9, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9350, LR: 0.000905, Batch Sensitivity: 30.571458, Noise Magnitude: 160.294529, Noise/Gradient Ratio: 5.243274, Effective Privacy Budget: -0.042433
+2025-02-13 18:07:40,732 - Client_9 - INFO - [client.py:210] - Client 9, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 2.0150, LR: 0.000759, Batch Sensitivity: 26.054705, Noise Magnitude: 158.001279, Noise/Gradient Ratio: 6.064213, Effective Privacy Budget: -0.050642
+2025-02-13 18:07:51,601 - Client_9 - INFO - [client.py:233] - Client 9, Global Epoch: 0, Local Epoch: 1, Loss: 1.9380, Accuracy: 32.66%, LR: 0.000659
+2025-02-13 18:07:51,751 - Client_9 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_9\epoch_0.pt
+2025-02-13 18:07:51,802 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 9 完成训练
+2025-02-13 18:07:51,802 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 8 开始训练...
+2025-02-13 18:07:51,812 - Client_8 - INFO - [client.py:121] - 客户端 8 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:07:51,813 - Client_8 - INFO - [client.py:131] - 客户端 8 开始训练，数据批次数: 79
+2025-02-13 18:07:52,128 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5698, LR: 0.001000, Batch Sensitivity: 90.728304, Noise Magnitude: 163.902447, Noise/Gradient Ratio: 1.806519, Effective Privacy Budget: -0.008065
+2025-02-13 18:08:12,032 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.2851, LR: 0.000961, Batch Sensitivity: 34.410717, Noise Magnitude: 161.138186, Noise/Gradient Ratio: 4.682791, Effective Privacy Budget: -0.036828
+2025-02-13 18:08:23,220 - Client_8 - INFO - [client.py:233] - Client 8, Global Epoch: 0, Local Epoch: 0, Loss: 2.1634, Accuracy: 23.98%, LR: 0.000907
+2025-02-13 18:08:23,688 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.8607, LR: 0.000905, Batch Sensitivity: 23.312136, Noise Magnitude: 155.344116, Noise/Gradient Ratio: 6.663659, Effective Privacy Budget: -0.056637
+2025-02-13 18:08:42,309 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.9939, LR: 0.000759, Batch Sensitivity: 25.173356, Noise Magnitude: 157.930885, Noise/Gradient Ratio: 6.273732, Effective Privacy Budget: -0.052737
+2025-02-13 18:08:52,155 - Client_8 - INFO - [client.py:233] - Client 8, Global Epoch: 0, Local Epoch: 1, Loss: 1.9581, Accuracy: 32.46%, LR: 0.000659
+2025-02-13 18:08:52,312 - Client_8 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_8\epoch_0.pt
+2025-02-13 18:08:52,360 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 8 完成训练
+2025-02-13 18:10:25,028 - FederatedLearningGUI - INFO - [gui.py:258] - 成功加载CIFAR-10数据集 - 训练集: 50000张, 测试集: 10000张
+2025-02-13 18:10:25,232 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-13 18:10:25,232 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,244 - Client_0 - INFO - [client.py:85] - 客户端 0 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,245 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-13 18:10:25,245 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,257 - Client_1 - INFO - [client.py:85] - 客户端 1 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,258 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-13 18:10:25,258 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,269 - Client_2 - INFO - [client.py:85] - 客户端 2 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,270 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-13 18:10:25,270 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,283 - Client_3 - INFO - [client.py:85] - 客户端 3 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,283 - Client_4 - INFO - [client.py:20] - 初始化客户端 4
+2025-02-13 18:10:25,284 - Client_4 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,299 - Client_4 - INFO - [client.py:85] - 客户端 4 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,300 - Client_5 - INFO - [client.py:20] - 初始化客户端 5
+2025-02-13 18:10:25,300 - Client_5 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,311 - Client_5 - INFO - [client.py:85] - 客户端 5 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,312 - Client_6 - INFO - [client.py:20] - 初始化客户端 6
+2025-02-13 18:10:25,312 - Client_6 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,323 - Client_6 - INFO - [client.py:85] - 客户端 6 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,324 - Client_7 - INFO - [client.py:20] - 初始化客户端 7
+2025-02-13 18:10:25,324 - Client_7 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,335 - Client_7 - INFO - [client.py:85] - 客户端 7 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,336 - Client_8 - INFO - [client.py:20] - 初始化客户端 8
+2025-02-13 18:10:25,336 - Client_8 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,348 - Client_8 - INFO - [client.py:85] - 客户端 8 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,348 - Client_9 - INFO - [client.py:20] - 初始化客户端 9
+2025-02-13 18:10:25,348 - Client_9 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:10:25,360 - Client_9 - INFO - [client.py:85] - 客户端 9 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:10:25,363 - FederatedLearningGUI - INFO - [gui.py:323] - 随机选择的客户端: [1, 7, 4, 8]
+2025-02-13 18:10:25,363 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 1 开始训练...
+2025-02-13 18:10:25,376 - Client_1 - INFO - [client.py:121] - 客户端 1 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:10:25,376 - Client_1 - INFO - [client.py:131] - 客户端 1 开始训练，数据批次数: 79
+2025-02-13 18:10:26,052 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5645, LR: 0.001000, Batch Sensitivity: 86.924102, Noise Magnitude: 163.967023, Noise/Gradient Ratio: 1.886324, Effective Privacy Budget: -0.008863
+2025-02-13 18:10:43,857 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.0745, LR: 0.000961, Batch Sensitivity: 29.573338, Noise Magnitude: 159.778189, Noise/Gradient Ratio: 5.402778, Effective Privacy Budget: -0.044028
+2025-02-13 18:10:54,731 - Client_1 - INFO - [client.py:233] - Client 1, Global Epoch: 0, Local Epoch: 0, Loss: 2.1545, Accuracy: 24.92%, LR: 0.000907
+2025-02-13 18:10:55,159 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9759, LR: 0.000905, Batch Sensitivity: 26.444850, Noise Magnitude: 158.887091, Noise/Gradient Ratio: 6.008243, Effective Privacy Budget: -0.050082
+2025-02-13 18:11:14,076 - Client_1 - INFO - [client.py:210] - Client 1, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.8295, LR: 0.000759, Batch Sensitivity: 23.582006, Noise Magnitude: 154.564958, Noise/Gradient Ratio: 6.554360, Effective Privacy Budget: -0.055544
+2025-02-13 18:11:24,277 - Client_1 - INFO - [client.py:233] - Client 1, Global Epoch: 0, Local Epoch: 1, Loss: 1.9343, Accuracy: 32.74%, LR: 0.000659
+2025-02-13 18:11:24,458 - Client_1 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_1\epoch_0.pt
+2025-02-13 18:11:24,512 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 1 完成训练
+2025-02-13 18:11:24,513 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 7 开始训练...
+2025-02-13 18:11:24,524 - Client_7 - INFO - [client.py:121] - 客户端 7 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:11:24,524 - Client_7 - INFO - [client.py:131] - 客户端 7 开始训练，数据批次数: 79
+2025-02-13 18:11:24,875 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.3891, LR: 0.001000, Batch Sensitivity: 85.653815, Noise Magnitude: 164.193633, Noise/Gradient Ratio: 1.916945, Effective Privacy Budget: -0.009169
+2025-02-13 18:11:43,194 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 1.9280, LR: 0.000961, Batch Sensitivity: 28.246838, Noise Magnitude: 159.410461, Noise/Gradient Ratio: 5.643480, Effective Privacy Budget: -0.046435
+2025-02-13 18:11:53,717 - Client_7 - INFO - [client.py:233] - Client 7, Global Epoch: 0, Local Epoch: 0, Loss: 2.1338, Accuracy: 25.50%, LR: 0.000907
+2025-02-13 18:11:54,031 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9621, LR: 0.000905, Batch Sensitivity: 29.533251, Noise Magnitude: 159.972926, Noise/Gradient Ratio: 5.416706, Effective Privacy Budget: -0.044167
+2025-02-13 18:12:12,376 - Client_7 - INFO - [client.py:210] - Client 7, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.9104, LR: 0.000759, Batch Sensitivity: 25.180246, Noise Magnitude: 158.477608, Noise/Gradient Ratio: 6.293728, Effective Privacy Budget: -0.052937
+2025-02-13 18:12:22,252 - Client_7 - INFO - [client.py:233] - Client 7, Global Epoch: 0, Local Epoch: 1, Loss: 1.9351, Accuracy: 33.36%, LR: 0.000659
+2025-02-13 18:12:22,430 - Client_7 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_7\epoch_0.pt
+2025-02-13 18:12:22,472 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 7 完成训练
+2025-02-13 18:12:22,472 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 4 开始训练...
+2025-02-13 18:12:22,483 - Client_4 - INFO - [client.py:121] - 客户端 4 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:12:22,484 - Client_4 - INFO - [client.py:131] - 客户端 4 开始训练，数据批次数: 79
+2025-02-13 18:12:22,816 - Client_4 - INFO - [client.py:210] - Client 4, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.6820, LR: 0.001000, Batch Sensitivity: 90.307246, Noise Magnitude: 163.902678, Noise/Gradient Ratio: 1.814945, Effective Privacy Budget: -0.008149
+2025-02-13 18:12:41,761 - Client_4 - INFO - [client.py:210] - Client 4, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 1.9673, LR: 0.000961, Batch Sensitivity: 29.774477, Noise Magnitude: 160.023021, Noise/Gradient Ratio: 5.374503, Effective Privacy Budget: -0.043745
+2025-02-13 18:12:52,001 - Client_4 - INFO - [client.py:233] - Client 4, Global Epoch: 0, Local Epoch: 0, Loss: 2.1304, Accuracy: 25.18%, LR: 0.000907
+2025-02-13 18:12:52,438 - Client_4 - INFO - [client.py:210] - Client 4, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.9415, LR: 0.000905, Batch Sensitivity: 25.426189, Noise Magnitude: 155.366402, Noise/Gradient Ratio: 6.110487, Effective Privacy Budget: -0.051105
+2025-02-13 18:13:11,011 - Client_4 - INFO - [client.py:210] - Client 4, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 2.0523, LR: 0.000759, Batch Sensitivity: 26.129711, Noise Magnitude: 157.960887, Noise/Gradient Ratio: 6.045260, Effective Privacy Budget: -0.050453
+2025-02-13 18:13:21,595 - Client_4 - INFO - [client.py:233] - Client 4, Global Epoch: 0, Local Epoch: 1, Loss: 1.9409, Accuracy: 31.84%, LR: 0.000659
+2025-02-13 18:13:21,766 - Client_4 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_4\epoch_0.pt
+2025-02-13 18:13:21,809 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 4 完成训练
+2025-02-13 18:13:21,809 - FederatedLearningGUI - INFO - [gui.py:327] - 客户端 8 开始训练...
+2025-02-13 18:13:21,819 - Client_8 - INFO - [client.py:121] - 客户端 8 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:13:21,820 - Client_8 - INFO - [client.py:131] - 客户端 8 开始训练，数据批次数: 79
+2025-02-13 18:13:22,223 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.5270, LR: 0.001000, Batch Sensitivity: 89.633363, Noise Magnitude: 163.961463, Noise/Gradient Ratio: 1.829246, Effective Privacy Budget: -0.008292
+2025-02-13 18:13:41,350 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 2.1469, LR: 0.000961, Batch Sensitivity: 31.576321, Noise Magnitude: 160.337029, Noise/Gradient Ratio: 5.077762, Effective Privacy Budget: -0.040778
+2025-02-13 18:13:52,143 - Client_8 - INFO - [client.py:233] - Client 8, Global Epoch: 0, Local Epoch: 0, Loss: 2.1598, Accuracy: 24.42%, LR: 0.000907
+2025-02-13 18:13:52,611 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 1.8934, LR: 0.000905, Batch Sensitivity: 26.188477, Noise Magnitude: 158.684742, Noise/Gradient Ratio: 6.059334, Effective Privacy Budget: -0.050593
+2025-02-13 18:14:12,667 - Client_8 - INFO - [client.py:210] - Client 8, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 2.0173, LR: 0.000759, Batch Sensitivity: 26.424142, Noise Magnitude: 158.265484, Noise/Gradient Ratio: 5.989427, Effective Privacy Budget: -0.049894
+2025-02-13 18:14:23,441 - Client_8 - INFO - [client.py:233] - Client 8, Global Epoch: 0, Local Epoch: 1, Loss: 1.9392, Accuracy: 32.70%, LR: 0.000659
+2025-02-13 18:14:23,637 - Client_8 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_8\epoch_0.pt
+2025-02-13 18:14:23,683 - FederatedLearningGUI - INFO - [gui.py:330] - 客户端 8 完成训练
+2025-02-13 18:18:19,825 - FederatedLearningGUI - INFO - [gui.py:287] - 成功加载CIFAR-10数据集 - 训练集: 50000张, 测试集: 10000张
+2025-02-13 18:18:20,078 - Client_0 - INFO - [client.py:20] - 初始化客户端 0
+2025-02-13 18:18:20,079 - Client_0 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,092 - Client_0 - INFO - [client.py:85] - 客户端 0 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,093 - Client_1 - INFO - [client.py:20] - 初始化客户端 1
+2025-02-13 18:18:20,094 - Client_1 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,107 - Client_1 - INFO - [client.py:85] - 客户端 1 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,108 - Client_2 - INFO - [client.py:20] - 初始化客户端 2
+2025-02-13 18:18:20,109 - Client_2 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,123 - Client_2 - INFO - [client.py:85] - 客户端 2 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,124 - Client_3 - INFO - [client.py:20] - 初始化客户端 3
+2025-02-13 18:18:20,124 - Client_3 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,135 - Client_3 - INFO - [client.py:85] - 客户端 3 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,136 - Client_4 - INFO - [client.py:20] - 初始化客户端 4
+2025-02-13 18:18:20,137 - Client_4 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,153 - Client_4 - INFO - [client.py:85] - 客户端 4 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,154 - Client_5 - INFO - [client.py:20] - 初始化客户端 5
+2025-02-13 18:18:20,154 - Client_5 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,169 - Client_5 - INFO - [client.py:85] - 客户端 5 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,170 - Client_6 - INFO - [client.py:20] - 初始化客户端 6
+2025-02-13 18:18:20,170 - Client_6 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,186 - Client_6 - INFO - [client.py:85] - 客户端 6 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,187 - Client_7 - INFO - [client.py:20] - 初始化客户端 7
+2025-02-13 18:18:20,187 - Client_7 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,202 - Client_7 - INFO - [client.py:85] - 客户端 7 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,203 - Client_8 - INFO - [client.py:20] - 初始化客户端 8
+2025-02-13 18:18:20,204 - Client_8 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,215 - Client_8 - INFO - [client.py:85] - 客户端 8 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,215 - Client_9 - INFO - [client.py:20] - 初始化客户端 9
+2025-02-13 18:18:20,216 - Client_9 - INFO - [client.py:24] - 使用设备: cuda
+2025-02-13 18:18:20,227 - Client_9 - INFO - [client.py:85] - 客户端 9 数据设置完成: 样本数量=5000, 批次大小=64, 批次数量=79
+2025-02-13 18:18:20,231 - FederatedLearningGUI - INFO - [gui.py:352] - 随机选择的客户端: [2]
+2025-02-13 18:18:20,231 - FederatedLearningGUI - INFO - [gui.py:356] - 客户端 2 开始训练...
+2025-02-13 18:18:20,249 - Client_2 - INFO - [client.py:121] - 客户端 2 使用 laplace 差分隐私机制, ε=0.01, 噪声比例=0.0001
+2025-02-13 18:18:20,250 - Client_2 - INFO - [client.py:131] - 客户端 2 开始训练，数据批次数: 79
+2025-02-13 18:18:20,920 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 0, Batch: [0/79], Loss: 2.4869, LR: 0.001000, Batch Sensitivity: 93.760683, Noise Magnitude: 163.976732, Noise/Gradient Ratio: 1.748886, Effective Privacy Budget: -0.007489
+2025-02-13 18:18:37,722 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 0, Batch: [50/79], Loss: 1.9513, LR: 0.000961, Batch Sensitivity: 30.498753, Noise Magnitude: 160.155653, Noise/Gradient Ratio: 5.251220, Effective Privacy Budget: -0.042512
+2025-02-13 18:18:47,652 - Client_2 - INFO - [client.py:233] - Client 2, Global Epoch: 0, Local Epoch: 0, Loss: 2.1665, Accuracy: 23.78%, LR: 0.000907
+2025-02-13 18:18:48,063 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 1, Batch: [0/79], Loss: 2.0082, LR: 0.000905, Batch Sensitivity: 29.262147, Noise Magnitude: 160.028755, Noise/Gradient Ratio: 5.468797, Effective Privacy Budget: -0.044688
+2025-02-13 18:19:06,744 - Client_2 - INFO - [client.py:210] - Client 2, Global Epoch: 0, Local Epoch: 1, Batch: [50/79], Loss: 1.8306, LR: 0.000759, Batch Sensitivity: 25.813197, Noise Magnitude: 157.991332, Noise/Gradient Ratio: 6.120564, Effective Privacy Budget: -0.051206
+2025-02-13 18:19:17,854 - Client_2 - INFO - [client.py:233] - Client 2, Global Epoch: 0, Local Epoch: 1, Loss: 1.9657, Accuracy: 31.84%, LR: 0.000659
+2025-02-13 18:19:18,048 - Client_2 - INFO - [client.py:296] - 已保存epoch 0的模型权重到 model_weights\client_2\epoch_0.pt
+2025-02-13 18:19:18,091 - FederatedLearningGUI - INFO - [gui.py:359] - 客户端 2 完成训练
