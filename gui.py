@@ -212,7 +212,7 @@ class FederatedLearningGUI:
         target_label = tk.Label(right_frame, text="目标客户端ID:")
         target_label.pack(anchor='w')
         self.target_var = tk.StringVar(value="1")
-        self.target_entry = ttk.Spinbox(right_frame, from_=1, to=50, textvariable=self.target_var)
+        self.target_entry = ttk.Spinbox(right_frame, from_=0, to=50, textvariable=self.target_var)
         self.target_entry.pack(anchor='w', pady=(0,10))
 
         # 迭代次数设置
