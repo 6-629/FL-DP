@@ -420,13 +420,17 @@ class Client(object):
         """
         选择并应用差分隐私机制
         :param param_diff: 参数差异
-        :param noise_type: 噪声类型 ('gaussian', 'laplace', 'exponential')
+        :param noise_type: 噪声类型 ('gaussian', 'laplace', 'exponential', 'none')
         :param epsilon: 隐私预算
         :param sensitivity: 敏感度
         :param delta: 松弛参数 (仅用于高斯机制)
         :return: 添加噪声后的参数差异
         """
         try:
+            if noise_type == 'none':
+                # 如果选择了不添加噪声，直接返回参数差异
+                return param_diff
+            
             if noise_type == 'gaussian':
                 return self.apply_gaussian_noise(param_diff, epsilon, delta, sensitivity)
             elif noise_type == 'laplace':
@@ -434,6 +438,7 @@ class Client(object):
             elif noise_type == 'exponential':
                 return self.apply_exponential_noise(param_diff, epsilon, sensitivity)
             else:
+                # 只在未知噪声类型时记录警告
                 self.logger.warning(f"Unknown noise type: {noise_type}, no noise added")
                 return param_diff
         except Exception as e:
