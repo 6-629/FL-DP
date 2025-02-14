@@ -417,27 +417,22 @@ class Client(object):
             raise
 
     def apply_differential_privacy(self, param_diff, noise_type, epsilon, sensitivity, delta=1e-5):
-        """
-        选择并应用差分隐私机制
-        :param param_diff: 参数差异
-        :param noise_type: 噪声类型 ('gaussian', 'laplace', 'exponential')
-        :param epsilon: 隐私预算
-        :param sensitivity: 敏感度
-        :param delta: 松弛参数 (仅用于高斯机制)
-        :return: 添加噪声后的参数差异
-        """
+        """应用差分隐私机制"""
         try:
-            if noise_type == 'gaussian':
-                return self.apply_gaussian_noise(param_diff, epsilon, delta, sensitivity)
-            elif noise_type == 'laplace':
+            if noise_type == "none":
+                return param_diff
+            elif noise_type == "laplace":
                 return self.apply_laplace_noise(param_diff, epsilon, sensitivity)
-            elif noise_type == 'exponential':
+            elif noise_type == "gaussian":
+                return self.apply_gaussian_noise(param_diff, epsilon, delta, sensitivity)
+            elif noise_type == "exponential":
                 return self.apply_exponential_noise(param_diff, epsilon, sensitivity)
             else:
-                self.logger.warning(f"Unknown noise type: {noise_type}, no noise added")
+                self.logger.warning(f"未知的噪声类型: {noise_type}, 不添加噪声")
                 return param_diff
+            
         except Exception as e:
-            self.logger.error(f"Error applying differential privacy: {str(e)}")
+            self.logger.error(f"应用差分隐私时出错: {str(e)}")
             raise
 
     def compute_model_update(self, global_model):
