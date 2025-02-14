@@ -259,7 +259,7 @@ class FederatedLearningGUI:
                 "type": self.dataset_var.get().lower(),
                 "global_epochs": int(self.global_epochs_var.get()),
                 "local_epochs": int(self.local_epochs_var.get()),
-                "k": int(self.k_var.get()),
+                "k": int(self.k_var.get()),  # 使用GUI中设置的k值
                 "batch_size": 64,
                 "lr": 0.001,
                 "momentum": 0.9,
@@ -273,13 +273,6 @@ class FederatedLearningGUI:
                 "scheduler_step": 5,
                 "scheduler_gamma": 0.1
             }
-
-            # 如果选择了 None，则禁用差分隐私相关的参数
-            if conf["dp_noise_type"] == "none":
-                conf["dp_noise_scale"] = 0.0
-                conf["epsilon"] = float('inf')
-                conf["clip_grad"] = float('inf')
-                conf["max_grad_norm"] = float('inf')
 
             # 验证输入值
             if conf["global_epochs"] < 1:
@@ -391,9 +384,8 @@ class FederatedLearningGUI:
             self.recovery_text.delete(1.0, tk.END)
             self.recovery_text.insert(tk.END, f"开始恢复客户端 {target_id} 的数据...\n")
             
-            # 创建恢复器实例，传入当前轮次（可以设为0或最后一轮）
-            current_epoch = 0  # 或使用最后训练的轮次
-            recovery = ModelRecovery(self.global_model, self.clients[target_id], current_epoch)
+            # 创建恢复器实例
+            recovery = ModelRecovery(self.global_model, self.clients[target_id])
             
             # 执行恢复
             recovered_data, mse, psnr = recovery.recover_data(iterations=iterations)
