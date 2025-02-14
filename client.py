@@ -110,11 +110,11 @@ class Client(object):
         """获取当前温度值"""
         return torch.exp(self.log_temperature).clamp(min=0.1, max=5.0)
 
-    def local_train(self, model, global_epoch):
+    def local_train(self, global_model, global_epoch):
         """本地训练过程"""
         try:
             # 复制全局模型参数到本地模型
-            self.local_model.load_state_dict(copy.deepcopy(model.state_dict()))
+            self.local_model.load_state_dict(copy.deepcopy(global_model.state_dict()))
             self.local_model.train()
             
             # 记录差分隐私设置
@@ -240,8 +240,28 @@ class Client(object):
             # 保存最终模型权重
             self.save_model_weights(global_epoch)
             
-            # 计算并返回模型更新
-            return self.compute_model_update_without_noise(model)
+            # 确保返回梯度列表而不是字符串
+            grads = []
+            for param in self.local_model.parameters():
+                if param.grad is not None:
+                    grad = param.grad.clone().detach()
+                    
+                    # 只在非 None 模式下添加噪声
+                    if self.conf["dp_noise_type"] != "none":
+                        if self.conf["dp_noise_type"] == "laplace":
+                            noise = torch.tensor(np.random.laplace(0, self.conf["dp_noise_scale"], 
+                                                      grad.shape)).to(grad.device)
+                        elif self.conf["dp_noise_type"] == "gaussian":
+                            noise = torch.normal(0, self.conf["dp_noise_scale"], 
+                                                  grad.shape).to(grad.device)
+                        elif self.conf["dp_noise_type"] == "exponential":
+                            noise = torch.tensor(np.random.exponential(self.conf["dp_noise_scale"], 
+                                                      grad.shape)).to(grad.device)
+                        grad += noise
+                    
+                    grads.append(grad)
+            
+            return grads
 
         except Exception as e:
             self.logger.error(f"客户端 {self.client_id} 训练错误: {str(e)}")

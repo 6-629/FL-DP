@@ -7,82 +7,86 @@ import logging
 from PIL import Image
 
 class ModelRecovery:
-    def __init__(self, global_model, target_client, device=None):
+    def __init__(self, global_model, target_client, current_epoch):
         """
         初始化模型恢复器
         :param global_model: 服务器端的全局模型
         :param target_client: 目标客户端
-        :param device: 计算设备
+        :param current_epoch: 当前轮次
         """
-        self.device = device if device else torch.device('cuda' if torch.cuda.is_available() else 'cpu')
-        self.global_model = global_model.to(self.device)
+        self.global_model = global_model
         self.target_client = target_client
+        self.current_epoch = current_epoch
+        self.device = next(global_model.parameters()).device
+        
+        # 获取目标数据集的图像尺寸
+        sample_data = next(iter(self.target_client.train_loader))[0]
+        self.image_shape = sample_data[0].shape  # (C, H, W)
         self.logger = logging.getLogger("ModelRecovery")
 
-    def recover_data(self, iterations=1000, learning_rate=0.1):
-        """
-        使用梯度恢复方法恢复训练数据
-        :param iterations: 恢复迭代次数
-        :param learning_rate: 学习率
-        :return: 恢复的数据、MSE和PSNR
-        """
+    def recover_data(self, iterations=1000):
         try:
-            # 获取目标客户端的模型更新
-            target_update = self.target_client.local_train(self.global_model)
+            self.global_model.eval()
             
-            # 初始化随机数据
-            dummy_data = torch.randn(1, 3, 32, 32).to(self.device).requires_grad_(True)
-            dummy_label = torch.zeros(1, dtype=torch.long).to(self.device)
+            # 获取目标梯度
+            target_grads = self.target_client.local_train(self.global_model, self.current_epoch)
             
-            # 优化器
-            optimizer = optim.Adam([dummy_data], lr=learning_rate)
-            criterion = nn.CrossEntropyLoss()
+            if not isinstance(target_grads, list):
+                raise TypeError(f"Expected target_grads to be a list of tensors, got {type(target_grads)}")
             
-            best_mse = float('inf')
-            best_data = None
+            # 确保梯度在正确的设备上
+            target_grads = [torch.tensor(float(g), device=self.device) if isinstance(g, str) 
+                           else g.to(self.device) for g in target_grads]
             
-            # 迭代恢复
+            # 创建与原始图像相同尺寸的虚拟数据
+            dummy_data = torch.randn(1, *self.image_shape, requires_grad=True, device=self.device)
+            dummy_label = torch.tensor([0], device=self.device)
+            
+            optimizer = torch.optim.Adam([dummy_data], lr=0.1)
+            criterion = torch.nn.CrossEntropyLoss()
+            
             for i in range(iterations):
                 optimizer.zero_grad()
                 
-                # 计算当前数据的梯度
-                self.global_model.zero_grad()
+                # 前向传播
                 output = self.global_model(dummy_data)
                 loss = criterion(output, dummy_label)
-                loss.backward()
                 
-                # 获取当前梯度
-                current_gradients = {}
-                for name, param in self.global_model.named_parameters():
-                    if param.grad is not None:
-                        current_gradients[name] = param.grad.clone()
+                # 计算当前梯度
+                current_grads = torch.autograd.grad(loss, self.global_model.parameters(), 
+                                                  create_graph=True)
                 
-                # 计算与目标更新的MSE
-                mse = 0
-                for name in target_update:
-                    if name in current_gradients:
-                        mse += torch.mean((current_gradients[name] - target_update[name]) ** 2)
+                # 计算梯度差异
+                mse = torch.tensor(0.0, device=self.device)
+                for g1, g2 in zip(current_grads, target_grads):
+                    if g1.dtype != g2.dtype:
+                        g2 = g2.to(dtype=g1.dtype)
+                    mse += torch.mean((g1 - g2) ** 2)
                 
-                # 更新虚拟数据
+                # 打印调试信息
+                if i % 100 == 0:
+                    self.logger.info(f'Iteration {i}, MSE: {mse.item()}')
+                
                 mse.backward()
                 optimizer.step()
                 
-                # 记录最佳结果
-                if mse.item() < best_mse:
-                    best_mse = mse.item()
-                    best_data = dummy_data.clone().detach()
-                
-                if i % 100 == 0:
-                    self.logger.info(f'Iteration {i}, MSE: {mse.item():.6f}')
+                # 确保像素值在合理范围内
+                with torch.no_grad():
+                    dummy_data.data = torch.clamp(dummy_data.data, -1, 1)
             
-            # 计算PSNR
-            mse_final = best_mse
-            psnr = 10 * np.log10(1 / mse_final) if mse_final > 0 else 100
+            # 计算最终的PSNR
+            with torch.no_grad():
+                mse_final = mse.item()
+                if mse_final > 0:
+                    psnr = 10 * torch.log10(torch.tensor(1.0 / mse_final, device=self.device))
+                    psnr = psnr.item()
+                else:
+                    psnr = float('inf')
             
-            # 将恢复的数据转换为图像格式
-            recovered_data = self.tensor_to_image(best_data)
+            # 将张量转换为图像，保持原始分辨率
+            recovered_image = self.tensor_to_image(dummy_data)
             
-            return recovered_data, mse_final, psnr
+            return recovered_image, mse_final, psnr
             
         except Exception as e:
             self.logger.error(f"Error in data recovery: {str(e)}")
@@ -90,19 +94,26 @@ class ModelRecovery:
 
     @staticmethod
     def tensor_to_image(tensor):
-        """
-        将张量转换为PIL图像
-        """
-        # 反归一化
-        mean = torch.tensor([0.5, 0.5, 0.5]).view(3, 1, 1)
-        std = torch.tensor([0.5, 0.5, 0.5]).view(3, 1, 1)
-        tensor = tensor * std + mean
+        """将张量转换为PIL图像，保持原始分辨率"""
+        # 确保输入是4D张量 (B, C, H, W)
+        if tensor.dim() == 3:
+            tensor = tensor.unsqueeze(0)
+            
+        # 移除批次维度
+        tensor = tensor.squeeze(0)
+        
+        # 将值范围从[-1, 1]转换到[0, 1]
+        tensor = tensor * 0.5 + 0.5
+        
+        # 确保值在[0, 1]范围内
+        tensor = tensor.clamp(0, 1)
+        
+        # 转换为CPU并分离计算图
+        tensor = tensor.cpu().detach()
         
         # 转换为PIL图像
-        tensor = tensor.squeeze(0).cpu()
-        tensor = torch.clamp(tensor * 255, 0, 255)
-        tensor = tensor.permute(1, 2, 0).numpy().astype('uint8')
-        image = Image.fromarray(tensor)
+        transform = transforms.ToPILImage()
+        image = transform(tensor)
         
         return image
 
