@@ -14,12 +14,19 @@ import copy
 from datasets import get_dataset
 import time
 import random  # 添加在文件顶部的import部分
+import numpy as np
 
 class FederatedLearningGUI:
     def __init__(self, root):
         self.root = root
         self.root.title("联邦学习隐私保护系统")
         self.root.geometry("900x600")
+        
+        # 添加设备初始化
+        self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+        
+        # 添加当前轮次跟踪
+        self.current_epoch = 0
         
         # 配置日志记录器，添加文件处理器
         logging.basicConfig(
@@ -240,8 +247,16 @@ class FederatedLearningGUI:
         self.mse_display = ttk.Entry(right_frame, textvariable=self.mse_var, state='readonly', width=10)
         self.mse_display.pack(anchor='w', pady=(0,10))
 
-        # 添加PSNR显示
-        psnr_label = tk.Label(right_frame, text="峰值信噪比(PSNR):")
+        # 在右侧框架中添加原始PSNR显示
+        original_psnr_label = tk.Label(right_frame, text="原始PSNR:")
+        original_psnr_label.pack(anchor='w')
+        self.original_psnr_var = tk.StringVar(value="0.0")
+        self.original_psnr_display = ttk.Entry(right_frame, textvariable=self.original_psnr_var, 
+                                             state='readonly', width=10)
+        self.original_psnr_display.pack(anchor='w', pady=(0,10))
+
+        # 修改现有PSNR标签使其更清晰
+        psnr_label = tk.Label(right_frame, text="恢复后PSNR:")
         psnr_label.pack(anchor='w')
         self.psnr_var = tk.StringVar(value="0.0")
         self.psnr_display = ttk.Entry(right_frame, textvariable=self.psnr_var, state='readonly', width=10)
@@ -260,7 +275,7 @@ class FederatedLearningGUI:
                 "global_epochs": int(self.global_epochs_var.get()),
                 "local_epochs": int(self.local_epochs_var.get()),
                 "k": int(self.k_var.get()),
-                "batch_size": 64,
+                "batch_size": 32,
                 "lr": 0.001,
                 "momentum": 0.9,
                 "weight_decay": 0.0005,
@@ -315,15 +330,13 @@ class FederatedLearningGUI:
             self.progress_bar["maximum"] = conf["global_epochs"]
             
             for epoch in range(conf["global_epochs"]):
+                self.current_epoch = epoch
                 # 更新进度条
                 self.progress_bar["value"] = (epoch + 1) * 100 / conf["global_epochs"]
                 self.root.update_idletasks()
 
                 # 训练过程
                 try:
-                    # 更新当前轮次
-                    conf['current_round'] = epoch
-                    
                     # 训练一个epoch
                     _, _ = self.train_one_epoch(epoch, conf)
                     
@@ -342,6 +355,9 @@ class FederatedLearningGUI:
                     self.logger.error(error_message)
                     raise
 
+            # 训练完成后计算PSNR
+            self.calculate_noisy_psnr()
+            
             self.progress_bar["value"] = 100
             messagebox.showinfo("完成", "所有训练轮次完成！请进行最终的参数聚合。")
             
@@ -391,9 +407,55 @@ class FederatedLearningGUI:
             self.recovery_text.delete(1.0, tk.END)
             self.recovery_text.insert(tk.END, f"开始恢复客户端 {target_id} 的数据...\n")
             
-            # 创建恢复器实例，传入当前轮次（可以设为0或最后一轮）
+            # 创建恢复器实例
             current_epoch = 0  # 或使用最后训练的轮次
             recovery = ModelRecovery(self.global_model, self.clients[target_id], current_epoch)
+            
+            # 计算原始PSNR
+            test_batch = next(iter(self.clients[target_id].train_loader))
+            original_images = test_batch[0].to(self.server.device)
+            
+            # 计算MSE和PSNR
+            self.server.global_model.eval()
+            with torch.no_grad():
+                # 归一化原始图像和噪声图像到[0, 1]范围
+                original_images = (original_images - original_images.min()) / (original_images.max() - original_images.min())
+                noisy_images = original_images.clone()  # 创建副本用于添加噪声
+                
+                # 添加与训练时相同类型的噪声
+                noise_type = self.dp_var.get().lower()
+                noise_scale = float(self.privacy_var.get())
+                
+                if noise_type != "none":
+                    if noise_type == "gaussian":
+                        noise = torch.randn_like(original_images) * noise_scale
+                    elif noise_type == "laplace":
+                        noise = torch.from_numpy(np.random.laplace(0, noise_scale, 
+                                original_images.shape)).float().to(self.server.device)
+                    elif noise_type == "exponential":
+                        noise = torch.from_numpy(np.random.exponential(noise_scale, 
+                                original_images.shape)).float().to(self.server.device)
+                    
+                    noisy_images += noise
+                
+                # 确保值在[0, 1]范围内
+                original_images = torch.clamp(original_images, 0, 1)
+                noisy_images = torch.clamp(noisy_images, 0, 1)
+                
+                # 计算归一化后的MSE
+                mse = torch.mean((original_images - noisy_images) ** 2)
+                
+                # 创建临时ModelRecovery实例来使用其PSNR计算方法
+                recovery = ModelRecovery(self.server.global_model, self.clients[0], self.current_epoch)
+                psnr = recovery.calculate_psnr(mse)
+                
+                # 更新PSNR显示
+                self.original_psnr_var.set(f"{float(psnr):.2f}")
+                
+                # 在结果文本中显示
+                self.result_text.insert(tk.END, f"添加{noise_type}噪声后的MSE: {mse:.6f}\n")
+                self.result_text.insert(tk.END, f"添加{noise_type}噪声后的PSNR: {psnr:.2f}dB\n")
+                self.result_text.see(tk.END)
             
             # 执行恢复
             recovered_data, mse, psnr = recovery.recover_data(iterations=iterations)
@@ -405,6 +467,7 @@ class FederatedLearningGUI:
             # 更新GUI显示
             self.recovery_text.insert(tk.END, f"恢复完成！\n")
             self.recovery_text.insert(tk.END, f"恢复的图像已保存至: {save_path}\n")
+            self.recovery_text.insert(tk.END, f"原始PSNR: {psnr:.2f}dB\n")
             
             # 更新恢复指标
             self.update_recovery_metrics(mse, psnr)
@@ -638,6 +701,63 @@ class FederatedLearningGUI:
             self.result_text.insert(tk.END, f"模型聚合失败: {str(e)}\n")
             self.result_text.see(tk.END)
             raise
+
+    def calculate_noisy_psnr(self):
+        """计算添加噪声后图像的PSNR值"""
+        try:
+            if not self.clients or not self.server:
+                return
+            
+            # 获取第一个客户端的数据作为示例
+            test_batch = next(iter(self.clients[0].train_loader))
+            original_images = test_batch[0].to(self.server.device)
+            noisy_images = original_images.clone()  # 创建副本用于添加噪声
+            
+            # 添加与训练时相同类型的噪声
+            noise_type = self.dp_var.get().lower()
+            noise_scale = float(self.privacy_var.get())
+            
+            if noise_type != "none":
+                if noise_type == "gaussian":
+                    noise = torch.randn_like(original_images) * noise_scale
+                elif noise_type == "laplace":
+                    noise = torch.from_numpy(np.random.laplace(0, noise_scale, 
+                            original_images.shape)).float().to(self.server.device)
+                elif noise_type == "exponential":
+                    noise = torch.from_numpy(np.random.exponential(noise_scale, 
+                            original_images.shape)).float().to(self.server.device)
+                
+                noisy_images += noise
+                
+                # 计算MSE和PSNR
+                self.server.global_model.eval()
+                with torch.no_grad():
+                    # 归一化原始图像和噪声图像到[0, 1]范围
+                    original_images = (original_images - original_images.min()) / (original_images.max() - original_images.min())
+                    noisy_images = (noisy_images - noisy_images.min()) / (noisy_images.max() - noisy_images.min())
+                    
+                    # 确保值在[0, 1]范围内
+                    original_images = torch.clamp(original_images, 0, 1)
+                    noisy_images = torch.clamp(noisy_images, 0, 1)
+                    
+                    # 计算归一化后的MSE
+                    mse = torch.mean((original_images - noisy_images) ** 2)
+                    
+                    # 创建临时ModelRecovery实例来使用其PSNR计算方法
+                    recovery = ModelRecovery(self.server.global_model, self.clients[0], self.current_epoch)
+                    psnr = recovery.calculate_psnr(mse)
+                    
+                    # 更新PSNR显示
+                    self.original_psnr_var.set(f"{float(psnr):.2f}")
+                    
+                    # 在结果文本中显示
+                    self.result_text.insert(tk.END, f"添加{noise_type}噪声后的MSE: {mse:.6f}\n")
+                    self.result_text.insert(tk.END, f"添加{noise_type}噪声后的PSNR: {psnr:.2f}dB\n")
+                    self.result_text.see(tk.END)
+                
+        except Exception as e:
+            self.logger.error(f"计算PSNR时出错: {str(e)}")
+            self.result_text.insert(tk.END, f"计算PSNR时出错: {str(e)}\n")
 
 if __name__ == "__main__":
     root = tk.Tk()
