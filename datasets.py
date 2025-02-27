@@ -5,9 +5,95 @@ import json
 from pycocotools.coco import COCO
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
+from torchvision.datasets import VOCDetection
+import xml.etree.ElementTree as ET
 
 def get_dataset(dir, name):
-	if name == 'cifar-100':
+	if name == 'voc2007':
+		# VOC2007的均值和标准差
+		VOC_MEAN = (0.485, 0.456, 0.406)
+		VOC_STD = (0.229, 0.224, 0.225)
+		
+		# 训练集转换
+		transform_train = transforms.Compose([
+			transforms.Resize((224, 224)),  # VOC图像尺寸不固定，需要调整
+			transforms.RandomHorizontalFlip(),
+			transforms.ColorJitter(brightness=0.2, contrast=0.2, saturation=0.2),
+			transforms.ToTensor(),
+			transforms.Normalize(VOC_MEAN, VOC_STD)
+		])
+		
+		# 测试集转换
+		transform_test = transforms.Compose([
+			transforms.Resize((224, 224)),
+			transforms.ToTensor(),
+			transforms.Normalize(VOC_MEAN, VOC_STD)
+		])
+		
+		class VOCClassification(Dataset):
+			def __init__(self, root, image_set='train', transform=None):
+				self.root = root
+				self.image_set = image_set
+				self.transform = transform
+				
+				# 设置图像和标注路径
+				self.images_dir = os.path.join(root, 'VOC2007', 'JPEGImages')
+				self.annotations_dir = os.path.join(root, 'VOC2007', 'Annotations')
+				
+				# 读取数据集划分文件
+				split_file = os.path.join(root, 'VOC2007', 'ImageSets', 'Main', f'{image_set}.txt')
+				with open(split_file, 'r') as f:
+					self.ids = [x.strip() for x in f.readlines()]
+				
+				# VOC类别
+				self.classes = [
+					'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
+					'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
+					'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor'
+				]
+				self.class_to_idx = {cls: idx for idx, cls in enumerate(self.classes)}
+				
+			def __getitem__(self, index):
+				img_id = self.ids[index]
+				
+				# 加载图像
+				img_path = os.path.join(self.images_dir, f'{img_id}.jpg')
+				img = Image.open(img_path).convert('RGB')
+				
+				# 加载标注
+				anno_path = os.path.join(self.annotations_dir, f'{img_id}.xml')
+				tree = ET.parse(anno_path)
+				root = tree.getroot()
+				
+				# 获取第一个对象的类别作为图像类别
+				objects = root.findall('object')
+				if objects:
+					label = self.class_to_idx[objects[0].find('name').text]
+				else:
+					label = 0
+				
+				if self.transform:
+					img = self.transform(img)
+				
+				return img, label
+			
+			def __len__(self):
+				return len(self.ids)
+		
+		# 创建训练集和测试集
+		train_dataset = VOCClassification(
+			root=dir,
+			image_set='train',
+			transform=transform_train
+		)
+		
+		eval_dataset = VOCClassification(
+			root=dir,
+			image_set='val',
+			transform=transform_test
+		)
+		
+	elif name == 'cifar-100':
 		# CIFAR100的均值和标准差
 		CIFAR100_MEAN = (0.5071, 0.4867, 0.4408)
 		CIFAR100_STD = (0.2675, 0.2565, 0.2761)

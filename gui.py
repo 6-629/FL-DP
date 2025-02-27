@@ -65,7 +65,8 @@ class FederatedLearningGUI:
         self.dataset_var = tk.StringVar(value="CIFAR-10")
         self.datasets = [
             "CIFAR-10",
-            "CIFAR-100"  # 100个类别
+            "CIFAR-100",
+            "VOC2007"  # 添加VOC2007选项
         ]
         self.dataset_menu = ttk.Combobox(left_frame, textvariable=self.dataset_var, values=self.datasets)
         self.dataset_menu.pack(anchor='w', pady=(0,10))
@@ -268,10 +269,15 @@ class FederatedLearningGUI:
     def start_training(self):
         try:
             # 1. 从GUI获取训练配置
+            dataset_type = self.dataset_var.get().lower()  # 先获取数据集类型
+            
+            # 根据数据集类型设置类别数
+            num_classes = 20 if dataset_type == "voc2007" else (100 if dataset_type == "cifar-100" else 10)
+            
             conf = {
                 "model_name": "resnet18",
                 "no_models": int(self.clients_var.get()),
-                "type": self.dataset_var.get().lower(),
+                "type": dataset_type,
                 "global_epochs": int(self.global_epochs_var.get()),
                 "local_epochs": int(self.local_epochs_var.get()),
                 "k": int(self.k_var.get()),
@@ -286,7 +292,8 @@ class FederatedLearningGUI:
                 "max_grad_norm": 1.0,
                 "delta": 1e-5,
                 "scheduler_step": 5,
-                "scheduler_gamma": 0.1
+                "scheduler_gamma": 0.1,
+                "num_classes": num_classes  # 使用正确的类别数
             }
 
             # 如果选择了 None，则禁用差分隐私相关的参数

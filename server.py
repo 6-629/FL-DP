@@ -7,7 +7,9 @@ class Server(object):
 
         self.conf = conf
 
-        self.global_model = models.get_model(self.conf["model_name"])
+        # 使用配置中的类别数初始化模型
+        num_classes = conf.get("num_classes", 10)  # 默认为10类
+        self.global_model = models.get_model(self.conf["model_name"], num_classes=num_classes)
 
         # 设置设备
         self.device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
