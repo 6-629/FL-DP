@@ -44,6 +44,9 @@ class FederatedLearningGUI:
         self.server = None
         self.global_model = None
         
+        # 添加成员变量存储第一轮选择的客户端
+        self.selected_clients = None
+        
         self.setup_gui()
         
     def setup_gui(self):
@@ -110,7 +113,7 @@ class FederatedLearningGUI:
         # 隐私预算设置
         privacy_label = tk.Label(left_frame, text="隐私预算 (ε):")
         privacy_label.pack(anchor='w')
-        self.privacy_var = tk.StringVar(value="0.01")
+        self.privacy_var = tk.StringVar(value="8.0")
         self.privacy_entry = ttk.Entry(left_frame, textvariable=self.privacy_var, width=10)
         self.privacy_entry.pack(anchor='w', pady=(0,10))
 
@@ -216,12 +219,34 @@ class FederatedLearningGUI:
                      justify=tk.LEFT, wraplength=200)
         desc_label.pack(anchor='w', pady=(0,20))
 
-        # 目标客户端选择
+        # 修改目标客户端选择控件
         target_label = tk.Label(right_frame, text="目标客户端ID:")
         target_label.pack(anchor='w')
-        self.target_var = tk.StringVar(value="1")
-        self.target_entry = ttk.Spinbox(right_frame, from_=0, to=50, textvariable=self.target_var)
+        self.target_var = tk.StringVar(value="0")  # 从0开始
+        
+        def update_target_max(*args):
+            try:
+                num_clients = int(self.clients_var.get())
+                current_target = int(self.target_var.get())
+                # 更新目标客户端ID的最大值
+                self.target_entry.configure(to=num_clients-1)  # 最大值为客户端数量-1
+                # 如果当前选择的ID大于最大值，则调整
+                if current_target >= num_clients:
+                    self.target_var.set(str(num_clients-1))
+            except ValueError:
+                pass
+
+        self.target_entry = ttk.Spinbox(
+            right_frame, 
+            from_=0,  # 从0开始
+            to=50, 
+            textvariable=self.target_var,
+            width=10
+        )
         self.target_entry.pack(anchor='w', pady=(0,10))
+
+        # 绑定客户端数量变化事件，同时更新目标客户端ID的范围
+        self.clients_var.trace('w', lambda *args: [update_k_max(*args), update_target_max(*args)])
 
         # 迭代次数设置
         iter_label = tk.Label(right_frame, text="恢复迭代次数:")
@@ -377,12 +402,15 @@ class FederatedLearningGUI:
     def train_one_epoch(self, epoch, conf):
         """训练一个epoch，不进行自动聚合"""
         try:
-            # 随机选择k个客户端进行训练
-            selected_clients = random.sample(self.clients, conf["k"])
-            self.logger.info(f"随机选择的客户端: {[c.client_id for c in selected_clients]}")
+            # 修改判断条件，使用epoch == 0作为第一轮的判断
+            if self.selected_clients is None:
+                self.selected_clients = random.sample(self.clients, conf["k"])
+                self.logger.info(f"第一轮随机选择的客户端: {[c.client_id for c in self.selected_clients]}")
+            else:
+                self.logger.info(f"使用第一轮选择的客户端: {[c.client_id for c in self.selected_clients]}")
             
             # 本地训练阶段
-            for c in selected_clients:
+            for c in self.selected_clients:
                 self.logger.info(f"客户端 {c.client_id} 开始训练...")
                 # 只进行本地训练，不返回差异值
                 c.local_train(self.server.global_model, epoch)
@@ -406,63 +434,32 @@ class FederatedLearningGUI:
                 raise ValueError("请先开始训练！")
 
             target_id = int(self.target_var.get())
-            if target_id >= len(self.clients):
-                raise ValueError("目标客户端ID超出范围！")
+            
+            # 检查目标客户端ID是否有效
+            if target_id < 0 or target_id >= len(self.clients):
+                raise ValueError(f"目标客户端ID {target_id} 无效！有效范围: 0-{len(self.clients)-1}")
 
+            # 检查目标客户端的模型文件是否存在
+            client_dir = os.path.join('model_weights', f'client_{target_id}')
+            if not os.path.exists(client_dir):
+                raise FileNotFoundError(f"未找到客户端 {target_id} 的模型目录: {client_dir}")
+            
+            # 获取最新的epoch文件
+            weight_files = [f for f in os.listdir(client_dir) if f.startswith('epoch_') and f.endswith('.pt')]
+            if not weight_files:
+                raise FileNotFoundError(f"客户端 {target_id} 的目录中没有模型文件")
+            
+            # 获取最新的epoch数
+            latest_epoch = max([int(f.split('_')[1].split('.')[0]) for f in weight_files])
+            
             iterations = int(self.iter_var.get())
             
             self.recovery_text.delete(1.0, tk.END)
             self.recovery_text.insert(tk.END, f"开始恢复客户端 {target_id} 的数据...\n")
+            self.recovery_text.insert(tk.END, f"使用epoch_{latest_epoch}.pt模型文件\n")
             
-            # 创建恢复器实例
-            current_epoch = 0  # 或使用最后训练的轮次
-            recovery = ModelRecovery(self.global_model, self.clients[target_id], current_epoch)
-            
-            # 计算原始PSNR
-            test_batch = next(iter(self.clients[target_id].train_loader))
-            original_images = test_batch[0].to(self.server.device)
-            
-            # 计算MSE和PSNR
-            self.server.global_model.eval()
-            with torch.no_grad():
-                # 归一化原始图像和噪声图像到[0, 1]范围
-                original_images = (original_images - original_images.min()) / (original_images.max() - original_images.min())
-                noisy_images = original_images.clone()  # 创建副本用于添加噪声
-                
-                # 添加与训练时相同类型的噪声
-                noise_type = self.dp_var.get().lower()
-                noise_scale = float(self.privacy_var.get())
-                
-                if noise_type != "none":
-                    if noise_type == "gaussian":
-                        noise = torch.randn_like(original_images) * noise_scale
-                    elif noise_type == "laplace":
-                        noise = torch.from_numpy(np.random.laplace(0, noise_scale, 
-                                original_images.shape)).float().to(self.server.device)
-                    elif noise_type == "exponential":
-                        noise = torch.from_numpy(np.random.exponential(noise_scale, 
-                                original_images.shape)).float().to(self.server.device)
-                    
-                    noisy_images += noise
-                
-                # 确保值在[0, 1]范围内
-                original_images = torch.clamp(original_images, 0, 1)
-                noisy_images = torch.clamp(noisy_images, 0, 1)
-                
-                # 计算归一化后的MSE
-                mse = torch.mean((original_images - noisy_images) ** 2)
-                
-                # 创建临时ModelRecovery实例来使用其PSNR计算方法
-                recovery = ModelRecovery(self.server.global_model, self.clients[0], self.current_epoch)
-                psnr = recovery.calculate_psnr(mse)
-                
-                # 更新PSNR显示
-                self.original_psnr_var.set(f"{float(psnr):.2f}")
-                
-                # 在结果文本中显示
-                self.result_text.insert(tk.END, f"添加{noise_type}噪声后的MSE: {mse:.6f}\n")
-                self.result_text.insert(tk.END, f"添加{noise_type}噪声后的PSNR: {psnr:.2f}dB\n")
-                self.result_text.see(tk.END)
+            # 创建恢复器实例，使用最新的epoch
+            recovery = ModelRecovery(self.global_model, self.clients[target_id], latest_epoch)
             
             # 执行恢复
             recovered_data, mse, psnr = recovery.recover_data(iterations=iterations)
@@ -474,7 +471,6 @@ class FederatedLearningGUI:
             # 更新GUI显示
             self.recovery_text.insert(tk.END, f"恢复完成！\n")
             self.recovery_text.insert(tk.END, f"恢复的图像已保存至: {save_path}\n")
-            self.recovery_text.insert(tk.END, f"原始PSNR: {psnr:.2f}dB\n")
             
             # 更新恢复指标
             self.update_recovery_metrics(mse, psnr)

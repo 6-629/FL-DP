@@ -5,7 +5,7 @@ import json
 from pycocotools.coco import COCO
 from torch.utils.data import Dataset, DataLoader
 from PIL import Image
-from torchvision.datasets import VOCDetection
+from torchvision.datasets import VOCDetection, VOCSegmentation, CIFAR10, CIFAR100
 import xml.etree.ElementTree as ET
 
 def get_dataset(dir, name):
@@ -229,3 +229,84 @@ class COCO8Dataset(Dataset):
     
     def __len__(self):
         return len(self.image_files)
+
+class SerializableVOCDataset(torch.utils.data.Dataset):
+    """可序列化的VOC数据集类"""
+    def __init__(self, root, year='2007', image_set='train', transform=None):
+        self.root = root
+        self.year = year
+        self.image_set = image_set
+        self.transform = transform
+        
+        # VOC数据集路径
+        self.voc_root = os.path.join(root, f'VOCdevkit/VOC{year}')
+        self.image_dir = os.path.join(self.voc_root, 'JPEGImages')
+        self.annotation_dir = os.path.join(self.voc_root, 'Annotations')
+        
+        # 读取数据集索引
+        split_f = os.path.join(self.voc_root, 'ImageSets', 'Main', f'{image_set}.txt')
+        with open(split_f, 'r') as f:
+            self.images = [x.strip() for x in f.readlines()]
+            
+        # VOC类别名称
+        self.classes = [
+            'aeroplane', 'bicycle', 'bird', 'boat', 'bottle', 'bus', 'car',
+            'cat', 'chair', 'cow', 'diningtable', 'dog', 'horse', 'motorbike',
+            'person', 'pottedplant', 'sheep', 'sofa', 'train', 'tvmonitor'
+        ]
+        self.class_to_idx = {cls: idx for idx, cls in enumerate(self.classes)}
+
+    def __len__(self):
+        return len(self.images)
+
+    def __getitem__(self, index):
+        # 获取图像ID
+        img_id = self.images[index]
+        
+        # 加载图像
+        img_path = os.path.join(self.image_dir, f'{img_id}.jpg')
+        img = Image.open(img_path).convert('RGB')
+        
+        # 加载标注
+        anno_path = os.path.join(self.annotation_dir, f'{img_id}.xml')
+        target = self._parse_voc_xml(ET.parse(anno_path).getroot())
+        
+        # 应用变换
+        if self.transform is not None:
+            img = self.transform(img)
+        
+        return img, target
+
+    def _parse_voc_xml(self, node):
+        """解析VOC XML文件并返回目标类别索引"""
+        objects = node.findall('object')
+        if not objects:
+            return 0  # 默认背景类
+        
+        # 获取第一个对象的类别（简化处理）
+        obj = objects[0]
+        class_name = obj.find('name').text.lower().strip()
+        return self.class_to_idx.get(class_name, 0)
+
+def get_dataset(data_dir, dataset_type):
+    """获取指定类型的数据集"""
+    # 基本的数据变换
+    transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+
+    if dataset_type == 'cifar10':
+        train_dataset = CIFAR10(root=data_dir, train=True, download=True, transform=transform)
+        test_dataset = CIFAR10(root=data_dir, train=False, download=True, transform=transform)
+    elif dataset_type == 'cifar100':
+        train_dataset = CIFAR100(root=data_dir, train=True, download=True, transform=transform)
+        test_dataset = CIFAR100(root=data_dir, train=False, download=True, transform=transform)
+    elif dataset_type == 'voc2007':
+        train_dataset = SerializableVOCDataset(root=data_dir, year='2007', image_set='train', transform=transform)
+        test_dataset = SerializableVOCDataset(root=data_dir, year='2007', image_set='val', transform=transform)
+    else:
+        raise ValueError(f'不支持的数据集类型: {dataset_type}')
+
+    return train_dataset, test_dataset

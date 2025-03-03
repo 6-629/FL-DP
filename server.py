@@ -122,7 +122,7 @@ class Server(object):
                 raise ValueError(f"评估结果异常: 损失={avg_loss:.4f}, 准确率={accuracy:.2f}%")
 
             return accuracy, avg_loss
-
         except Exception as e:
             print(f"评估时出错: {str(e)}")
             raise
+
